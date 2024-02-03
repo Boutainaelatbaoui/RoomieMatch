@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Poppins&family=Roboto+Condensed&display=swap');
+@import "~datatables.net-dt/css/jquery.dataTables.css";
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-font {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.text-color{
+    color: #242c3f;
+    border-bottom: 4px solid rgb(43, 167, 238);
+    width: fit-content;
+}
+
+.card-menu{
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    background-color: #f3f4f6 !important;
+    border-radius: 15px !important;
+}
+
+.img-form{
+    border-radius: 15px;
+    min-width: 100% !important;
+}
+
+.chip{
+    display: inline-flex;
+    flex-direction: row;
+    background-color: #e5e5e5;
+    border: none;
+    cursor: default;
+    height: 36px;
+    outline: none;
+    padding: 0;
+    font-size: 14px;
+    font-color: #333333;
+    font-family:"Open Sans", sans-serif;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+.chip-head{
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background-color: #32C5D2;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    user-select: none;
+    border-radius: 50%;
+    justify-content: center;
+    width: 36px;
+    color: #fff;
+    height: 36px;
+    font-size: 20px;
+    margin-right: -4px;
+}
+.chip-content{
+    cursor: inherit;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.main-btn{
+    border-radius: 30px !important;
+    color: #FFFFFF !important;
+    background-color: #6c2bd9 !important;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px !important;
+}
+
+.logo{
+    color: #0c2b3c;
+    font-size: 35px;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.logo-img{
+    width: 50px !important;
+    height: 48px !important;
+}
+
+.navbar-welcome{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.btn-one{
+    background-color: #266ef5 !important;
+    color: #eeeeee !important;
+    border-radius: 10px !important;
+}
+
+.navbar-toggler{
+    background-color: #eeeeee;
+}
+
+.nav-user{
+    color: #FFFFFF !important;
+    font-weight: bolder;
+    width: fit-content !important;
+}
+
+.dropdown-menu{
+    background-color: #f9f9f9 !important;
+    font-weight: bold;
+    border-radius: 10px !important;
+}
+
+.dropdown-menu a:hover{
+    background-color: #266ef5 !important;
+    color: #FFFFFF !important;
+}
+
+.footer-one{
+    background-color: #f9f9f9;
+    border-color: black;
+    border-width: 2px !important;
+}
+
+.footer-two{
+    background-color: #f2f3f5 !important;
+}
+
+.main-btn{
+    border-radius: 10px !important;
+    background-color: #003554 !important;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px !important;
+}
+
+.img-fluid{
+    min-width: 100% !important;
+}
+
+.img-form{
+    border-radius: 30px;
+}
+
+.container-log{
+    width: 60% !important;
+}
+
+.login-text{
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    color: #1d3557;
+}
+
+.login-detail{
+    font-family: 'Poppins', sans-serif;
+    color: #1d3557;
+}
+
+
+.card-form{
+    background-color: #f2f3f5 !important;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px !important;
+}
+
+.card-text{
+    color: #1f202b !important;
+    font-weight: bolder !important;
+}
+

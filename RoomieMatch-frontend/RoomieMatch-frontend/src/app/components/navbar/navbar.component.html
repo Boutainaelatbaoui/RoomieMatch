@@ -1,0 +1,41 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-home px-4 py-2">
+    <div class="container">
+        <a routerLink="" class="navbar-brand d-flex align-items-center" style="color: #6c2bd9 !important;">
+            <img [src]="imageUrl" alt="logo" class="" style="max-height: 35px; max-width: 35px;">
+            <h3 class="mt-2 fw-bold"> OOMIE</h3>
+        </a>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav gap-5">
+            <li class="nav-item">
+            <a routerLink="/home" class="nav-link me-3 fw-semibold" style="color: #6c2bd9;">Home</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav gap-5">
+            <li class="nav-item">
+            <a routerLink="/home" class="nav-link me-3 text-dark fw-semibold">About</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav gap-5">
+            <li class="nav-item">
+            <a routerLink="/home" class="nav-link me-3 text-dark fw-semibold">Services</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav gap-5">
+            <li class="nav-item">
+            <a routerLink="/home" class="nav-link me-3 text-dark fw-semibold">Roomates</a>
+            </li>
+        </ul>
+        </div>
+
+        <div class="d-flex align-items-center">
+        <a routerLink="/login" class="btn btn-login me-3 px-4">Log in</a>
+        <a routerLink="/register" class="btn main-btn">Get started</a>
+        </div>
+        <!-- <form class="d-flex">
+            <button class="btn btn-light" type="submit">logout</button>
+        </form> -->
+    </div>
+    </nav>
+</header>

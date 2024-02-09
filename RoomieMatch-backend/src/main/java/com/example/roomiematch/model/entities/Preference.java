@@ -21,9 +21,13 @@ public class Preference {
     private int cleanliness;
     private int noiseTolerance;
     private int socialLevel;
-    private String others;
-
-    @OneToOne(mappedBy = "preference")
+    private int sleepSchedule;
+    private boolean visitors;
+    private boolean partying;
+    private boolean sharingBedroom;
+    private boolean hasApartment;
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
 

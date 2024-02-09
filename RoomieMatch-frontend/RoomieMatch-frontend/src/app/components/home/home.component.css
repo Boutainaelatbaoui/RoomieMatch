@@ -34,3 +34,11 @@
     text-transform: uppercase;
     font-weight: 600;
 }
+
+.text-color-home {
+    color: #6c2bd9 !important;
+}
+
+.feature-box{
+    border-color: #d8d7d7 !important;
+}

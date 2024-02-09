@@ -126,6 +126,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .tokenType(TokenType.BEARER.name())
                 .id(user.getId())
                 .email(user.getEmail())
+                .desiredCity(user.getDesiredCity())
+                .currentCity(user.getCurrentCity())
+                .bio(user.getBio())
+                .budget(user.getBudget())
+                .birthdate(LocalDate.parse(user.getBirthdate()))
+                .occupation(user.getOccupation())
+                .telephone(user.getTelephone())
+                .gender(user.getGender())
                 .build();
     }
 

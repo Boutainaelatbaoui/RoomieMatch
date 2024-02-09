@@ -132,10 +132,8 @@
     background-color: #f2f3f5 !important;
 }
 
-.main-btn{
-    border-radius: 10px !important;
-    background-color: #003554 !important;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px !important;
+.text-color {
+    color: #6c2bd9 !important;
 }
 
 .img-fluid{

@@ -16,4 +16,6 @@ export class HomeComponent {
   imageUrl7: string = 'assets/img/house.png';
   imageUrl8: string = 'assets/img/heart.png';
   imageUrl9: string = 'assets/img/phone.png';
+  imageUrl10: string = 'assets/img/home1.jpg';
+  imageUrl11: string = 'assets/img/home.jpg';
 }

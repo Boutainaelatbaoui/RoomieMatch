@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1709713364973-1" author="Youcode (generated)">
+    <changeSet id="1709938048530-1" author="Youcode (generated)">
         <createTable tableName="apartments">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_apartments"/>
@@ -32,7 +32,7 @@
             <column name="user_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-2" author="Youcode (generated)">
+    <changeSet id="1709938048530-2" author="Youcode (generated)">
         <createTable tableName="choices">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_choices"/>
@@ -41,7 +41,7 @@
             <column name="question_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-3" author="Youcode (generated)">
+    <changeSet id="1709938048530-3" author="Youcode (generated)">
         <createTable tableName="cities">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cities"/>
@@ -49,19 +49,7 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-4" author="Youcode (generated)">
-        <createTable tableName="notifications">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_notifications"/>
-            </column>
-            <column name="content" type="VARCHAR(255)"/>
-            <column name="read" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="user_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="1709713364973-5" author="Youcode (generated)">
+    <changeSet id="1709938048530-4" author="Youcode (generated)">
         <createTable tableName="preferences">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_preferences"/>
@@ -82,9 +70,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="others" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-6" author="Youcode (generated)">
+    <changeSet id="1709938048530-5" author="Youcode (generated)">
         <createTable tableName="privileges">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_privileges"/>
@@ -92,7 +81,7 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-7" author="Youcode (generated)">
+    <changeSet id="1709938048530-6" author="Youcode (generated)">
         <createTable tableName="questionnaire_responses">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_questionnaire_responses"/>
@@ -102,7 +91,7 @@
             <column name="choice_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-8" author="Youcode (generated)">
+    <changeSet id="1709938048530-7" author="Youcode (generated)">
         <createTable tableName="questions">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_questions"/>
@@ -110,7 +99,7 @@
             <column name="question_text" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-9" author="Youcode (generated)">
+    <changeSet id="1709938048530-8" author="Youcode (generated)">
         <createTable tableName="roles">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles"/>
@@ -118,7 +107,7 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-10" author="Youcode (generated)">
+    <changeSet id="1709938048530-9" author="Youcode (generated)">
         <createTable tableName="roles_privileges">
             <column name="privilege_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -128,7 +117,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-11" author="Youcode (generated)">
+    <changeSet id="1709938048530-10" author="Youcode (generated)">
         <createTable tableName="token">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_token"/>
@@ -141,10 +130,10 @@
             <column name="expired" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
-            <column name="member_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-12" author="Youcode (generated)">
+    <changeSet id="1709938048530-11" author="Youcode (generated)">
         <createTable tableName="user_question_preferences">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_question_preferences"/>
@@ -153,7 +142,7 @@
             <column name="question_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-13" author="Youcode (generated)">
+    <changeSet id="1709938048530-12" author="Youcode (generated)">
         <createTable tableName="users">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
@@ -163,9 +152,6 @@
             <column name="email" type="VARCHAR(255)"/>
             <column name="password" type="VARCHAR(255)"/>
             <column name="telephone" type="VARCHAR(255)"/>
-            <column name="is_active" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
             <column name="bio" type="VARCHAR(255)"/>
             <column name="budget" type="DOUBLE">
                 <constraints nullable="false"/>
@@ -173,13 +159,9 @@
             <column name="occupation" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="has_local" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
             <column name="gender" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="username" type="VARCHAR(255)"/>
             <column name="birthdate" type="VARCHAR(255)"/>
             <column name="profile_picture" type="VARCHAR(255)"/>
             <column name="preference_id" type="BIGINT"/>
@@ -188,78 +170,78 @@
             <column name="desired_city_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1709713364973-14" author="Youcode (generated)">
+    <changeSet id="1709938048530-13" author="Youcode (generated)">
         <addUniqueConstraint columnNames="token" constraintName="uc_token_token" tableName="token"/>
     </changeSet>
-    <changeSet id="1709713364973-15" author="Youcode (generated)">
+    <changeSet id="1709938048530-14" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="apartments"
                                  constraintName="FK_APARTMENTS_ON_USER" referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-    <changeSet id="1709713364973-16" author="Youcode (generated)">
+    <changeSet id="1709938048530-15" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="choices"
                                  constraintName="FK_CHOICES_ON_QUESTION" referencedColumnNames="id"
                                  referencedTableName="questions"/>
     </changeSet>
-    <changeSet id="1709713364973-17" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notifications"
-                                 constraintName="FK_NOTIFICATIONS_ON_USER" referencedColumnNames="id"
+    <changeSet id="1709938048530-16" author="Youcode (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="preferences"
+                                 constraintName="FK_PREFERENCES_ON_USER" referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-    <changeSet id="1709713364973-18" author="Youcode (generated)">
+    <changeSet id="1709938048530-17" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="choice_id" baseTableName="questionnaire_responses"
                                  constraintName="FK_QUESTIONNAIRE_RESPONSES_ON_CHOICE" referencedColumnNames="id"
                                  referencedTableName="choices"/>
     </changeSet>
-    <changeSet id="1709713364973-19" author="Youcode (generated)">
+    <changeSet id="1709938048530-18" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="questionnaire_responses"
                                  constraintName="FK_QUESTIONNAIRE_RESPONSES_ON_QUESTION" referencedColumnNames="id"
                                  referencedTableName="questions"/>
     </changeSet>
-    <changeSet id="1709713364973-20" author="Youcode (generated)">
+    <changeSet id="1709938048530-19" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="questionnaire_responses"
                                  constraintName="FK_QUESTIONNAIRE_RESPONSES_ON_USER" referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-    <changeSet id="1709713364973-21" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="member_id" baseTableName="token" constraintName="FK_TOKEN_ON_MEMBER"
+    <changeSet id="1709938048530-20" author="Youcode (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="token" constraintName="FK_TOKEN_ON_USER"
                                  referencedColumnNames="id" referencedTableName="users"/>
     </changeSet>
-    <changeSet id="1709713364973-22" author="Youcode (generated)">
+    <changeSet id="1709938048530-21" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="current_city_id" baseTableName="users"
                                  constraintName="FK_USERS_ON_CURRENT_CITY" referencedColumnNames="id"
                                  referencedTableName="cities"/>
     </changeSet>
-    <changeSet id="1709713364973-23" author="Youcode (generated)">
+    <changeSet id="1709938048530-22" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="desired_city_id" baseTableName="users"
                                  constraintName="FK_USERS_ON_DESIRED_CITY" referencedColumnNames="id"
                                  referencedTableName="cities"/>
     </changeSet>
-    <changeSet id="1709713364973-24" author="Youcode (generated)">
+    <changeSet id="1709938048530-23" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="preference_id" baseTableName="users"
                                  constraintName="FK_USERS_ON_PREFERENCE" referencedColumnNames="id"
                                  referencedTableName="preferences"/>
     </changeSet>
-    <changeSet id="1709713364973-25" author="Youcode (generated)">
+    <changeSet id="1709938048530-24" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="users" constraintName="FK_USERS_ON_ROLE"
                                  referencedColumnNames="id" referencedTableName="roles"/>
     </changeSet>
-    <changeSet id="1709713364973-26" author="Youcode (generated)">
+    <changeSet id="1709938048530-25" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="user_question_preferences"
                                  constraintName="FK_USER_QUESTION_PREFERENCES_ON_QUESTION" referencedColumnNames="id"
                                  referencedTableName="questions"/>
     </changeSet>
-    <changeSet id="1709713364973-27" author="Youcode (generated)">
+    <changeSet id="1709938048530-26" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_question_preferences"
                                  constraintName="FK_USER_QUESTION_PREFERENCES_ON_USER" referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-    <changeSet id="1709713364973-28" author="Youcode (generated)">
+    <changeSet id="1709938048530-27" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="privilege_id" baseTableName="roles_privileges"
                                  constraintName="fk_rolpri_on_privilege" referencedColumnNames="id"
                                  referencedTableName="privileges"/>
     </changeSet>
-    <changeSet id="1709713364973-29" author="Youcode (generated)">
+    <changeSet id="1709938048530-28" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="roles_privileges"
                                  constraintName="fk_rolpri_on_role" referencedColumnNames="id"
                                  referencedTableName="roles"/>

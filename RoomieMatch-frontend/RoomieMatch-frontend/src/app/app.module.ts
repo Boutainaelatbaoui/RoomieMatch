@@ -9,6 +9,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RoomateComponent } from './components/roomate/roomate.component';
+import { AccessDeniedComponent } from './components/errors/access-denied/access-denied.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpInterceptor } from './helpers/http/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,13 +24,19 @@ import { FooterComponent } from './components/footer/footer.component';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    RoomateComponent,
+    AccessDeniedComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+    [BrowserModule, FormsModule, ReactiveFormsModule],
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+    ],
+    providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

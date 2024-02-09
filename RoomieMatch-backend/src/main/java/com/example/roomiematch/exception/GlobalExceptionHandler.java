@@ -35,12 +35,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-        ErrorResponse errorResponse = new ErrorResponse("Data integrity violation", "Duplicate entry or constraint violation");
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
-    }
+//    @ExceptionHandler(DataIntegrityViolationException.class)
+//    @ResponseStatus(HttpStatus.CONFLICT)
+//    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+//        ErrorResponse errorResponse = new ErrorResponse("Data integrity violation", "Duplicate entry or constraint violation");
+//        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+//    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

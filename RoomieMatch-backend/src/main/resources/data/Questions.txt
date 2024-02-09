@@ -1,0 +1,48 @@
+Question: How do you prefer to spend your weekends?
+
+Choice 1: Going out and socializing
+Choice 2: Relaxing at home
+Choice 3: Engaging in outdoor activities
+Question: What is your attitude towards cleanliness?
+
+Choice 1: Very tidy and organized
+Choice 2: Moderately clean
+Choice 3: Relaxed, a bit messy is fine
+Question: How often do you have friends over?
+
+Choice 1: Frequently
+Choice 2: Occasionally
+Choice 3: Rarely or never
+Question: Are you a smoker?
+
+Choice 1: Yes
+Choice 2: No
+Question: Do you have any pets?
+
+Choice 1: Yes
+Choice 2: No
+Question: What is your preferred noise level at home?
+
+Choice 1: Quiet
+Choice 2: Moderate
+Choice 3: Lively
+Question: How do you handle shared expenses?
+
+Choice 1: Split everything evenly
+Choice 2: Share some expenses, separate others
+Choice 3: Keep expenses entirely separate
+Question: How often do you cook at home?
+
+Choice 1: Frequently
+Choice 2: Occasionally
+Choice 3: Rarely or never
+Question: What is your sleep routine?
+
+Choice 1: Early to bed, early to rise
+Choice 2: Average sleep schedule
+Choice 3: Night owl
+Question: How important is it for you to have quiet study/work time at home?
+
+Choice 1: Very important
+Choice 2: Somewhat important
+Choice 3: Not important

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1709938217357-1" author="Youcode (generated)">
+        <addColumn tableName="preferences">
+            <column name="sleep_schedule" type="INT"/>
+            <column name="visitors" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1709938217357-2" author="Youcode (generated)">
+        <addNotNullConstraint columnDataType="INT" columnName="sleep_schedule" tableName="preferences"/>
+    </changeSet>
+    <changeSet id="1709938217357-4" author="Youcode (generated)">
+        <addNotNullConstraint columnDataType="BOOLEAN" columnName="visitors" tableName="preferences"/>
+    </changeSet>
+    <changeSet id="1709938217357-5" author="Youcode (generated)">
+        <dropColumn columnName="others" tableName="preferences"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -44,8 +44,6 @@ public class User implements UserDetails {
 
     private int occupation;
 
-    private boolean hasLocal;
-
     private int gender;
 
     private String birthdate;
@@ -70,9 +68,6 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "desired_city_id")
     private City desiredCity;
-
-    @OneToMany(mappedBy = "user")
-    private List<Apartment> apartments;
 
     @OneToMany(mappedBy = "user")
     private List<QuestionnaireResponse> questionnaireResponses;

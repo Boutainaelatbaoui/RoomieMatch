@@ -43,8 +43,6 @@ public class RegisterRequest {
 
     private int occupation;
 
-    private boolean hasLocal;
-
     @NotNull(message = "Gender cannot be null")
     @NotBlank(message = "Gender cannot be blank")
     private int gender;

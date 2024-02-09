@@ -1,5 +1,6 @@
 package com.example.roomiematch.model.dto.response;
 
+import com.example.roomiematch.model.entities.City;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -22,11 +23,10 @@ public class AuthenticationResponse {
     private String bio;
     private double budget;
     private int occupation;
-    private boolean hasLocal;
     private int gender;
     private LocalDate birthdate;
-    private Long currentCityId;
-    private Long desiredCityId;
+    private City currentCity;
+    private City desiredCity;
 
     @JsonProperty("access_token")
     private String accessToken;

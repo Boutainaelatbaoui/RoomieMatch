@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1709986102614-1" author="Youcode (generated)">
+        <addColumn tableName="preferences">
+            <column name="has_apartment" type="BOOLEAN"/>
+            <column name="partying" type="BOOLEAN"/>
+            <column name="sharing_bedroom" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1709986102614-2" author="Youcode (generated)">
+        <addNotNullConstraint columnDataType="BOOLEAN" columnName="has_apartment" tableName="preferences"/>
+    </changeSet>
+    <changeSet id="1709986102614-4" author="Youcode (generated)">
+        <addNotNullConstraint columnDataType="BOOLEAN" columnName="partying" tableName="preferences"/>
+    </changeSet>
+    <changeSet id="1709986102614-6" author="Youcode (generated)">
+        <addNotNullConstraint columnDataType="BOOLEAN" columnName="sharing_bedroom" tableName="preferences"/>
+    </changeSet>
+
+</databaseChangeLog>

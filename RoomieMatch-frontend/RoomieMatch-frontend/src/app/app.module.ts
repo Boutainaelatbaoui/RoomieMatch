@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptor } from './helpers/http/http.interceptor';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { HttpInterceptor } from './helpers/http/http.interceptor';
     [BrowserModule, FormsModule, ReactiveFormsModule],
       AppRoutingModule,
       HttpClientModule,
+      MatPaginatorModule,
       BrowserAnimationsModule,
     ],
     providers: [

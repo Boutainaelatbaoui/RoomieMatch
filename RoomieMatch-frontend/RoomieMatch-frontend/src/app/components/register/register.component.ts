@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
+  imageUrl1: string = 'assets/img/young.png';
+  imageUrl2: string = 'assets/img/man.png';
 }

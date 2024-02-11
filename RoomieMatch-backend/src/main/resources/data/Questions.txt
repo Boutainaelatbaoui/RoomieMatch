@@ -46,3 +46,55 @@ Question: How important is it for you to have quiet study/work time at home?
 Choice 1: Very important
 Choice 2: Somewhat important
 Choice 3: Not important
+
+
+Question: How would you describe your work/study schedule?
+
+Choice 1: Regular 9-5 schedule
+Choice 2: Variable hours
+Choice 3: Night shifts or irregular schedule
+Question: What is your approach to cleanliness in shared spaces?
+
+Choice 1: Very neat and organized
+Choice 2: Clean but not overly tidy
+Choice 3: Relaxed, comfortable with some clutter
+Question: How do you handle conflicts or disagreements?
+
+Choice 1: Open communication and discussion
+Choice 2: Take some time to cool off before discussing
+Choice 3: Avoid confrontation, try to find a compromise
+Question: How often do you like to have guests over?
+
+Choice 1: Frequently
+Choice 2: Occasionally
+Choice 3: Rarely or never
+Question: Are you an early riser or a night owl?
+
+Choice 1: Early riser
+Choice 2: Neutral
+Choice 3: Night owl
+Question: Do you have any dietary restrictions or preferences?
+
+Choice 1: Vegetarian/Vegan
+Choice 2: No specific restrictions
+Choice 3: Other (please specify)
+Question: How do you handle shared expenses and bills?
+
+Choice 1: Split everything equally
+Choice 2: Divide bills based on usage
+Choice 3: Keep finances entirely separate
+Question: What's your stance on overnight guests?
+
+Choice 1: Fine with it, just let me know
+Choice 2: Occasionally is okay
+Choice 3: Prefer no overnight guests
+Question: How do you like to unwind after a long day?
+
+Choice 1: Read a book or watch TV
+Choice 2: Exercise or engage in a hobby
+Choice 3: Go out with friends or socialize
+Question: What level of noise are you comfortable with during quiet hours?
+
+Choice 1: Prefer absolute silence
+Choice 2: Moderate noise is okay
+Choice 3: Comfortable with some background noise

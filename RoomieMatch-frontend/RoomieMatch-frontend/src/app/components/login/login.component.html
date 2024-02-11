@@ -1,89 +1,70 @@
-<section class="">
-    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
-        <div class="container">
-            <div class="row gx-lg-5 align-items-center">
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <h1 class="my-5 display-3 fw-bold ls-tight">
-                The best offer <br />
-                <span class="text-primary">for your business</span>
-                </h1>
-                <p style="color: hsl(217, 10%, 50.8%)">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-                quibusdam tempora at cupiditate quis eum maiores libero
-                veritatis? Dicta facilis sint aliquid ipsum atque?
-                </p>
-            </div>
-    
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <div class="card">
-                <div class="card-body py-5 px-md-5">
-                    <form>
-                    <!-- 2 column grid layout with text inputs for the first and last names -->
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <input type="text" id="form3Example1" class="form-control" />
-                            <label class="form-label" for="form3Example1">First name</label>
-                        </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <input type="text" id="form3Example2" class="form-control" />
-                            <label class="form-label" for="form3Example2">Last name</label>
-                        </div>
-                        </div>
-                    </div>
-    
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="email" id="form3Example3" class="form-control" />
-                        <label class="form-label" for="form3Example3">Email address</label>
-                    </div>
-    
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="form3Example4" class="form-control" />
-                        <label class="form-label" for="form3Example4">Password</label>
-                    </div>
-    
-                    <!-- Checkbox -->
-                    <div class="form-check d-flex justify-content-center mb-4">
-                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                        <label class="form-check-label" for="form2Example33">
-                        Subscribe to our newsletter
-                        </label>
-                    </div>
-    
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">
-                        Sign up
-                    </button>
-    
-                    <!-- Register buttons -->
-                    <div class="text-center">
-                        <p>or sign up with:</p>
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-facebook-f"></i>
-                        </button>
-    
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-google"></i>
-                        </button>
-    
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-twitter"></i>
-                        </button>
-    
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-github"></i>
-                        </button>
-                    </div>
-                    </form>
+<app-navbar></app-navbar>
+<section class="overflow-hidden">
+    <style>
+    .bg-glass {
+        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+    }
+    </style>
+
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5align-items-center mb-5">
+        <div class="col-lg-8 mb-5 mb-lg-0" style="z-index: 10">
+            <div class="row">
+                <div class="col-9">
+                    <img [src]="imageUrl1" class="w-25 mt-5 pt-5" alt="image">
+                    <img [src]="imageUrl" class="w-75 mb-5" alt="image">
                 </div>
-                </div>
-            </div>
             </div>
         </div>
+
+        <div class="col-lg-4 mb-5 mb-lg-0 position-relative">
+        <div class="card bg-glass">
+        <div class="card-body px-4 py-5 px-md-5">
+            <form #formLogin="ngForm" (ngSubmit)="onSubmitLogin(formLogin)">
+                <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <div class="">
+                    <input type="email" class="form-control" id="email" placeholder="Email Address" ngModel #email="ngModel" name="email" required email>
+                    <div *ngIf="email.errors && formLogin.submitted" class="text-danger">
+                        Email is required!
+                    </div>
+                </div>
+                </div>
+                <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="">
+                    <input type="password" class="form-control" id="password" placeholder="Password" ngModel #password="ngModel" name="password"
+                    required minlength="6">
+                    <div *ngIf="password.errors && formLogin.submitted" class="text-danger">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']" >
+                            Password must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
+
+                    <label class="form-check-label text-form" for="remember">
+                    Remember Me
+                    </label>
+                </div>
+                </div>
+                <div class="text-start mb-3">
+                <a class="text-decoration-none text-form" href="">
+                    Forgot Your Password?
+                </a>
+                </div>
+                <div class="d-grid d-block mb-4">
+                <button type="submit" name="login" class="btn main-btn text-white" id="login">Sign in</button>
+                </div>
+            </form>
+        </div>
+        </div>
     </div>
+    </div>
+</div>
 </section>

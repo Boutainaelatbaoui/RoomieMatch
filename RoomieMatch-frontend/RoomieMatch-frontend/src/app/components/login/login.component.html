@@ -8,19 +8,24 @@
     </style>
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-        <div class="row gx-lg-5align-items-center mb-5">
-        <div class="col-lg-8 mb-5 mb-lg-0" style="z-index: 10">
+        <div class="row g-0 align-items-center">
+        <div class="col-lg-7 m-0" style="z-index: 10">
             <div class="row">
-                <div class="col-9">
-                    <img [src]="imageUrl1" class="w-25 mt-5 pt-5" alt="image">
-                    <img [src]="imageUrl" class="w-75 mb-5" alt="image">
+                <div class="d-flex col-11">
+                    <img [src]="imageUrl1" class="w-25 pe-0 me-0" style="padding-bottom: 300px;" alt="image">
+                    <img [src]="imageUrl" class="w-75" alt="image">
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-4 mb-5 mb-lg-0 position-relative">
-        <div class="card bg-glass">
+        <div class="col-lg-5 m-0 position-relative">
+        <div class="card bg-glass rounded-5">
         <div class="card-body px-4 py-5 px-md-5">
+            <div>
+                <h3 class="fw-semibold text-center mb-3">
+                    <span class="text-dark">Welcome Back 👋</span>
+                </h3>
+            </div>
             <form #formLogin="ngForm" (ngSubmit)="onSubmitLogin(formLogin)">
                 <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
@@ -62,6 +67,8 @@
                 <button type="submit" name="login" class="btn main-btn text-white" id="login">Sign in</button>
                 </div>
             </form>
+            <p class="mb-3 text-center text-form fs-6 mb-3">Don't have an account? <button class="btn main-btn btn-sm">
+                <a routerLink="/register" class="text-decoration-none text-white text-center">Sign Up</a></button></p>
         </div>
         </div>
     </div>

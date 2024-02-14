@@ -12,6 +12,6 @@ import lombok.*;
 public class QuestionnaireResponseResponseDTO {
     private Long id;
     private Long userId;
-    private QuestionRequestDTO question;
+    private QuestionResponseDTO question;
     private Long choiceId;
 }

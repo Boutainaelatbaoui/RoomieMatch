@@ -2,19 +2,17 @@
 <section class="overflow-hidden">
     <style>
     #radius-shape-1 {
-        height: 220px;
-        width: 220px;
-        top: -60px;
-        left: -130px;
-        overflow: hidden;
+        height: 50px;
+        width: 50px;
+        top: -80px;
+        left: -250px;
     }
 
     #radius-shape-2 {
-        bottom: -60px;
-        right: -110px;
+        bottom: -40px;
+        right: -5px;
         width: 200px;
         height: 200px;
-        overflow: hidden;
     }
 
     .bg-glass {
@@ -25,7 +23,7 @@
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div class="row gx-lg-5 align-items-center mb-5">
-        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <div class="col-lg-7 mb-5 mb-lg-0" style="z-index: 10">
             <h1 class="my-5 display-5 fw-bold ls-tight" style="color: rgb(135, 87, 216)">
             The best offer <br />
             <span style="color: #6c2bd9">for your business</span>
@@ -38,9 +36,9 @@
             </p>
         </div>
 
-        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+        <div class="col-lg-5 mb-5 mb-lg-0 position-relative">
         <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong">
-            <img [src]="imageUrl1" alt="">
+            <img [src]="imageUrl1" alt="" width="450px">
         </div>
         <div id="radius-shape-2" class="position-absolute shadow-5-strong">
             <img [src]="imageUrl2" alt="">
@@ -48,43 +46,65 @@
 
         <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
-            <form>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" />
-                    <label class="form-label" for="form3Example1">First name</label>
+            <form [formGroup]="registrationForm" (ngSubmit)="register()" class="register-form">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label"> Name</label>
+                        <div class="">
+                            <input id="name" type="text" class="form-control" formControlName="name" autocomplete="name" autofocus>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="familyName" class="form-label">Family Name</label>
+                        <div class="">
+                            <input id="familyName" type="text" class="form-control" formControlName="familyName" autocomplete="familyName" autofocus>
+                        </div>
+                    </div>
                 </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="nationality" class="form-label">Nationality:</label>
+                        <div class="">
+                            <input id="nationality" type="text" class="form-control" formControlName="nationality">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="identityDocument" class="form-label">Identity Document:</label>
+                        <div class="">
+                            <select id="identityDocument" class="form-control" formControlName="identityDocument">
+                            <option value="PASSPORT">PASSPORT</option>
+                            <option value="CIN">CIN</option>
+                            <option value="CARTE_RESIDENCE">CARTE RESIDENCE</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" />
-                    <label class="form-label" for="form3Example2">Last name</label>
+                <div class="mb-3">
+                    <label for="identityNumber" class="form-label">Identity Number:</label>
+                    <div class="">
+                        <input id="identityNumber" type="text" class="form-control" formControlName="identityNumber">
+                    </div>
                 </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <div class="">
+                        <input id="email" type="email" class="form-control" formControlName="email" autocomplete="email">
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
-                <label class="form-label" for="form3Example3">Email address</label>
-            </div>
-
-            <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" />
-                <label class="form-label" for="form3Example4">Password</label>
-            </div>
-
-            <div class="form-check d-flex justify-content-center mb-4">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                <label class="form-check-label" for="form2Example33">
-                Subscribe to our newsletter
-                </label>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block mb-4">
-                Sign up
-            </button>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="">
+                        <input id="password" type="password" class="form-control" formControlName="password" autocomplete="new-password">
+                    </div>
+                </div>
+                <div class="d-grid d-block mb-4 text-center">
+                    <button type="submit" name="signup" class="btn main-btn text-white" id="signup">Create account</button>
+                </div>
             </form>
+            <div class="login-mb">
+                <p class="text-center text-form">Already have an account? <button class="btn second-btn btn-sm">
+                    <a routerLink="/login" class="text-decoration-none main-btn btn text-white text-center">Login</a></button></p>
+            </div>
         </div>
         </div>
     </div>

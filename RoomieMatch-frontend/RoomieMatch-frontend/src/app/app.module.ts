@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptor } from './helpers/http/http.interceptor';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SidebarComponent } from './components/dashboard/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RegisterComponent,
     FooterComponent,
     RoomateComponent,
-    AccessDeniedComponent
+    AccessDeniedComponent,
+    SidebarComponent
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

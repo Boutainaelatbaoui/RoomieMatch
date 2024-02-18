@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+<div class="col-6">
+    <h2 class="fw-bold text-color pb-3">Update Question</h2>
+    <div class="card card-menu p-3 mt-4">
+        <form [formGroup]="updateForm" (ngSubmit)="updateQuestion()">
+            <div class="mb-3">
+                <label for="questionText" class="form-label">Question Text</label>
+                <input type="text" class="form-control" id="questionText" formControlName="questionText" required>
+            </div>
+            <button type="submit" class="btn main-btn">Update</button>
+        </form>
+    </div>
+</div>
+</div>

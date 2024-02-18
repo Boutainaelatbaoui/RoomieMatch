@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
   imageUrl: string = 'assets/img/roomie.png';
+  imageUrl1: string = 'assets/img/female.png';
+
 }

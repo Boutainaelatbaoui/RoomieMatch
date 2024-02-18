@@ -1,40 +1,36 @@
+<nav class="navbar navbar-dash navbar-expand-lg text-dark fixed-top" style="background-color: #F5F7F9;">
+<div class="container-fluid">
+    <a routerLink="" class="navbar-brand d-flex align-items-center ms-4" style="color: #6c2bd9 !important;">
+        <img [src]="imageUrl" alt="logo" class="me-0" style="max-height: 25px; max-width: 25px;">
+        <h3 class="mt-3 fw-bold ms-1 fs-5"> OOMIE</h3>
+    </a>
+    <a href="#menu-toggle" class="btn main-btn fs-6 ms-5" id="menu-toggle"><i class="bi bi-bar-chart-steps"></i></a>
+    <ul class="navbar-nav d-flex ms-auto">
+        <li class="nav-item">
+        <p id="" class="text-secondary fs-6 me-3 mt-1">
+            <img class="rounded-circle me-1" [src]="imageUrl1" alt="user photo" width="50" height="50">
+            Admin
+        </p>
+        </li>
+    </ul>
+</div>
+</nav>
 <div id="wrapper">
-
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a routerLink="" class="navbar-brand d-flex align-items-center" style="color: #6c2bd9 !important;">
-                    <img [src]="imageUrl" alt="logo" class="me-0" style="max-height: 35px; max-width: 35px;">
-                    <h3 class="mt-2 fw-bold">OOMIE</h3>
-                </a>
+        <ul class="sidebar-nav mt-5 ms-0 text-dark">
+            <li class="mb-3">
+                <a href="#"><i class="bi bi-question-circle me-2 fs-5 mb-3"></i>
+                Questions</a>
             </li>
-            <li>
-                <a href="#">Dashboard</a>
+            <li class="mb-3">
+                <a href="#"><i class="bi bi-person-circle me-2 fs-5 mb-3"></i>Users</a>
             </li>
-            <li>
-                <a href="#">Shortcuts</a>
+            <li class="mb-3">
+                <a href="#"><i class="bi bi-check2-square me-2 fs-5 mb-3"></i>Choices</a>
             </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
+            <li class="">
+                <a href="#"><i class="bi bi-box-arrow-right me-2 fs-5"></i>Logout</a>
             </li>
         </ul>
-    </div>
-
-    <div id="">
-        <div class="container-fluid">
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="bi bi-bar-chart-steps"></i></a>
-        </div>
     </div>
 </div>

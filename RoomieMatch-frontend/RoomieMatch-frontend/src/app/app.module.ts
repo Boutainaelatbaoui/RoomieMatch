@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptor } from './helpers/http/http.interceptor';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SidebarComponent } from './components/dashboard/sidebar/sidebar.component';
+import { UpdateQuestionComponent } from './components/dashboard/update-question/update-question.component';
+import { CreateQuestionComponent } from './components/dashboard/create-question/create-question.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { SidebarComponent } from './components/dashboard/sidebar/sidebar.compone
     FooterComponent,
     RoomateComponent,
     AccessDeniedComponent,
-    SidebarComponent
+    SidebarComponent,
+    UpdateQuestionComponent,
+    CreateQuestionComponent
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

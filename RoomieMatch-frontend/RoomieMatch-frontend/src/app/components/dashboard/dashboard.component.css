@@ -1,0 +1,10 @@
+.main-dash {
+    margin: 125px 10px 0 15px;
+    width: auto;
+}
+
+@media (min-width: 992px) {
+    .main-dash {
+        margin-left: 200px;
+    }
+}

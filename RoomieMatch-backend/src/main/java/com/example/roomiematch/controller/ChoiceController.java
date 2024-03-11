@@ -3,6 +3,7 @@ package com.example.roomiematch.controller;
 import com.example.roomiematch.model.dto.request.ChoiceRequestDTO;
 import com.example.roomiematch.model.dto.response.ChoiceResponseDTO;
 import com.example.roomiematch.service.IChoiceService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class ChoiceController {
     }
 
     @PostMapping
-    public ResponseEntity<ChoiceResponseDTO> createChoice(@RequestBody ChoiceRequestDTO choiceRequestDTO) {
+    public ResponseEntity<ChoiceResponseDTO> createChoice(@Valid @RequestBody ChoiceRequestDTO choiceRequestDTO) {
         ChoiceResponseDTO createdChoice = choiceService.createChoice(choiceRequestDTO);
         return ResponseEntity.ok(createdChoice);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ChoiceResponseDTO> updateChoice(@PathVariable Long id, @RequestBody ChoiceRequestDTO updatedChoiceRequestDTO) {
+    public ResponseEntity<ChoiceResponseDTO> updateChoice(@PathVariable Long id, @Valid @RequestBody ChoiceRequestDTO updatedChoiceRequestDTO) {
         ChoiceResponseDTO updatedChoice = choiceService.updateChoice(id, updatedChoiceRequestDTO);
         return ResponseEntity.ok(updatedChoice);
     }

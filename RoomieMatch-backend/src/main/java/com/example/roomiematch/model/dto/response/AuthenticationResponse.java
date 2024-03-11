@@ -25,8 +25,8 @@ public class AuthenticationResponse {
     private int occupation;
     private int gender;
     private LocalDate birthdate;
-    private City currentCity;
-    private City desiredCity;
+    private CityResponseDTO currentCity;
+    private CityResponseDTO desiredCity;
 
     @JsonProperty("access_token")
     private String accessToken;

@@ -7,6 +7,9 @@
             <div class="mb-3">
                 <label for="questionText" class="form-label">Question Text</label>
                 <input type="text" class="form-control" id="questionText" formControlName="questionText" required>
+                <div *ngIf="updateForm.get('questionText')?.hasError('required')">
+                    <small class="text-danger">Question Text is required</small>
+                </div>
             </div>
             <button type="submit" class="btn main-btn">Update</button>
         </form>

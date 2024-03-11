@@ -67,7 +67,7 @@ public class StartUp implements CommandLineRunner {
                 1000.0,
                 1,
                 1,
-                "1990-01-01",
+                LocalDate.parse("1990-01-01"),
                 "adminProfilePicture",
                 adminRole);
 
@@ -83,7 +83,7 @@ public class StartUp implements CommandLineRunner {
                 500.0,
                 2,
                 2,
-                "1995-05-05",
+                LocalDate.parse("1995-05-05"),
                 "userProfilePicture",
                 userRole);
 
@@ -99,7 +99,7 @@ public class StartUp implements CommandLineRunner {
                 800.0,
                 3,
                 1,
-                "1985-10-10",
+                LocalDate.parse("1985-10-10"),
                 "managerProfilePicture",
                 superAdminRole);
 
@@ -127,7 +127,7 @@ public class StartUp implements CommandLineRunner {
             double budget,
             int occupation,
             int gender,
-            String birthdate,
+            LocalDate birthdate,
             String profilePicture,
             Role role) {
 

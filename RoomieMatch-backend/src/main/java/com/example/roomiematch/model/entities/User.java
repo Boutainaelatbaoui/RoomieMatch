@@ -46,7 +46,7 @@ public class User implements UserDetails {
 
     private int gender;
 
-    private String birthdate;
+    private LocalDate birthdate;
 
     private String profilePicture;
 

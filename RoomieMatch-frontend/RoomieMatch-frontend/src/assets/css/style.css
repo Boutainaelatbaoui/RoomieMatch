@@ -1,10 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Poppins&family=Roboto+Condensed&display=swap');
-@import "~datatables.net-dt/css/jquery.dataTables.css";
-
-body, html {
-    overflow: hidden;
-}
-
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -35,7 +29,6 @@ body, html {
     outline: none;
     padding: 0;
     font-size: 14px;
-    font-color: #333333;
     font-family:"Open Sans", sans-serif;
     white-space: nowrap;
     align-items: center;

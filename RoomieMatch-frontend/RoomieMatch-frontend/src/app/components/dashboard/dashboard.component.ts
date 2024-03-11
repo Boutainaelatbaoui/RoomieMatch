@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  imageUrl5: string = 'assets/img/dotted.png';
   questions: QuestionResponse[] = [];
   pagedQuestions: QuestionResponse[] = [];
   pageSizeOptions: number[] = [3, 5, 25, 100];

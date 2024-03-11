@@ -19,6 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SidebarComponent } from './components/dashboard/sidebar/sidebar.component';
 import { UpdateQuestionComponent } from './components/dashboard/update-question/update-question.component';
 import { CreateQuestionComponent } from './components/dashboard/create-question/create-question.component';
+import { RoomateDetailsComponent } from './components/roomate/roomate-details/roomate-details.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CreateQuestionComponent } from './components/dashboard/create-question/
     AccessDeniedComponent,
     SidebarComponent,
     UpdateQuestionComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    RoomateDetailsComponent
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

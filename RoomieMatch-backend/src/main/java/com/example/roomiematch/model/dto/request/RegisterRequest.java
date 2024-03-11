@@ -26,7 +26,7 @@ public class RegisterRequest {
     @Email(message = "Email is not valid")
     private String email;
 
-    @Min(value = 8, message = "The Password must has 6 or more caracters")
+    @Size(min = 6, message = "The Password must have at least 6 characters")
     private String password;
 
     private Long role_id;
@@ -41,16 +41,16 @@ public class RegisterRequest {
     @DecimalMin("0.0")
     private double budget;
 
+    @NotNull(message = "Gender cannot be null")
     private int occupation;
 
     @NotNull(message = "Gender cannot be null")
-    @NotBlank(message = "Gender cannot be blank")
     private int gender;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
 
-    private String profilePicture;
+    //private String profilePicture;
 
 
     @NotNull(message = "Current City ID cannot be null")

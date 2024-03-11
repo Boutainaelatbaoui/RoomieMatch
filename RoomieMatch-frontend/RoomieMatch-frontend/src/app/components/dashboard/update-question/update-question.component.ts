@@ -5,6 +5,7 @@ import { QuestionResponse } from 'src/app/models/response/question-response';
 import { QuestionService } from 'src/app/services/questions/question.service';
 import Swal from 'sweetalert2';
 import { QuestionRequest } from 'src/app/models/request/question-request';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-update-question',
@@ -61,8 +62,17 @@ export class UpdateQuestionComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         },
         (error) => {
-          console.error('Error updating question:', error);
-          Swal.fire('Error', 'An error occurred while updating the question.', 'error');
+          console.error('Error creating question:', error);
+  
+          if (error instanceof HttpErrorResponse && error.status === 400) {
+            if (error.error && error.error.error === 'Validation error' && error.error.message) {
+              Swal.fire('Error', error.error.message, 'error');
+            } else {
+              Swal.fire('Error', 'An error occurred while creating the question.', 'error');
+            }
+          } else {
+            Swal.fire('Error', 'An unexpected error occurred.', 'error');
+          }
         }
       );
     }

@@ -38,7 +38,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        `${this.apiUrl}/v1/auth/login`,
+        `${this.apiUrl}/auth/login`,
         { email, password },
       )
       .pipe(
@@ -54,9 +54,11 @@ export class AuthService {
   
 
   register(registerData: Registration) {
+    console.log(registerData);
+    
     return this.http
       .post<AuthResponseData>(
-        `${this.apiUrl}/v1/auth/register`,
+        `${this.apiUrl}/auth/register`,
         registerData,
       )
       .pipe(

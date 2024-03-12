@@ -46,7 +46,7 @@ import { RoomateDetailsComponent } from './components/roomate/roomate-details/ro
       BrowserAnimationsModule,
     ],
     providers: [
-      { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
+      // { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }
     ],
   bootstrap: [AppComponent]
 })

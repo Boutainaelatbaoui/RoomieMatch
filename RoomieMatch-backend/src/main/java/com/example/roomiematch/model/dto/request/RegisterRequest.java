@@ -52,7 +52,6 @@ public class RegisterRequest {
 
     //private String profilePicture;
 
-
     @NotNull(message = "Current City ID cannot be null")
     private Long currentCityId;
 

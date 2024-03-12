@@ -47,6 +47,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new ValidationException("Email is already registered");
+        }
+
         Role userRole = roleRepository.findByName(RoleName.USER)
                 .orElseThrow(() -> new EntityNotFoundException("Role not found in the database"));
 

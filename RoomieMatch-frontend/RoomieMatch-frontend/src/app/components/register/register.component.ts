@@ -2,11 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthResponseData } from 'src/app/models/auth-response-data';
-import { Registration } from 'src/app/models/registration';
-import { CityResponse } from 'src/app/models/response/city-response';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CityService } from 'src/app/services/cities/city.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,14 +12,14 @@ import Swal from 'sweetalert2';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   imageUrl1: string = 'assets/img/young.png';
   imageUrl2: string = 'assets/img/man.png';
   registrationForm: FormGroup;
-  cities: CityResponse[] = [];
+  preferenceForm: FormGroup;
+  cities: any[] = []; // Update the type based on your CityResponse model
 
-
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private cityService: CityService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private cityService: CityService, private storageService: StorageService) {
     this.registrationForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -36,6 +34,15 @@ export class RegisterComponent implements OnInit{
       currentCityId: [, [Validators.required]],
       desiredCityId: [, [Validators.required]]
     });
+
+    this.preferenceForm = this.fb.group({
+      smoking: ['', Validators.required],
+      pets: ['', Validators.required],
+      visitors: ['', Validators.required],
+      partying: ['', Validators.required],
+      sharingBedroom: ['', Validators.required],
+      hasApartment: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
@@ -49,33 +56,50 @@ export class RegisterComponent implements OnInit{
     );
   }
 
-  get formControls() {
-    return this.registrationForm.controls;
-  }
-
-  register() {
-    const registerData: Registration = this.registrationForm.value;
-    console.log(registerData);
-    
-
-    this.authService.register(registerData).subscribe(
-      (response: AuthResponseData) => {
-        console.log('Registration successful', response);
-        Swal.fire('Success', 'Registration successful!', 'success');
-      },
-      (error) => {
-        console.error('Error creating question:', error);
-
-        if (error instanceof HttpErrorResponse && error.status === 400) {
-          if (error.error && error.error.error === 'Validation error' && error.error.message) {
-            Swal.fire('Error', error.error.message, 'error');
+  submitForms() {
+    if (this.registrationForm.valid && this.preferenceForm.valid) {
+      const registrationData = this.registrationForm.value;
+      const preferenceData = this.preferenceForm.value;
+      
+      this.authService.register(registrationData).subscribe(
+        (registrationResponse: any) => {
+          console.log('Registration successful', registrationResponse);
+          
+          const userId = this.storageService.getSavedUser()?.id;
+  
+          if (userId) {
+            preferenceData.userId = userId;
+  
+            this.authService.createPreference(preferenceData).subscribe(
+              (preferenceResponse: any) => {
+                console.log('Preference submitted successfully', preferenceResponse);
+                Swal.fire('Success', 'Registration and Preference submitted successfully!', 'success');
+              },
+              (preferenceError: HttpErrorResponse) => {
+                console.error('Error submitting preference form:', preferenceError);
+                let errorMessage = 'An error occurred while submitting the preference form.';
+                if (preferenceError.status === 400 && preferenceError.error && preferenceError.error.message) {
+                  errorMessage = preferenceError.error.message;
+                }
+                Swal.fire('Error', errorMessage, 'error');
+              }
+            );
           } else {
-            Swal.fire('Error', 'An error occurred while creating the question.', 'error');
+            Swal.fire('Error', 'User ID not found in the registration response.', 'error');
           }
-        } else {
-          Swal.fire('Error', 'An unexpected error occurred.', 'error');
+        },
+        (registrationError: HttpErrorResponse) => {
+          console.error('Error submitting registration form:', registrationError);
+          let errorMessage = 'An error occurred while submitting the registration form.';
+          if (registrationError.status === 400 && registrationError.error && registrationError.error.message) {
+            errorMessage = registrationError.error.message;
+          }
+          Swal.fire('Error', errorMessage, 'error');
         }
-      }
-    );
+      );
+    } else {
+      Swal.fire('Error', 'Please fill out all the required fields in both forms.', 'error');
+    }
   }
+  
 }

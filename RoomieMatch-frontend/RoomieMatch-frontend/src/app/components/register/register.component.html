@@ -46,87 +46,142 @@
 
         <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
-            <form [formGroup]="registrationForm" (ngSubmit)="register()" class="register-form">
-            <div class="row mb-3">
-                <div class="col-md-6">
-                <label for="firstName" class="form-label">First Name</label>
-                <input id="firstName" type="text" class="form-control" formControlName="firstName">
-                </div>
-                <div class="col-md-6">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input id="lastName" type="text" class="form-control" formControlName="lastName">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                <label for="telephone" class="form-label">Telephone</label>
-                <input id="telephone" type="text" class="form-control" formControlName="telephone">
-                </div>
-                <div class="col-md-6">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea id="bio" class="form-control" formControlName="bio"></textarea>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                <label for="budget" class="form-label">Budget</label>
-                <input id="budget" type="number" class="form-control" formControlName="budget">
-                </div>
-                <div class="col-md-6">
-                <label for="occupation" class="form-label">Occupation</label>
-                <select id="occupation" class="form-select" formControlName="occupation">
-                    <!-- Add options based on your data -->
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <!-- Add more options as needed -->
-                </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                <label for="gender" class="form-label">Gender</label>
-                <select id="gender" class="form-select" formControlName="gender">
-                    <!-- Add options based on your data -->
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                    <!-- Add more options as needed -->
-                </select>
-                </div>
-                <div class="col-md-6">
-                <label for="birthdate" class="form-label">Birthdate</label>
-                <input id="birthdate" type="date" class="form-control" formControlName="birthdate">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                  <label for="currentCityId" class="form-label">Current City</label>
-                  <select id="currentCityId" class="form-select" formControlName="currentCityId">
-                    <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="desiredCityId" class="form-label">Desired City</label>
-                  <select id="desiredCityId" class="form-select" formControlName="desiredCityId">
-                    <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
-                  </select>
-                </div>
-              </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input id="email" type="email" class="form-control" formControlName="email" autocomplete="email">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input id="password" type="password" class="form-control" formControlName="password" autocomplete="new-password">
-            </div>
-            <div class="d-grid d-block mb-4 text-center">
-                <button type="submit" name="signup" class="btn main-btn text-white" id="signup">Create account</button>
-            </div>
-            </form>
-            <div class="login-mb">
-            <p class="text-center text-form">Already have an account? <button class="btn second-btn btn-sm">
-                <a routerLink="/login" class="text-decoration-none main-btn btn text-white text-center">Login</a></button></p>
-            </div>
+            <mat-horizontal-stepper>
+                <!-- Step 1: Registration -->
+                <mat-step [stepControl]="registrationForm">
+                    <form [formGroup]="registrationForm" class="register-form">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input id="firstName" type="text" class="form-control" formControlName="firstName">
+                            </div>
+                            <div class="col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input id="lastName" type="text" class="form-control" formControlName="lastName">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="telephone" class="form-label">Telephone</label>
+                            <input id="telephone" type="text" class="form-control" formControlName="telephone">
+                            </div>
+                            <div class="col-md-6">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea id="bio" class="form-control" formControlName="bio"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="budget" class="form-label">Budget</label>
+                            <input id="budget" type="number" class="form-control" formControlName="budget">
+                            </div>
+                            <div class="col-md-6">
+                            <label for="occupation" class="form-label">Occupation</label>
+                            <select id="occupation" class="form-select" formControlName="occupation">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="2">Option 3</option>
+                                <option value="2">Option 4</option>
+                                <option value="2">Option 5</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select id="gender" class="form-select" formControlName="gender">
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                            </div>
+                            <div class="col-md-6">
+                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <input id="birthdate" type="date" class="form-control" formControlName="birthdate">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="currentCityId" class="form-label">Current City</label>
+                                <select id="currentCityId" class="form-select" formControlName="currentCityId">
+                                    <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                                </select>
+                                </div>
+                                <div class="col-md-6">
+                                <label for="desiredCityId" class="form-label">Desired City</label>
+                                <select id="desiredCityId" class="form-select" formControlName="desiredCityId">
+                                    <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                                </select>
+                                </div>
+                            </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input id="email" type="email" class="form-control" formControlName="email" autocomplete="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" type="password" class="form-control" formControlName="password" autocomplete="new-password">
+                        </div>
+                        </form>
+                        <div class="login-mb">
+                            <p class="text-center text-form">Already have an account? <button class="btn second-btn btn-sm">
+                                <a routerLink="/login" class="text-decoration-none main-btn btn text-white text-center">Login</a></button></p>
+                        </div>
+                    <div>
+                        <button mat-button matStepperNext class="btn main-btn p-2 mt-5">Next</button>
+                    </div>
+                </mat-step>
+                <!-- Step 2: Preference -->
+                <mat-step [stepControl]="preferenceForm">
+                    <form [formGroup]="preferenceForm">
+                        <div class="form-group">
+                            <label for="smoking">Smoking</label>
+                            <select id="smoking" formControlName="smoking" class="form-control form-select">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pets">Pets</label>
+                            <select id="pets" formControlName="pets" class="form-control form-select">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="visitors">Visitors</label>
+                            <select id="visitors" formControlName="visitors" class="form-control form-select">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="partying">Partying</label>
+                            <select id="partying" formControlName="partying" class="form-control form-select">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sharingBedroom">Sharing Bedroom</label>
+                            <select id="sharingBedroom" formControlName="sharingBedroom" class="form-control form-check">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hasApartment">Has Apartment</label>
+                            <select id="hasApartment" formControlName="hasApartment" class="form-control form-select">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div>
+                        <button mat-button matStepperPrevious class="btn main-btn mt-5">Back</button>
+                        <button mat-button (click)="submitForms()" class="btn main-btn">Submit</button>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
         </div>
         </div>
     </div>

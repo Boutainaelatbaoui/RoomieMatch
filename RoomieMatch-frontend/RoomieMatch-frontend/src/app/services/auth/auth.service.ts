@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { Registration } from 'src/app/models/registration';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { PreferenceResponse } from 'src/app/models/response/preference-response';
+import { PreferenceRequest } from 'src/app/models/request/preference-request';
 
 @Injectable({
   providedIn: 'root',
@@ -68,13 +70,17 @@ export class AuthService {
 
   logout() {
     this.http
-      .post(`${this.apiUrl}/v1/auth/logout`, null)
+      .post(`${this.apiUrl}/auth/logout`, null)
       .subscribe({
         next: () => {
           this.storageService.clean();
           this.router.navigate(['/login']);
         },
       });
+  }
+
+  createPreference(preferenceData: PreferenceRequest): Observable<PreferenceResponse> {
+    return this.http.post<PreferenceResponse>(`${this.apiUrl}/preferences`, preferenceData);
   }
 
   refreshAccessToken(): Observable<any> {

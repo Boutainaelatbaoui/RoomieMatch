@@ -18,10 +18,6 @@ public class Preference {
 
     private boolean smoking;
     private boolean pets;
-    private int cleanliness;
-    private int noiseTolerance;
-    private int socialLevel;
-    private int sleepSchedule;
     private boolean visitors;
     private boolean partying;
     private boolean sharingBedroom;

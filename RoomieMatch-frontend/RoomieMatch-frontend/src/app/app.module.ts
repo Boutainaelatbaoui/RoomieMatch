@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptor } from './helpers/http/http.interceptor';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SidebarComponent } from './components/dashboard/sidebar/sidebar.component';
 import { UpdateQuestionComponent } from './components/dashboard/update-question/update-question.component';
@@ -43,10 +44,11 @@ import { RoomateDetailsComponent } from './components/roomate/roomate-details/ro
       AppRoutingModule,
       HttpClientModule,
       MatPaginatorModule,
+      MatStepperModule,
       BrowserAnimationsModule,
     ],
     providers: [
-      // { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }
+      { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }
     ],
   bootstrap: [AppComponent]
 })

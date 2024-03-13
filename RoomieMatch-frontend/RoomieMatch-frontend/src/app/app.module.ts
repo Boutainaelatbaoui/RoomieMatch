@@ -21,6 +21,7 @@ import { SidebarComponent } from './components/dashboard/sidebar/sidebar.compone
 import { UpdateQuestionComponent } from './components/dashboard/update-question/update-question.component';
 import { CreateQuestionComponent } from './components/dashboard/create-question/create-question.component';
 import { RoomateDetailsComponent } from './components/roomate/roomate-details/roomate-details.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { RoomateDetailsComponent } from './components/roomate/roomate-details/ro
     SidebarComponent,
     UpdateQuestionComponent,
     CreateQuestionComponent,
-    RoomateDetailsComponent
+    RoomateDetailsComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],
@@ -46,6 +47,7 @@ import { RoomateDetailsComponent } from './components/roomate/roomate-details/ro
       MatPaginatorModule,
       MatStepperModule,
       BrowserAnimationsModule,
+      MatChipsModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }

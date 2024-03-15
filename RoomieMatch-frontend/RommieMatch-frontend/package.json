@@ -1,5 +1,5 @@
 {
-  "name": "roomie-match-frontend",
+  "name": "rommie-match-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,10 +20,6 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
-    "datatables.net": "^2.0.2",
-    "datatables.net-dt": "^2.0.2",
-    "jquery": "^3.7.1",
-    "jQuery": "^1.7.4",
     "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.10.6",

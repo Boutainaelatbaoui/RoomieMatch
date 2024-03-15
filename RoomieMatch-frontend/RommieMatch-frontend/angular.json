@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "RoomieMatch-frontend": {
+    "RommieMatch-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/roomie-match-frontend",
+            "outputPath": "dist/rommie-match-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -27,9 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-            ]
-            
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -62,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "RoomieMatch-frontend:build:production"
+              "browserTarget": "RommieMatch-frontend:build:production"
             },
             "development": {
-              "browserTarget": "RoomieMatch-frontend:build:development"
+              "browserTarget": "RommieMatch-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "RoomieMatch-frontend:build"
+            "browserTarget": "RommieMatch-frontend:build"
           }
         },
         "test": {
@@ -89,7 +87,6 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -99,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "5983b418-94bf-4757-b117-8a4e9a99588d"
+    "analytics": "8d4abbe1-9024-453b-9bdf-257689f8f9b6"
   }
 }

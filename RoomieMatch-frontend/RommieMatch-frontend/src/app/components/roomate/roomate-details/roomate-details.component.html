@@ -1,0 +1,192 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="container py-4">
+    <div class="row">
+        <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/" class="text-color text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/roomates" class="text-color text-decoration-none">Roomates</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Roomate Profile</li>
+            </ol>
+        </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+            <img [src]="getImageUrl(roommate.gender)" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 50px !important; height: 380px !important;">
+            <h5 class="my-3">{{ roommate.firstName }} {{ roommate.lastName }}</h5>
+            <p class="text-muted mb-3">{{ roommate.bio }}</p>
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">From: &nbsp; {{ getOccupationText(roommate.occupation) }}</h2>
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Budget: &nbsp; ${{ roommate.budget }}</h2>
+            </div>
+            <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold mb-4">From: &nbsp; {{ roommate.currentCity.name }}</h2>
+
+            <!-- <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-primary">Match</button>
+            </div> -->
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ roommate.firstName }} {{ roommate.lastName }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ roommate.email }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ roommate.telephone }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                <p class="mb-0">birthdate</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ roommate.birthdate }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                <p class="mb-0">Target City</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ roommate.desiredCity.name }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                <p class="mb-0">Budget</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">${{ roommate.budget }}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                <p class="mb-3 text-dark fw-semibold fs-6">Preferences</p>
+                <p><i class="bi bi-quote me-2"></i>Preferences matter. They help you find the perfect roommate match. From pets to hobbies, we prioritize in our application what matters to you for a happier living experience. <i class="bi bi-quote ms-2"></i></p>
+                <mat-chip-set aria-label="Preference selection">
+                    <div *ngIf="roommate.preference" class="preference text-start mt-3 mb-3">
+                        <mat-chip class="green-chip" *ngIf="roommate.preference.smoking">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Smoking
+                        </mat-chip>
+                        <mat-chip class="red-chip" *ngIf="!roommate.preference.smoking">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Smoking
+                        </mat-chip>
+                        <mat-chip class="green-chip" *ngIf="roommate.preference.pets">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Pets
+                        </mat-chip>
+                        <mat-chip class="red-chip" *ngIf="!roommate.preference.pets">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Pets
+                        </mat-chip>
+                        <mat-chip class="green-chip" *ngIf="roommate.preference.visitors">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Visitors
+                        </mat-chip>
+                        <mat-chip class="red-chip" *ngIf="!roommate.preference.visitors">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Visitors
+                        </mat-chip>
+                        <mat-chip class="green-chip" *ngIf="roommate.preference.partying">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Partying
+                        </mat-chip>
+                        <mat-chip class="red-chip" *ngIf="!roommate.preference.partying">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Partying
+                        </mat-chip>
+                        <mat-chip class="green-chip" *ngIf="roommate.preference.sharingBedroom">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Sharing Bedroom
+                        </mat-chip>
+                        <mat-chip class="red-chip" *ngIf="!roommate.preference.sharingBedroom">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Sharing Bedroom
+                        </mat-chip>
+                        <mat-chip class="green-chip" *ngIf="roommate.preference.hasApartment">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Has Apartment
+                        </mat-chip>
+                        <mat-chip class="red-chip" *ngIf="!roommate.preference.hasApartment">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Has Apartment
+                        </mat-chip>
+                    </div>
+                    </mat-chip-set>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                </p>
+                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                <div class="progress rounded mb-2" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>

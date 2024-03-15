@@ -1,100 +1,45 @@
-Question: How do you prefer to spend your weekends?
+-- Seed questions
+INSERT INTO questions (question_text) VALUES 
+('How often do you like to socialize with your roommates?'),
+('How do you handle shared expenses?'),
+('How important is it for you to have quiet study/work time at home?'),
+('What is your approach to cleanliness in shared spaces?'),
+('How do you handle conflicts or disagreements?'),
+('How often do you like to have guests over?'),
+('How do you handle shared expenses and bills?'),
+('What''s your stance on overnight guests?'),
+('How do you feel about pets in the home?'),
+('What level of noise are you comfortable with during quiet hours?');
 
-Choice 1: Going out and socializing
-Choice 2: Relaxing at home
-Choice 3: Engaging in outdoor activities
-Question: What is your attitude towards cleanliness?
-
-Choice 1: Very tidy and organized
-Choice 2: Moderately clean
-Choice 3: Relaxed, a bit messy is fine
-Question: How often do you have friends over?
-
-Choice 1: Frequently
-Choice 2: Occasionally
-Choice 3: Rarely or never
-Question: Are you a smoker?
-
-Choice 1: Yes
-Choice 2: No
-Question: Do you have any pets?
-
-Choice 1: Yes
-Choice 2: No
-Question: What is your preferred noise level at home?
-
-Choice 1: Quiet
-Choice 2: Moderate
-Choice 3: Lively
-Question: How do you handle shared expenses?
-
-Choice 1: Split everything evenly
-Choice 2: Share some expenses, separate others
-Choice 3: Keep expenses entirely separate
-Question: How often do you cook at home?
-
-Choice 1: Frequently
-Choice 2: Occasionally
-Choice 3: Rarely or never
-Question: What is your sleep routine?
-
-Choice 1: Early to bed, early to rise
-Choice 2: Average sleep schedule
-Choice 3: Night owl
-Question: How important is it for you to have quiet study/work time at home?
-
-Choice 1: Very important
-Choice 2: Somewhat important
-Choice 3: Not important
-
-
-Question: How would you describe your work/study schedule?
-
-Choice 1: Regular 9-5 schedule
-Choice 2: Variable hours
-Choice 3: Night shifts or irregular schedule
-Question: What is your approach to cleanliness in shared spaces?
-
-Choice 1: Very neat and organized
-Choice 2: Clean but not overly tidy
-Choice 3: Relaxed, comfortable with some clutter
-Question: How do you handle conflicts or disagreements?
-
-Choice 1: Open communication and discussion
-Choice 2: Take some time to cool off before discussing
-Choice 3: Avoid confrontation, try to find a compromise
-Question: How often do you like to have guests over?
-
-Choice 1: Frequently
-Choice 2: Occasionally
-Choice 3: Rarely or never
-Question: Are you an early riser or a night owl?
-
-Choice 1: Early riser
-Choice 2: Neutral
-Choice 3: Night owl
-Question: Do you have any dietary restrictions or preferences?
-
-Choice 1: Vegetarian/Vegan
-Choice 2: No specific restrictions
-Choice 3: Other (please specify)
-Question: How do you handle shared expenses and bills?
-
-Choice 1: Split everything equally
-Choice 2: Divide bills based on usage
-Choice 3: Keep finances entirely separate
-Question: What's your stance on overnight guests?
-
-Choice 1: Fine with it, just let me know
-Choice 2: Occasionally is okay
-Choice 3: Prefer no overnight guests
-Question: How do you like to unwind after a long day?
-
-Choice 1: Read a book or watch TV
-Choice 2: Exercise or engage in a hobby
-Choice 3: Go out with friends or socialize
-Question: What level of noise are you comfortable with during quiet hours?
-
-Choice 1: Prefer absolute silence
-Choice 2: Moderate noise is okay
-Choice 3: Comfortable with some background noise
+-- Seed choices
+INSERT INTO choices (choice_text, question_id) VALUES 
+('Frequently', 1),
+('Occasionally', 1),
+('Rarely or never', 1),
+('Split everything evenly', 2),
+('Share some expenses, separate others', 2),
+('Keep expenses entirely separate', 2),
+('Very important', 3),
+('Somewhat important', 3),
+('Not important', 3),
+('Very neat and organized', 4),
+('Clean but not overly tidy', 4),
+('Relaxed, comfortable with some clutter', 4),
+('Open communication and discussion', 5),
+('Take some time to cool off before discussing', 5),
+('Avoid confrontation, try to find a compromise', 5),
+('Frequently', 6),
+('Occasionally', 6),
+('Rarely or never', 6),
+('Split everything equally', 7),
+('Divide bills based on usage', 7),
+('Keep finances entirely separate', 7),
+('Fine with it, just let me know', 8),
+('Occasionally is okay', 8),
+('Prefer no overnight guests', 8),
+('Love them, I have my own', 9),
+('Fine with pets', 9),
+('Prefer no pets', 9),
+('Prefer absolute silence', 10),
+('Moderate noise is okay', 10),
+('Comfortable with some background noise', 10);

@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+<div class="container-fluid px-4 mt-2 pt-5 pb-4 mx-auto page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            <span class="breadcrumb"><a routerLink="/home" class="text-decoration-none text-dark">Home</a> / Roomates</span>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h3 class="mb-3 display-1 fw-bolder leading-none tracking-tight">Roomates</h3>
+                <img [src]="imageUrl5" class="img-home mb-5" width="18% !important">
+            </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="input-group" style="width: 50%;">
+                <input type="text" name="neighborhood" class="form-control form-search" placeholder="Enter a roomate name">
+                <button type="submit" class="btn main-btn rounded-pill ms-2"><i class="bi bi-search fw-bold"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section properties mt-5">
+        <ul class="properties-filter">
+            <li>
+                <a class="is_active">Show All</a>
+            </li>
+            <li>
+                <a href="">Desired City</a>
+            </li>
+            <li>
+                <a href="">Same Age</a>
+            </li>
+            <li>
+                <a href="">Has Local</a>
+            </li>
+            <li>
+                <a href="">Gender</a>
+            </li>
+            <li>
+                <a href="">Budget</a>
+            </li>
+            <li>
+                <a href="">Same Preference</a>
+            </li>
+        </ul>
+    </div>
+
+<div class="row gy-5 gx-4 mt-1 mb-5 pb-5">
+    <div class="col-lg-4 col-md-6 pt-5" *ngFor="let roommate of roommates">
+        <div class="service-item d-flex h-100">
+        <div class="service-text ms-3 p-5 pt-0">
+            <div class="service-icon">
+                <img class="img-fluid rounded-circle" [src]="getImageUrl(roommate.gender)" alt="">
+            </div>
+
+            <div class="d-flex mt-0 justify-content-between align-items-center">
+                <h5 class="text-start fw-semibold">{{ roommate.firstName }} {{ roommate.lastName }} &nbsp; . &nbsp; {{ calculateAge(roommate.birthdate) }}y</h5>
+                <h5 class="fw-semibold">|</h5>
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">{{ getOccupationText(roommate.occupation) }}</h2>
+            </div>
+            <!-- <span class="" *ngIf="roommate.gender == 1">(<i class="bi bi-gender-male me-1">Male</i>)</span> <span *ngIf="roommate.gender == 2">(<i class="bi bi-gender-female me-1">Female</i>)</span> -->
+            <p style="margin-bottom: 35px; margin-top: 15px;">{{ roommate.bio }}</p>
+            <!-- <div class="d-flex justify-content-between mb-3">
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Occupation: &nbsp; {{ getOccupationText(roommate.occupation) }}</h2>
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Budget: &nbsp; ${{ roommate.budget }}</h2>
+            </div> -->
+            <div class="d-flex justify-content-between mb-3">
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">From: &nbsp; {{ roommate.currentCity.name }}</h2>
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Budget: &nbsp; ${{ roommate.budget }}</h2>
+            </div>
+            <h2 class="badge rounded-pill badge1 fs-6 fw-semibold">Target City: &nbsp; {{ roommate.desiredCity.name }}</h2>
+            <mat-chip-set aria-label="Preference selection">
+            <div *ngIf="roommate.preference" class="preference text-start mt-3 mb-3">
+                <mat-chip class="green-chip" *ngIf="roommate.preference.smoking">
+                <i class="bi bi-check-lg me-1"></i>
+                Smoking
+                </mat-chip>
+                <mat-chip class="red-chip" *ngIf="!roommate.preference.smoking">
+                <i class="bi bi-x-circle me-1"></i>
+                Smoking
+                </mat-chip>
+                <mat-chip class="green-chip" *ngIf="roommate.preference.pets">
+                <i class="bi bi-check-lg me-1"></i>
+                Pets
+                </mat-chip>
+                <mat-chip class="red-chip" *ngIf="!roommate.preference.pets">
+                <i class="bi bi-x-circle me-1"></i>
+                Pets
+                </mat-chip>
+                <mat-chip class="green-chip" *ngIf="roommate.preference.visitors">
+                <i class="bi bi-check-lg me-1"></i>
+                Visitors
+                </mat-chip>
+                <mat-chip class="red-chip" *ngIf="!roommate.preference.visitors">
+                <i class="bi bi-x-circle me-1"></i>
+                Visitors
+                </mat-chip>
+                <mat-chip class="green-chip" *ngIf="roommate.preference.partying">
+                <i class="bi bi-check-lg me-1"></i>
+                Partying
+                </mat-chip>
+                <mat-chip class="red-chip" *ngIf="!roommate.preference.partying">
+                <i class="bi bi-x-circle me-1"></i>
+                Partying
+                </mat-chip>
+                <mat-chip class="green-chip" *ngIf="roommate.preference.sharingBedroom">
+                <i class="bi bi-check-lg me-1"></i>
+                Sharing Bedroom
+                </mat-chip>
+                <mat-chip class="red-chip" *ngIf="!roommate.preference.sharingBedroom">
+                <i class="bi bi-x-circle me-1"></i>
+                Sharing Bedroom
+                </mat-chip>
+                <mat-chip class="green-chip" *ngIf="roommate.preference.hasApartment">
+                <i class="bi bi-check-lg me-1"></i>
+                Has Apartment
+                </mat-chip>
+                <mat-chip class="red-chip" *ngIf="!roommate.preference.hasApartment">
+                <i class="bi bi-x-circle me-1"></i>
+                Has Apartment
+                </mat-chip>
+            </div>
+            </mat-chip-set>
+            <div class="mt-4 text-start">
+                <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(roommate.id)">
+                    <i class="bi bi-chevron-double-right btn btn-square rounded-circle me-2"></i>
+                    See More Details
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -10,6 +10,10 @@
     color: black;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 .page-heading span {
     background-color: #fff;
     color: #1e1e1e;
@@ -21,13 +25,18 @@
     margin-bottom: 30px;
 }
 
+.badge1 {
+    background-color: #9165dd !important;
+    color: white !important;
+}
+
 .green-chip {
     background-color: #7ae582 !important;
     color: white !important;
 }
 
 .red-chip {
-    background-color: #dd2d4a !important;
+    background-color: #f08080 !important;
     color: white !important;
 }
 

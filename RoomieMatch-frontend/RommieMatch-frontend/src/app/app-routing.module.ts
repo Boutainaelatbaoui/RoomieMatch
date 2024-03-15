@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'update-question/:id', component: UpdateQuestionComponent},
   { path: 'create-question', component: CreateQuestionComponent },
-  { path: 'roomate-details', component: RoomateDetailsComponent },
+  { path: 'roommate-details/:id', component: RoomateDetailsComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

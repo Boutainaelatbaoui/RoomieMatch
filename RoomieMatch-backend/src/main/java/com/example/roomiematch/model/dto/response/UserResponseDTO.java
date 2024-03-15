@@ -18,11 +18,12 @@ public class UserResponseDTO implements Serializable {
     private String bio;
     private double budget;
     private int occupation;
-    private boolean hasLocal;
     private int gender;
+    private String email;
     private String birthdate;
     private String profilePicture;
-    private City currentCity;
-    private City desiredCity;
+    private CityResponseDTO currentCity;
+    private CityResponseDTO desiredCity;
+    private PreferenceResponseDTO preference;
 }
 

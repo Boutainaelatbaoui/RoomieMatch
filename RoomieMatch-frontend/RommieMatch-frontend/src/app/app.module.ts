@@ -22,6 +22,7 @@ import { UpdateQuestionComponent } from './components/dashboard/update-question/
 import { CreateQuestionComponent } from './components/dashboard/create-question/create-question.component';
 import { RoomateDetailsComponent } from './components/roomate/roomate-details/roomate-details.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { MemberComponent } from './components/member/member.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {MatChipsModule} from '@angular/material/chips';
     UpdateQuestionComponent,
     CreateQuestionComponent,
     RoomateDetailsComponent,
+    MemberComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

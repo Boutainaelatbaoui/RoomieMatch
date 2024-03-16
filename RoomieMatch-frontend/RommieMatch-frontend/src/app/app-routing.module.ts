@@ -11,6 +11,7 @@ import { RoomateDetailsComponent } from './components/roomate/roomate-details/ro
 import { noAuthGuardGuard } from './helpers/noAuth/no-auth-guard.guard';
 import { authGuard } from './helpers/auth/auth.guard';
 import { adminGuardGuard } from './helpers/admin/admin-guard.guard';
+import { MemberComponent } from './components/member/member.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [noAuthGuardGuard]},
   { path: 'roomates', component: RoomateComponent, canActivate: [authGuard]},
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard, adminGuardGuard]},
+  { path: 'member', component: MemberComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'update-question/:id', component: UpdateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'create-question', component: CreateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'roommate-details/:id', component: RoomateDetailsComponent, canActivate: [authGuard]},

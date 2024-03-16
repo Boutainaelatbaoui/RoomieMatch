@@ -25,5 +25,6 @@ public class UserResponseDTO implements Serializable {
     private CityResponseDTO currentCity;
     private CityResponseDTO desiredCity;
     private PreferenceResponseDTO preference;
+    private RoleResponseDTO role;
 }
 

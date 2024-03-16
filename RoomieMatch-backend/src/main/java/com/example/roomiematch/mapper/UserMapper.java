@@ -1,5 +1,6 @@
 package com.example.roomiematch.mapper;
 
+import com.example.roomiematch.model.dto.response.RoleResponseDTO;
 import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.model.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,13 @@ public class UserMapper {
 
     private final PreferenceMapper preferenceMapper;
     private final CityMapper cityMapper;
+    private final RoleMapper roleMapper;
 
     @Autowired
-    public UserMapper(PreferenceMapper preferenceMapper, CityMapper cityMapper) {
+    public UserMapper(PreferenceMapper preferenceMapper, CityMapper cityMapper, RoleMapper roleMapper) {
         this.preferenceMapper = preferenceMapper;
         this.cityMapper = cityMapper;
+        this.roleMapper = roleMapper;
     }
 
     public UserResponseDTO toDTO(User user) {
@@ -33,6 +36,7 @@ public class UserMapper {
                 .currentCity(cityMapper.toCityResponseDTO(user.getCurrentCity()))
                 .desiredCity(cityMapper.toCityResponseDTO(user.getDesiredCity()))
                 .preference(preferenceMapper.toDTO(user.getPreference()))
+                .role(roleMapper.toResponseDTO(user.getRole()))
                 .build();
     }
 }

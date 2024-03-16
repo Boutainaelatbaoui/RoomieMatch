@@ -5,6 +5,7 @@ import { StorageService } from '../storage/storage.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserResponse } from 'src/app/models/response/user-response';
+import { Role } from 'src/app/models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,13 @@ export class UserService {
 
   getRoommateDetails(id: number): Observable<UserResponse> {
     return this.http.get<UserResponse>(`${this.apiUrl}/roomates/${id}`);
+  }
+
+  getRoles(): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.apiUrl}/v1/admin/roles`);
+  }
+
+  updateMemberRole(memberId: number, roleId: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/v1/admin/updateRole/${memberId}/${roleId}`, {});
   }
 }

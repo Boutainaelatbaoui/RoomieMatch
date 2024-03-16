@@ -34,7 +34,7 @@
             <td>{{ user.desiredCity.name }}</td>
             <td>
                 <select class="form-select" name="selectedRole" [(ngModel)]="selectedRoleIds[user.id]" (change)="updateUserRole(user.id)" 
-                        *ngIf="showManagerBoard" [disabled]="user.role.name === 'Manager'">
+                        *ngIf="showManagerBoard" [disabled]="user.role.name === 'MANAGER'">
                     <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
                 </select>
             </td>            

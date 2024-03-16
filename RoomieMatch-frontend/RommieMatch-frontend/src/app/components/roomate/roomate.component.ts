@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserResponse } from 'src/app/models/response/user-response';
 import { UserService } from 'src/app/services/user/user.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-roomate',
@@ -22,13 +23,16 @@ export class RoomateComponent {
   imageUrl10: string = 'assets/img/home1.jpg';
   imageUrl11: string = 'assets/img/home.jpg';
   roommates: UserResponse[] = [];
+  connectedMemberId: number | null = null;
+
+  constructor(
+    private userService: UserService,
+    private storageService: StorageService,
+    private router: Router
+  ) {}
 
   getImageUrl(gender: number): string {
-    if (gender === 1) {
-      return 'assets/img/man.png';
-    } else{
-      return 'assets/img/heart.png'; 
-    }
+    return gender === 1 ? 'assets/img/man.png' : 'assets/img/heart.png';
   }
   
   occupationsMap: { [key: number]: string } = {
@@ -59,8 +63,6 @@ export class RoomateComponent {
     return age;
   }
 
-  constructor(private userService: UserService, private router: Router) { }
-
   viewRoommateDetails(roommateId: number) {
     console.log('Roommate ID:', roommateId);
     this.router.navigate(['/roommate-details', roommateId]);
@@ -68,12 +70,13 @@ export class RoomateComponent {
   
   ngOnInit(): void {
     this.fetchRoommates();
+    this.connectedMemberId = this.storageService.getConnectedMemberId();
   }
 
   fetchRoommates() {
     this.userService.getAllUsers().subscribe(
       (users: UserResponse[]) => {
-        this.roommates = users;
+        this.roommates = users.filter(user => user.id !== this.connectedMemberId);
       },
       (error) => {
         console.error('Error fetching roommates:', error);

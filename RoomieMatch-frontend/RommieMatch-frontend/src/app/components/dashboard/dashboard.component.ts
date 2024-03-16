@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { QuestionResponse } from 'src/app/models/response/question-response';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { QuestionService } from 'src/app/services/questions/question.service';
 import Swal from 'sweetalert2';
 

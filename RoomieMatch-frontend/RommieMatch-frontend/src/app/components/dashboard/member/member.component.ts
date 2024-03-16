@@ -6,6 +6,7 @@ import { UserResponse } from 'src/app/models/response/user-response';
 import { Role } from 'src/app/models/role';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-member',
@@ -37,7 +38,36 @@ export class MemberComponent implements OnInit {
     }
     this.loadRoles();
     this.fetchUsers();
-    this.initializeSelectedRoleIds();
+  }
+
+  loadRoles() {
+    this.userService.getRoles().subscribe(
+      (roles) => {
+        this.roles = roles;
+      },
+      (error) => {
+        console.error('Error loading roles', error);
+      }
+    );
+  }
+
+  initializeSelectedRoleIds() {
+    this.pagedUsers.forEach(member => {
+      this.selectedRoleIds[member.id] = member.role ? member.role.id : null;
+    });
+  }
+
+  updateUserRole(memberId: number): void {
+    const selectedRoleId = this.selectedRoleIds[memberId];
+
+    this.userService.updateMemberRole(memberId, selectedRoleId).subscribe(
+      () => {
+        Swal.fire('Success','Role updated successfully', 'success');
+      },
+      (error) => {
+        Swal.fire('Error','Error updating role', 'error');
+      }
+    );
   }
 
   fetchUsers(): void {
@@ -45,6 +75,7 @@ export class MemberComponent implements OnInit {
       (users) => {
         this.totalItems = users.length;
         this.updatePagedUsers(users);
+        this.initializeSelectedRoleIds();
       },
       (error) => {
         console.error('Error fetching users:', error);

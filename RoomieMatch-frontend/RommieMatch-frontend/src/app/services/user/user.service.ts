@@ -28,10 +28,10 @@ export class UserService {
   }
 
   getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>(`${this.apiUrl}/v1/admin/roles`);
+    return this.http.get<Role[]>(`${this.apiUrl}/admin/roles`);
   }
 
   updateMemberRole(memberId: number, roleId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/v1/admin/updateRole/${memberId}/${roleId}`, {});
+    return this.http.put<any>(`${this.apiUrl}/admin/updateRole/${memberId}/${roleId}`, {});
   }
 }

@@ -14,10 +14,8 @@
             <th>Full Name</th>
             <th>Email</th>
             <th>Birthdate</th>
-            <th>Occupation</th>
             <th>Gender</th>
             <th>Telephone</th>
-            <th>Budget</th>
             <th>Current City</th>
             <th>Target City</th>
             <th>Roles</th>
@@ -25,17 +23,21 @@
         </thead>
         <tbody class="align-items-center">
             <tr *ngFor="let user of pagedUsers">
-            <td>{{ user.id }}</td>
             <td>{{ user.firstName }} {{ user.lastName }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.birthdate }}</td>
-            <td>{{ user.occupation }}</td>
-            <td>{{ user.gender }}</td>
+            <td>
+                <span class="" *ngIf="user.gender == 1"><i class="bi bi-gender-male me-1">Male</i></span> <span *ngIf="user.gender == 2"><i class="bi bi-gender-female me-1">Female</i></span>
+            </td>
             <td>{{ user.telephone }}</td>
-            <td>{{ user.budget }}</td>
             <td>{{ user.currentCity.name }}</td>
             <td>{{ user.desiredCity.name }}</td>
-            <td>{{ user.desiredCity.name }}</td>
+            <td>
+                <select class="form-select" name="selectedRole" [(ngModel)]="selectedRoleIds[user.id]" (change)="updateUserRole(user.id)" 
+                        *ngIf="showManagerBoard" [disabled]="user.role.name === 'Manager'">
+                    <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+                </select>
+            </td>            
         </tbody>
     </table>
 

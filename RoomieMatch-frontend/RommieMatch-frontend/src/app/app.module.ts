@@ -22,7 +22,7 @@ import { UpdateQuestionComponent } from './components/dashboard/update-question/
 import { CreateQuestionComponent } from './components/dashboard/create-question/create-question.component';
 import { RoomateDetailsComponent } from './components/roomate/roomate-details/roomate-details.component';
 import {MatChipsModule} from '@angular/material/chips';
-import { MemberComponent } from './components/member/member.component';
+import { MemberComponent } from './components/dashboard/member/member.component';
 
 
 @NgModule({

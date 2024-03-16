@@ -1,5 +1,6 @@
 import { CityResponse } from './city-response';
 import { PreferenceResponse } from './preference-response';
+import { RoleResponse } from './role-response';
 
 export interface UserResponse {
     id: number;
@@ -16,4 +17,5 @@ export interface UserResponse {
     currentCity: CityResponse;
     desiredCity: CityResponse;
     preference: PreferenceResponse;
+    role: RoleResponse;
 }

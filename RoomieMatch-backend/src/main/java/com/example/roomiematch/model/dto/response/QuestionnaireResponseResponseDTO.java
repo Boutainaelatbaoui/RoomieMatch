@@ -13,5 +13,5 @@ public class QuestionnaireResponseResponseDTO {
     private Long id;
     private Long userId;
     private QuestionResponseDTO question;
-    private Long choiceId;
+    private ChoiceResponseDTO choice;
 }

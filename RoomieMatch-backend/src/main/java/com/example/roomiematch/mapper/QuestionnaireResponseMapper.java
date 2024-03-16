@@ -16,13 +16,15 @@ public class QuestionnaireResponseMapper {
     private final QuestionMapper questionMapper;
     private final ChoiceRepository choiceRepository;
     private final QuestionRepository questionRepository;
+    private final ChoiceMapper choiceMapper;
 
     @Autowired
-    public QuestionnaireResponseMapper(QuestionRepository questionRepository ,UserRepository userRepository, QuestionMapper questionMapper, ChoiceRepository choiceRepository) {
+    public QuestionnaireResponseMapper(ChoiceMapper choiceMapper,QuestionRepository questionRepository ,UserRepository userRepository, QuestionMapper questionMapper, ChoiceRepository choiceRepository) {
         this.userRepository = userRepository;
         this.questionMapper = questionMapper;
         this.choiceRepository = choiceRepository;
         this.questionRepository = questionRepository;
+        this.choiceMapper = choiceMapper;
     }
 
     public QuestionnaireResponse toQuestionnaireResponse(QuestionnaireResponseRequestDTO requestDTO) {
@@ -42,7 +44,7 @@ public class QuestionnaireResponseMapper {
         responseDTO.setId(response.getId());
         responseDTO.setUserId(response.getUser().getId());
         responseDTO.setQuestion(questionMapper.toDTO(response.getQuestion()));
-        responseDTO.setChoiceId(response.getChoice().getId());
+        responseDTO.setChoice(choiceMapper.toDTO(response.getChoice()));
         return responseDTO;
     }
 }

@@ -3,6 +3,7 @@ package com.example.roomiematch.model.dto.request;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,6 @@ public class AuthenticationRequest {
     @Email(message = "Email is not valid")
     private String email;
     @NotBlank(message = "Password is required")
-    @Min(value = 6, message = "The Password must has 6 or more caracters")
+    @Size(min = 6, message = "The Password must have 6 or more characters")
     private String password;
 }

@@ -22,25 +22,25 @@
             <a routerLink="/home" class="nav-link me-3 text-dark fw-semibold">Services</a>
             </li>
         </ul>
-        <ul class="navbar-nav gap-5">
+        <ul class="navbar-nav gap-5" *ngIf="isLoggedIn()">
             <li class="nav-item">
             <a routerLink="/roomates" class="nav-link me-3 text-dark fw-semibold">Roomates</a>
             </li>
         </ul>
-        <ul class="navbar-nav gap-5">
+        <ul class="navbar-nav gap-5" *ngIf="showAdminBoard">
             <li class="nav-item">
             <a routerLink="/dashboard" class="nav-link me-3 text-dark fw-semibold">Dashboard</a>
             </li>
         </ul>
         </div>
 
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center" *ngIf="!isLoggedIn()">
         <a routerLink="/login" class="btn btn-login me-3 px-4">Log in</a>
         <a routerLink="/register" class="btn main-btn">Get started</a>
         </div>
-        <!-- <form class="d-flex">
-            <button class="btn btn-light" type="submit">logout</button>
-        </form> -->
+        <form class="d-flex" *ngIf="isLoggedIn()">
+            <button class="btn btn-light" type="submit" (click)="handleLogout()">logout</button>
+        </form>
     </div>
     </nav>
 </header>

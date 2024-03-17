@@ -23,6 +23,10 @@ import { CreateQuestionComponent } from './components/dashboard/create-question/
 import { RoomateDetailsComponent } from './components/roomate/roomate-details/roomate-details.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { MemberComponent } from './components/dashboard/member/member.component';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 
 @NgModule({
@@ -49,7 +53,10 @@ import { MemberComponent } from './components/dashboard/member/member.component'
       MatPaginatorModule,
       MatStepperModule,
       BrowserAnimationsModule,
-      MatChipsModule
+      MatChipsModule,
+      MatSelectModule,
+      MatFormFieldModule,
+      MatExpansionModule,
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }

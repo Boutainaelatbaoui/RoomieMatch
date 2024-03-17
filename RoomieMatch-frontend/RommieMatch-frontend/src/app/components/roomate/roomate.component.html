@@ -21,31 +21,41 @@
     <div class="section properties mt-5">
         <ul class="properties-filter">
             <li>
-                <a class="is_active">Show All</a>
+                <a class="is_active cursor" (click)="filterRoommates()">Show All</a>
             </li>
             <li>
-                <a href="">Desired City</a>
+                <a (click)="filterByDesiredCity()" class="cursor">Desired City</a>
             </li>
             <li>
-                <a href="">Same Age</a>
+                <a (click)="toggleAgeFilter()" class="cursor">Filter By Age</a>
+                <div *ngIf="showAgeFilter" class="d-flex flex-column align-items-center">
+                    <input type="number" class="form-control m-3" placeholder="Min Age" [(ngModel)]="minAge">
+                    <input type="number" class="form-control" placeholder="Max Age" [(ngModel)]="maxAge">
+                    <button (click)="filterBySameAge()" class="mt-2 btn main-btn ms-2">Filter</button>
+                </div>
             </li>
             <li>
-                <a href="">Has Local</a>
+                <a (click)="filterByHasLocal()" class="cursor">Has Local</a>
             </li>
             <li>
-                <a href="">Gender</a>
+                <a (click)="filterByGender()" class="cursor">Gender</a>
             </li>
             <li>
-                <a href="">Budget</a>
+                <a (click)="toggleBudgetFilter()" class="cursor">Budget</a>
+                <div *ngIf="showBudgetFilter" class="d-flex flex-column align-items-center">
+                    <input type="number" class="form-control m-3" placeholder="Min Budget" [(ngModel)]="minBudget">
+                    <input type="number" class="form-control" placeholder="Max Budget" [(ngModel)]="maxBudget">
+                    <button (click)="filterByBudget()" class="mt-2 btn main-btn ms-2">Filter</button>
+                </div>
             </li>
             <li>
-                <a href="">Same Preference</a>
+                <a (click)="filterBySamePreference()" class="cursor">Same Preference</a>
             </li>
         </ul>
     </div>
-
-<div class="row gy-5 gx-4 mt-1 mb-5 pb-5">
-    <div class="col-lg-4 col-md-6 pt-5" *ngFor="let roommate of roommates">
+    
+    <div class="row gy-5 gx-4 mt-1 mb-5 pb-5">
+        <div class="col-lg-4 col-md-6 pt-5" *ngFor="let roommate of filteredRoommates">
         <div class="service-item d-flex h-100">
         <div class="service-text ms-3 p-5 pt-0">
             <div class="service-icon">

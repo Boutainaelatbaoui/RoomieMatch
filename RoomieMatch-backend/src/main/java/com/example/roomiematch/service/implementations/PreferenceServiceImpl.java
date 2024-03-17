@@ -38,7 +38,7 @@ public class PreferenceServiceImpl implements IPreferenceService {
         } else {
             preference = preferenceMapper.toEntity(requestDTO);
         }
-        
+
         return preferenceMapper.toDTO(preferenceRepository.save(preference));
     }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserResponse } from 'src/app/models/response/user-response';
 import { UserService } from 'src/app/services/user/user.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { PreferenceResponse } from 'src/app/models/response/preference-response';
 
 @Component({
   selector: 'app-roomate',
@@ -24,12 +25,33 @@ export class RoomateComponent {
   imageUrl11: string = 'assets/img/home.jpg';
   roommates: UserResponse[] = [];
   connectedMemberId: number | null = null;
+  filteredRoommates: UserResponse[] = [];
+  connectedMember: UserResponse | null = null;
+  minAge: number = 18;
+  maxAge: number = 99;
+  minBudget: number = 0;
+  maxBudget: number = 10000;
+  showAgeFilter: boolean = false;
+  showBudgetFilter: boolean = false;
 
   constructor(
     private userService: UserService,
     private storageService: StorageService,
     private router: Router
   ) {}
+  
+  ngOnInit(): void {
+    this.fetchConnectedMember();
+    this.fetchRoommates();
+  }
+
+  toggleAgeFilter(): void {
+    this.showAgeFilter = !this.showAgeFilter;
+  }
+
+  toggleBudgetFilter(): void {
+    this.showBudgetFilter = !this.showBudgetFilter;
+  }
 
   getImageUrl(gender: number): string {
     return gender === 1 ? 'assets/img/man.png' : 'assets/img/heart.png';
@@ -64,23 +86,101 @@ export class RoomateComponent {
   }
 
   viewRoommateDetails(roommateId: number) {
-    console.log('Roommate ID:', roommateId);
     this.router.navigate(['/roommate-details', roommateId]);
   }
-  
-  ngOnInit(): void {
-    this.fetchRoommates();
-    this.connectedMemberId = this.storageService.getConnectedMemberId();
+
+  fetchConnectedMember(): void {
+    const memberId = this.storageService.getConnectedMemberId();
+    
+    if (memberId) {
+      this.userService.getRoommateDetails(memberId).subscribe(
+        (user: UserResponse) => {
+          this.connectedMember = user;
+        },
+        (error) => {
+          console.error('Error fetching connected member details:', error);
+        }
+      );
+    }
   }
 
   fetchRoommates() {
     this.userService.getAllUsers().subscribe(
       (users: UserResponse[]) => {
-        this.roommates = users.filter(user => user.id !== this.connectedMemberId);
+        this.roommates = users.filter(user => user.id !== this.connectedMember?.id);
+        this.filterRoommates();
       },
       (error) => {
         console.error('Error fetching roommates:', error);
       }
     );
   }
+
+  filterRoommates(): void {    
+    this.filteredRoommates = this.roommates.filter(user => user.id !== this.connectedMember?.id);
+  }
+  
+
+  filterByDesiredCity(): void {
+    this.filteredRoommates = this.roommates.filter(roommate => roommate.desiredCity.name === this.connectedMember?.currentCity.name);
+  }
+
+  filterBySameAge(): void {
+    this.filteredRoommates = this.roommates.filter(roommate => {
+      const age = this.calculateAge(roommate.birthdate);
+      return age >= this.minAge && age <= this.maxAge;
+    });
+  }
+
+  filterByHasLocal(): void {
+    this.filteredRoommates = this.roommates.filter(roommate => roommate.preference.hasApartment === true);
+  }
+
+  filterByGender(): void {
+    this.filteredRoommates = this.roommates.filter(roommate => roommate.gender === this.connectedMember?.gender);
+  }
+
+  filterByBudget(): void {
+    this.filteredRoommates = this.roommates.filter(roommate => {
+      const budget = roommate.budget;
+      return budget >= this.minBudget && budget <= this.maxBudget;
+    });
+  }
+
+  filterBySamePreference(): void {
+    const connectedPreferences = this.connectedMember?.preference;
+    console.log('Connected Preferences:', connectedPreferences);
+
+    this.filteredRoommates = this.roommates.filter(roommate => {
+        if (!roommate.preference || !connectedPreferences) {
+            return false;
+        }
+
+        let commonPreferencesCount = 0;
+
+        if (roommate.preference.smoking === connectedPreferences.smoking) {
+            commonPreferencesCount++;
+        }
+        if (roommate.preference.pets === connectedPreferences.pets) {
+            commonPreferencesCount++;
+        }
+        if (roommate.preference.visitors === connectedPreferences.visitors) {
+            commonPreferencesCount++;
+        }
+        if (roommate.preference.partying === connectedPreferences.partying) {
+            commonPreferencesCount++;
+        }
+        if (roommate.preference.sharingBedroom === connectedPreferences.sharingBedroom) {
+            commonPreferencesCount++;
+        }
+        if (roommate.preference.hasApartment === connectedPreferences.hasApartment) {
+            commonPreferencesCount++;
+        }
+
+        console.log('Common Preferences Count:', commonPreferencesCount);
+
+        return commonPreferencesCount >= 3;
+    });
+  }
 }
+

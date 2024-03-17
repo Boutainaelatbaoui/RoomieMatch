@@ -26,11 +26,11 @@ export class AuthService {
 
   private handleAuthentication(response: AuthResponseData): User {
     const user: User = {
-      email: response.email,
+      email: response.email,      
       id: response.id,
+    
       token: response.access_token,
       refreshToken: response.refresh_token
-
     };
     this.storageService.saveUser(user);
     console.log(user);

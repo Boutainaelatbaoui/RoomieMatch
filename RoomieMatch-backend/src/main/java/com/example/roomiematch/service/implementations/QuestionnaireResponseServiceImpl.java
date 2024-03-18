@@ -3,6 +3,7 @@ package com.example.roomiematch.service.implementations;
 import com.example.roomiematch.mapper.QuestionnaireResponseMapper;
 import com.example.roomiematch.model.dto.request.QuestionnaireResponseRequestDTO;
 import com.example.roomiematch.model.dto.response.QuestionnaireResponseResponseDTO;
+import com.example.roomiematch.model.entities.Question;
 import com.example.roomiematch.model.entities.QuestionnaireResponse;
 import com.example.roomiematch.repository.ChoiceRepository;
 import com.example.roomiematch.repository.QuestionRepository;
@@ -37,11 +38,21 @@ public class QuestionnaireResponseServiceImpl implements IQuestionnaireResponseS
     }
 
     @Override
+
     public List<QuestionnaireResponseResponseDTO> saveResponses(List<QuestionnaireResponseRequestDTO> requests) {
         List<QuestionnaireResponseResponseDTO> responses = new ArrayList<>();
 
         for (QuestionnaireResponseRequestDTO request : requests) {
             validateUserQuestionAndChoiceExistence(request.getUserId(), request.getQuestionId(), request.getChoiceId());
+
+            Question question = questionRepository.findById(request.getQuestionId())
+                    .orElseThrow(() -> new EntityNotFoundException("Question not found with id: " + request.getQuestionId()));
+
+            boolean choiceExistsForQuestion = question.getChoices().stream()
+                    .anyMatch(choice -> choice.getId().equals(request.getChoiceId()));
+            if (!choiceExistsForQuestion) {
+                throw new EntityNotFoundException("Choice with id " + request.getChoiceId() + " does not belong to the provided question");
+            }
 
             Optional<QuestionnaireResponse> existingResponse = responseRepository.findByUserIdAndQuestionId(
                     request.getUserId(), request.getQuestionId());
@@ -62,6 +73,7 @@ public class QuestionnaireResponseServiceImpl implements IQuestionnaireResponseS
 
         return responses;
     }
+
 
 
     @Override

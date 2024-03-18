@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+<section class="overflow-hidden">
+    <style>
+        #radius-shape-1 {
+            height: 50px;
+            width: 50px;
+            top: -80px;
+            left: -250px;
+        }
+
+        #radius-shape-2 {
+            bottom: -40px;
+            right: -5px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .bg-glass {
+            background-color: hsla(0, 0%, 100%, 0.9) !important;
+            backdrop-filter: saturate(200%) blur(25px);
+        }
+
+        .card {
+            max-height: 560px;
+            overflow-y: auto;
+        }
+    </style>
+
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mt-5 pt-3" style="z-index: 10">
+                <h1 class="mt-5 display-4 fw-bold" style="color: rgb(47, 44, 44)">
+                    Take Our Quick Questionnaire! <br />
+                    <span style="color: #6c2bd9; padding-top: 62px !important;" >To Find Your Perfect Roommate Match</span>
+                </h1>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong">
+                    <img [src]="imageUrl1" alt="" width="450px">
+                </div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong">
+                    <img [src]="imageUrl2" alt="">
+                </div>
+
+                <div class="card bg-glass">
+                    <div class="card-body ps-5 py-3 mt-4">
+                        <form [formGroup]="questionnaireForm">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <h6 class="mb-3 fs-4 fw-bolder leading-none tracking-tight">Answer Our Questionnaire</h6>
+                                <img [src]="imageUrl5" class="img-home mb-5" width="38% !important">
+                            </div>
+                            <div *ngFor="let question of questions; let i = index" class="mb-5">
+                                <h6 class="fw-semibold mb-4 text-start"><span class="fw-semibold me-2 main-btn rounded-pill px-2 py-1">{{ i + 1 }}</span> {{ question.questionText }}</h6>
+                                <div *ngFor="let option of question.choices" class="d-flex  align-items-center mt-2">
+                                    <input type="radio" class="form-check-input me-4" name="question{{question.id}}" [value]="option.id" (change)="selectOption(question.id, option.id)">
+                                    <label class="form-check-label">{{ option.choiceText }}</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 d-flex align-items-center mt-">
+                                <button mat-button (click)="submit()" class="btn main-btn px-4 py-2 mt-2 fs-6">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

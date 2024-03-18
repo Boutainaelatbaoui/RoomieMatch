@@ -21,8 +21,8 @@ public class QuestionnaireResponseController {
     }
 
     @PostMapping
-    public ResponseEntity<QuestionnaireResponseResponseDTO> saveResponse(@RequestBody QuestionnaireResponseRequestDTO requestDTO) {
-        return new ResponseEntity<>(responseService.saveResponse(requestDTO), HttpStatus.CREATED);
+    public ResponseEntity<List<QuestionnaireResponseResponseDTO>> saveResponses(@RequestBody List<QuestionnaireResponseRequestDTO> requests) {
+        return new ResponseEntity<>(responseService.saveResponses(requests), HttpStatus.OK);
     }
 
     @GetMapping

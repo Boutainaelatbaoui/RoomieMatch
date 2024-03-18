@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,24 +37,32 @@ public class QuestionnaireResponseServiceImpl implements IQuestionnaireResponseS
     }
 
     @Override
-    public QuestionnaireResponseResponseDTO saveResponse(QuestionnaireResponseRequestDTO request) {
-        validateUserQuestionAndChoiceExistence(request.getUserId(), request.getQuestionId(), request.getChoiceId());
+    public List<QuestionnaireResponseResponseDTO> saveResponses(List<QuestionnaireResponseRequestDTO> requests) {
+        List<QuestionnaireResponseResponseDTO> responses = new ArrayList<>();
 
-        Optional<QuestionnaireResponse> existingResponse = responseRepository.findByUserIdAndQuestionId(
-                request.getUserId(), request.getQuestionId());
+        for (QuestionnaireResponseRequestDTO request : requests) {
+            validateUserQuestionAndChoiceExistence(request.getUserId(), request.getQuestionId(), request.getChoiceId());
 
-        if (existingResponse.isPresent()) {
-            QuestionnaireResponse responseToUpdate = existingResponse.get();
-            responseToUpdate.setChoice(choiceRepository.findById(request.getChoiceId()).get());
+            Optional<QuestionnaireResponse> existingResponse = responseRepository.findByUserIdAndQuestionId(
+                    request.getUserId(), request.getQuestionId());
 
-            QuestionnaireResponse updatedResponse = responseRepository.save(responseToUpdate);
-            return responseMapper.toQuestionnaireResponseDto(updatedResponse);
-        } else {
-            QuestionnaireResponse response = responseMapper.toQuestionnaireResponse(request);
-            QuestionnaireResponse savedResponse = responseRepository.save(response);
-            return responseMapper.toQuestionnaireResponseDto(savedResponse);
+            if (existingResponse.isPresent()) {
+                QuestionnaireResponse responseToUpdate = existingResponse.get();
+                responseToUpdate.setChoice(choiceRepository.findById(request.getChoiceId())
+                        .orElseThrow(() -> new EntityNotFoundException("Choice not found with id: " + request.getChoiceId())));
+
+                QuestionnaireResponse updatedResponse = responseRepository.save(responseToUpdate);
+                responses.add(responseMapper.toQuestionnaireResponseDto(updatedResponse));
+            } else {
+                QuestionnaireResponse response = responseMapper.toQuestionnaireResponse(request);
+                QuestionnaireResponse savedResponse = responseRepository.save(response);
+                responses.add(responseMapper.toQuestionnaireResponseDto(savedResponse));
+            }
         }
+
+        return responses;
     }
+
 
     @Override
     public List<QuestionnaireResponseResponseDTO> getAllResponses() {

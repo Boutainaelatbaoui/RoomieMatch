@@ -6,7 +6,7 @@ import com.example.roomiematch.model.dto.response.QuestionnaireResponseResponseD
 import java.util.List;
 
 public interface IQuestionnaireResponseService {
-    QuestionnaireResponseResponseDTO saveResponse(QuestionnaireResponseRequestDTO request);
+    List<QuestionnaireResponseResponseDTO> saveResponses(List<QuestionnaireResponseRequestDTO> requests);
     List<QuestionnaireResponseResponseDTO> getAllResponses();
     QuestionnaireResponseResponseDTO getResponseById(Long id);
     List<QuestionnaireResponseResponseDTO> getAllResponsesByUserId(Long userId);

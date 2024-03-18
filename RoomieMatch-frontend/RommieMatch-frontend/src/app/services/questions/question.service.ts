@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { QuestionResponse } from 'src/app/models/response/question-response';
 import { Observable, catchError, throwError } from 'rxjs';
 import { QuestionRequest } from 'src/app/models/request/question-request';
+import { QuestionnaireRequest} from 'src/app/models/request/questionnaire-request';
+import { QuestionnaireResponse } from 'src/app/models/response/questionnaire-response';
 
 @Injectable({
   providedIn: 'root'

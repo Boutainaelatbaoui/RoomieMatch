@@ -39,8 +39,18 @@ public class PreferenceServiceImpl implements IPreferenceService {
             preference = preferenceMapper.toEntity(requestDTO);
         }
 
-        return preferenceMapper.toDTO(preferenceRepository.save(preference));
+        preference = preferenceRepository.save(preference);
+
+        User user = userRepository.findById(requestDTO.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + requestDTO.getUserId()));
+
+        user.setPreference(preference);
+
+        userRepository.save(user);
+
+        return preferenceMapper.toDTO(preference);
     }
+
 
     @Override
     public PreferenceResponseDTO getPreferenceById(Long id) {

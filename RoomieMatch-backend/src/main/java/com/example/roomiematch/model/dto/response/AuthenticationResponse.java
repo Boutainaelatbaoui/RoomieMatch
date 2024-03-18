@@ -17,16 +17,6 @@ import java.time.LocalDate;
 public class AuthenticationResponse {
     private Long id;
     private String email;
-    private String firstName;
-    private String lastName;
-    private String telephone;
-    private String bio;
-    private double budget;
-    private int occupation;
-    private int gender;
-    private LocalDate birthdate;
-    private CityResponseDTO currentCity;
-    private CityResponseDTO desiredCity;
 
     @JsonProperty("access_token")
     private String accessToken;

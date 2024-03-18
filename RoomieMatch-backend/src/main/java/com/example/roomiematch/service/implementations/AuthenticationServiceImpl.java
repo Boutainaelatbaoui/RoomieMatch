@@ -162,17 +162,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .refreshToken(refreshToken)
                 .tokenType(TokenType.BEARER.name())
                 .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .desiredCity(desiredCityDTO)
-                .currentCity(currentCityDTO)
-                .bio(user.getBio())
-                .budget(user.getBudget())
-                .birthdate(user.getBirthdate())
-                .occupation(user.getOccupation())
-                .telephone(user.getTelephone())
-                .gender(user.getGender())
                 .build();
     }
 }

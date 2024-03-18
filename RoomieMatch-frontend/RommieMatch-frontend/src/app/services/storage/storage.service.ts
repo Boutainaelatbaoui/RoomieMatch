@@ -48,6 +48,7 @@ export class StorageService {
     const token = this.getSavedUser()?.token || this.getAccessToken();
     if (token) {
       try {
+        console.log(jwtDecode(token));
         return jwtDecode(token);
       } catch (error) {
         console.error('Error decoding token:', error);

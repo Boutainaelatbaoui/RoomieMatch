@@ -26,19 +26,22 @@ public class RegisterRequest {
     @Email(message = "Email is not valid")
     private String email;
 
+    @NotBlank(message = "Password is required")
     @Size(min = 6, message = "The Password must have at least 6 characters")
     private String password;
 
     private Long role_id;
 
     @NotBlank(message = "Telephone cannot be blank")
-    @Size(min = 9, max = 15, message = "Telephone must be between 9 and 15 characters")
+    @Size(min = 10, max = 15, message = "Telephone must be between 10 and 15 characters")
     private String telephone;
 
+    @NotBlank(message = "Bio is required")
     @Size(max = 255, message = "Bio must be less than 255 characters")
     private String bio;
 
-    @DecimalMin("0.0")
+    @NotNull(message = "Budget cannot be null")
+    @DecimalMin("10.0")
     private double budget;
 
     @NotNull(message = "Gender cannot be null")

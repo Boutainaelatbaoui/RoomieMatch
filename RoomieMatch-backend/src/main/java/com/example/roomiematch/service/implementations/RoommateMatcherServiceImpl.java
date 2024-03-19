@@ -1,9 +1,8 @@
 package com.example.roomiematch.service.implementations;
 
 import com.example.roomiematch.mapper.UserMapper;
-import com.example.roomiematch.model.dto.response.RoommateMatchDTO;
+import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.model.entities.QuestionnaireResponse;
-import com.example.roomiematch.model.entities.User;
 import com.example.roomiematch.repository.QuestionnaireResponseRepository;
 import com.example.roomiematch.repository.UserRepository;
 import com.example.roomiematch.service.IRoommateMatcherService;
@@ -28,29 +27,30 @@ public class RoommateMatcherServiceImpl implements IRoommateMatcherService {
     }
 
     @Override
-    public List<RoommateMatchDTO> findRoommatesForUserByEmail(String userEmail) {
+    public List<UserResponseDTO> findRoommatesForUserByEmail(String userEmail) {
         List<QuestionnaireResponse> userResponses = responseRepository.findByUserEmail(userEmail);
         Map<Long, List<QuestionnaireResponse>> allResponsesByUser = responseRepository.findAllByUserEmailNot(userEmail)
                 .stream()
                 .collect(Collectors.groupingBy(response -> response.getUser().getId()));
 
-        List<RoommateMatchDTO> roommateMatches = new ArrayList<>();
+        List<UserResponseDTO> roommateMatches = new ArrayList<>();
         for (Map.Entry<Long, List<QuestionnaireResponse>> entry : allResponsesByUser.entrySet()) {
             Long roommateUserId = entry.getKey();
             List<QuestionnaireResponse> roommateResponses = entry.getValue();
             int matchScore = calculateMatchScore(userResponses, roommateResponses);
-            roommateMatches.add(RoommateMatchDTO.builder()
-                    .user(userMapper.toDTO(userRepository.findById(roommateUserId).orElse(new User())))
-                    .matchScore(matchScore)
-                    .percentageMatch(0.0)
-                    .build());
-        }
-        roommateMatches.sort(Comparator.comparingInt(RoommateMatchDTO::getMatchScore).reversed());
 
-        int totalQuestions = userResponses.size();
-        for (RoommateMatchDTO match : roommateMatches) {
-            match.setPercentageMatch((double) match.getMatchScore() / totalQuestions * 100);
+            UserResponseDTO roommateDetails = userRepository.findById(roommateUserId)
+                    .map(userMapper::toDTO)
+                    .orElseThrow(() -> new NoSuchElementException("User not found with ID: " + roommateUserId));
+
+            roommateDetails.setMatchScore(matchScore);
+            double percentageMatch = (double) matchScore / userResponses.size() * 100;
+            roommateDetails.setPercentageMatch(percentageMatch);
+
+            roommateMatches.add(roommateDetails);
         }
+
+        roommateMatches.sort(Comparator.comparingInt(UserResponseDTO::getMatchScore).reversed());
 
         return roommateMatches;
     }

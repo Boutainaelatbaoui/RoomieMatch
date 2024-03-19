@@ -18,8 +18,8 @@
         </div>
     </div>
 
-    <div class="section properties mt-5">
-        <ul class="properties-filter">
+    <div class="section properties d-flex justify-content-center mt-5">
+        <ul class="properties-filter" style="width: 75%;">
             <li>
                 <a class="is_active cursor" (click)="filterRoommates()">Show All</a>
             </li>
@@ -51,6 +51,9 @@
             <li>
                 <a (click)="filterBySamePreference()" class="cursor">Same Preference</a>
             </li>
+            <li>
+                <a (click)="fetchRoommatesByQuestionnaire()" class="cursor is_active mt-2">Based on Questionnaire</a>
+            </li>
         </ul>
     </div>
     
@@ -63,6 +66,13 @@
             </div>
 
             <div class="d-flex mt-0 justify-content-between align-items-center">
+                <!-- Progress circular to display percentage match -->
+            <div *ngIf="roommate.percentageMatch != 0" class="progress-circle">
+                <div class="progress">
+                <div class="progress-bar" role="progressbar" [style.width]="roommate.percentageMatch + '%'"></div>
+                </div>
+                <div class="progress-text">{{ roommate.percentageMatch }}%</div>
+            </div>
                 <h5 class="text-start fw-semibold">{{ roommate.firstName }} {{ roommate.lastName }} &nbsp; . &nbsp; {{ calculateAge(roommate.birthdate) }}y</h5>
                 <h5 class="fw-semibold">|</h5>
                 <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">{{ getOccupationText(roommate.occupation) }}</h2>

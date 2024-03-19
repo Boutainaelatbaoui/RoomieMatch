@@ -26,5 +26,7 @@ public class UserResponseDTO implements Serializable {
     private CityResponseDTO desiredCity;
     private PreferenceResponseDTO preference;
     private RoleResponseDTO role;
+    private int matchScore;
+    private double percentageMatch;
 }
 

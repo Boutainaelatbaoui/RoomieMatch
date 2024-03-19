@@ -1,7 +1,6 @@
 package com.example.roomiematch.service.implementations;
 
 import com.example.roomiematch.mapper.UserMapper;
-import com.example.roomiematch.model.dto.response.RoommateMatchDTO;
 import com.example.roomiematch.model.entities.QuestionnaireResponse;
 import com.example.roomiematch.model.entities.User;
 import com.example.roomiematch.repository.QuestionnaireResponseRepository;

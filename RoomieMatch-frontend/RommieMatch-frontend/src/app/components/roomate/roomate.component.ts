@@ -5,7 +5,6 @@ import { UserService } from 'src/app/services/user/user.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { PreferenceResponse } from 'src/app/models/response/preference-response';
 import { RoomieMatchService } from 'src/app/services/roomieMatch/roomie-match.service';
-import { RoommateMatchDTO } from 'src/app/models/response/roommate-match-dto';
 
 @Component({
   selector: 'app-roomate',
@@ -25,9 +24,9 @@ export class RoomateComponent {
   imageUrl9: string = 'assets/img/phone.png';
   imageUrl10: string = 'assets/img/home1.jpg';
   imageUrl11: string = 'assets/img/home.jpg';
-  roommates: any[] = [];
+  roommates: UserResponse[] = [];
   connectedMemberId: number | null = null;
-  filteredRoommates: any[] = [];
+  filteredRoommates: UserResponse[] = [];
   connectedMember: UserResponse | null = null;
   minAge: number = 18;
   maxAge: number = 99;
@@ -36,6 +35,7 @@ export class RoomateComponent {
   showAgeFilter: boolean = false;
   showBudgetFilter: boolean = false;
   email: string = "";
+  showPercentageMatch: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -46,11 +46,20 @@ export class RoomateComponent {
   
   ngOnInit(): void {
     this.fetchConnectedMember();
-    this.fetchConnectedMemberEmail();
-    this.fetchRoommatesByEmail(this.email);
-    this.fetchRoommates();
+    this.fetchRoommatesByEmail(this.fetchConnectedMemberEmail());
   }
 
+  calculateDashArray(percentageMatch: number): string {
+    if (!percentageMatch) {
+      return '0 339.292';
+    }
+    const circumference = 2 * Math.PI * 54; // circumference of the circle
+    const percentage = percentageMatch / 100;
+    const dashArray = circumference * percentage;
+    return `calc(${dashArray}px ${circumference}px)`;
+  }
+  
+  
   toggleAgeFilter(): void {
     this.showAgeFilter = !this.showAgeFilter;
   }
@@ -96,10 +105,10 @@ export class RoomateComponent {
   }
 
   fetchConnectedMember(): void {
-    const memberId = this.storageService.getConnectedMemberId();
+    this.connectedMemberId = this.storageService.getConnectedMemberId();
     
-    if (memberId) {
-      this.userService.getRoommateDetails(memberId).subscribe(
+    if (this.connectedMemberId) {
+      this.userService.getRoommateDetails(this.connectedMemberId).subscribe(
         (user: UserResponse) => {
           this.connectedMember = user;
         },
@@ -120,8 +129,10 @@ export class RoomateComponent {
   fetchRoommates() {
     this.userService.getAllUsers().subscribe(
       (users: UserResponse[]) => {
-        this.roommates = users.filter(user => user.id !== this.connectedMember?.id);
-        this.filterRoommates();
+        console.log(this.connectedMemberId);
+        
+        this.filteredRoommates = users.filter(roommate => roommate.id !== this.connectedMemberId);
+        this.roommates = this.filteredRoommates;
       },
       (error) => {
         console.error('Error fetching roommates:', error);
@@ -133,10 +144,10 @@ export class RoomateComponent {
     console.log('Email:', email);
     
     this.roommateMatchService.findRoommatesForUser(email).subscribe(
-      (roommates: RoommateMatchDTO[]) => {
-        this.roommates = roommates;
+      (roommates: UserResponse[]) => {
         this.filteredRoommates = roommates;
-        console.log('Roommates:', this.roommates);
+        this.roommates = this.filteredRoommates;
+        console.log('Roommates:', this.filteredRoommates);
       },
       (error) => {
         console.error('Error fetching roommates by email:', error);
@@ -146,9 +157,12 @@ export class RoomateComponent {
   }
 
   filterRoommates(): void {    
-    this.filteredRoommates = this.roommates.filter(user => user.id !== this.connectedMember?.id);
+    this.fetchRoommates();
   }
   
+  fetchRoommatesByQuestionnaire(): void {
+    this.fetchRoommatesByEmail(this.fetchConnectedMemberEmail());
+  }
 
   filterByDesiredCity(): void {
     this.filteredRoommates = this.roommates.filter(roommate => roommate.desiredCity.name === this.connectedMember?.currentCity.name);

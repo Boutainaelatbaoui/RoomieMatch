@@ -1,6 +1,6 @@
 package com.example.roomiematch.controller;
 
-import com.example.roomiematch.model.dto.response.RoommateMatchDTO;
+import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.service.IRoommateMatcherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ public class RoommateMatcherController {
     }
 
     @GetMapping("/user/{userEmail}")
-    public List<RoommateMatchDTO> findRoommatesForUser(@PathVariable String userEmail) {
+    public List<UserResponseDTO> findRoommatesForUser(@PathVariable String userEmail) {
         return roommateMatcherService.findRoommatesForUserByEmail(userEmail);
     }
 }

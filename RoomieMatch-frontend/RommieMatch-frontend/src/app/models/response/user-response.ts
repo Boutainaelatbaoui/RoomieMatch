@@ -18,4 +18,6 @@ export interface UserResponse {
     desiredCity: CityResponse;
     preference: PreferenceResponse;
     role: RoleResponse;
+    matchScore: number;
+    percentageMatch: number;
 }

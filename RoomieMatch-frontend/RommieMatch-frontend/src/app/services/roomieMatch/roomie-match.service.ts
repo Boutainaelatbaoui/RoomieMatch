@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { StorageService } from '../storage/storage.service';
 import { Router } from '@angular/router';
-import { RoommateMatchDTO } from 'src/app/models/response/roommate-match-dto';
 import { Observable } from 'rxjs';
+import { UserResponse } from 'src/app/models/response/user-response';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class RoomieMatchService {
     private router: Router
   ) {}
 
-  findRoommatesForUser(userEmail: string): Observable<RoommateMatchDTO[]> {
-    return this.http.get<RoommateMatchDTO[]>(`${this.apiUrl}/roommate-matches/user/${userEmail}`);
+  findRoommatesForUser(userEmail: string): Observable<UserResponse[]> {
+    return this.http.get<UserResponse[]>(`${this.apiUrl}/roommate-matches/user/${userEmail}`);
   }
 }

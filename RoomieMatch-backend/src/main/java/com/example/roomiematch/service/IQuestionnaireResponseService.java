@@ -9,7 +9,7 @@ public interface IQuestionnaireResponseService {
     List<QuestionnaireResponseResponseDTO> saveResponses(List<QuestionnaireResponseRequestDTO> requests);
     List<QuestionnaireResponseResponseDTO> getAllResponses();
     QuestionnaireResponseResponseDTO getResponseById(Long id);
-    List<QuestionnaireResponseResponseDTO> getAllResponsesByUserId(Long userId);
+    List<QuestionnaireResponseResponseDTO> getAllResponsesByUserEmail(String userEmail);
     void deleteResponseById(Long id);
 }
 

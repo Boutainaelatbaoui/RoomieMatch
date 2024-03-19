@@ -5,6 +5,7 @@ import com.example.roomiematch.model.dto.request.QuestionnaireResponseRequestDTO
 import com.example.roomiematch.model.dto.response.QuestionnaireResponseResponseDTO;
 import com.example.roomiematch.model.entities.Question;
 import com.example.roomiematch.model.entities.QuestionnaireResponse;
+import com.example.roomiematch.model.entities.User;
 import com.example.roomiematch.repository.ChoiceRepository;
 import com.example.roomiematch.repository.QuestionRepository;
 import com.example.roomiematch.repository.QuestionnaireResponseRepository;
@@ -103,15 +104,18 @@ public class QuestionnaireResponseServiceImpl implements IQuestionnaireResponseS
     }
 
     @Override
-    public List<QuestionnaireResponseResponseDTO> getAllResponsesByUserId(Long userId) {
-        if (!userRepository.existsById(userId)) {
-            throw new EntityNotFoundException("User not found with id: " + userId);
+    public List<QuestionnaireResponseResponseDTO> getAllResponsesByUserEmail(String userEmail) {
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        if (userOptional.isEmpty()) {
+            throw new EntityNotFoundException("User not found with email: " + userEmail);
         }
-        List<QuestionnaireResponse> responses = responseRepository.findAllByUserId(userId);
+        User user = userOptional.get();
+        List<QuestionnaireResponse> responses = responseRepository.findAllByUser(user);
         return responses.stream()
                 .map(responseMapper::toQuestionnaireResponseDto)
                 .collect(Collectors.toList());
     }
+
 
 
     private void validateUserQuestionAndChoiceExistence(Long userId, Long questionId, Long choiceId) {

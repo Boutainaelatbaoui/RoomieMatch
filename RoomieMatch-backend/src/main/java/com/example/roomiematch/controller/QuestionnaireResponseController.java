@@ -36,9 +36,9 @@ public class QuestionnaireResponseController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<QuestionnaireResponseResponseDTO>> getAllResponsesByUserId(@PathVariable Long userId) {
-        return ResponseEntity.ok(responseService.getAllResponsesByUserId(userId));
+    @GetMapping("/user/{userEmail}")
+    public ResponseEntity<List<QuestionnaireResponseResponseDTO>> getAllResponsesByUserEmail(@PathVariable String userEmail) {
+        return ResponseEntity.ok(responseService.getAllResponsesByUserEmail(userEmail));
     }
 
     @DeleteMapping("/{id}")

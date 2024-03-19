@@ -60,34 +60,37 @@
     <div class="row gy-5 gx-4 mt-1 mb-5 pb-5">
         <div class="col-lg-4 col-md-6 pt-5" *ngFor="let roommate of filteredRoommates">
         <div class="service-item d-flex h-100">
-        <div class="service-text ms-3 p-5 pt-0">
+        <div class="service-text ms-3 p-2 pb-5 pt-0">
+            <div *ngIf="roommate.percentageMatch != 0" class="progress-circle d-flex gap-2 align-items-center" style="
+            position: absolute;
+            right: 8%;
+            top: 3%;
+        ">
+                <div class="progress-circular">
+                <mat-progress-spinner
+                    [color]="'primary'"
+                    [mode]="'determinate'"
+                    [value]="roommate.percentageMatch"
+                    [diameter]="50"
+                    [strokeWidth]="5"
+                ></mat-progress-spinner>
+                <p class="percentage fw-semibold">{{ roommate.percentageMatch }}%</p>
+                </div>
+                <h6 class="fw-semibold ms-1">Match Percentage </h6>
+            </div>
             <div class="service-icon">
                 <img class="img-fluid rounded-circle" [src]="getImageUrl(roommate.gender)" alt="">
             </div>
-
-            <div class="d-flex mt-0 justify-content-between align-items-center">
-                <!-- Progress circular to display percentage match -->
-            <div *ngIf="roommate.percentageMatch != 0" class="progress-circle">
-                <div class="progress">
-                <div class="progress-bar" role="progressbar" [style.width]="roommate.percentageMatch + '%'"></div>
-                </div>
-                <div class="progress-text">{{ roommate.percentageMatch }}%</div>
+            <div class="d-flex mt-0 gap-4 align-items-center">
+                <h5 class="text-start fw-semibold">{{ roommate.firstName }} {{ roommate.lastName }} &nbsp; . &nbsp; {{ calculateAge(roommate.birthdate) }}y  </h5>
+                <h2 class="badge rounded-pill badge1 fs-6 fw-semibold" style="display: flex; width: fit-content;">Target City: &nbsp; {{ roommate.desiredCity.name }}</h2>
             </div>
-                <h5 class="text-start fw-semibold">{{ roommate.firstName }} {{ roommate.lastName }} &nbsp; . &nbsp; {{ calculateAge(roommate.birthdate) }}y</h5>
-                <h5 class="fw-semibold">|</h5>
-                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">{{ getOccupationText(roommate.occupation) }}</h2>
-            </div>
-            <!-- <span class="" *ngIf="roommate.gender == 1">(<i class="bi bi-gender-male me-1">Male</i>)</span> <span *ngIf="roommate.gender == 2">(<i class="bi bi-gender-female me-1">Female</i>)</span> -->
-            <p style="margin-bottom: 35px; margin-top: 15px;">{{ roommate.bio }}</p>
-            <!-- <div class="d-flex justify-content-between mb-3">
-                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Occupation: &nbsp; {{ getOccupationText(roommate.occupation) }}</h2>
-                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Budget: &nbsp; ${{ roommate.budget }}</h2>
-            </div> -->
-            <div class="d-flex justify-content-between mb-3">
+            <p style="margin-top: 15px; text-align: start;" class="pe-2">{{ roommate.bio }}</p>
+            <div class="d-flex gap-3 mb-3">
                 <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">From: &nbsp; {{ roommate.currentCity.name }}</h2>
                 <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Budget: &nbsp; ${{ roommate.budget }}</h2>
+                <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">{{ getOccupationText(roommate.occupation) }}</h2>
             </div>
-            <h2 class="badge rounded-pill badge1 fs-6 fw-semibold">Target City: &nbsp; {{ roommate.desiredCity.name }}</h2>
             <mat-chip-set aria-label="Preference selection">
             <div *ngIf="roommate.preference" class="preference text-start mt-3 mb-3">
                 <mat-chip class="green-chip" *ngIf="roommate.preference.smoking">

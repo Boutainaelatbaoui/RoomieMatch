@@ -25,6 +25,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MemberComponent } from './components/dashboard/member/member.component';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 
@@ -56,6 +58,7 @@ import { MatRadioModule } from '@angular/material/radio';
       BrowserAnimationsModule,
       MatChipsModule,
       MatRadioModule,
+      MatProgressSpinnerModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }

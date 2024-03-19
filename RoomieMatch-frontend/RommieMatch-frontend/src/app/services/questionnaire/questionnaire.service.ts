@@ -31,4 +31,14 @@ export class QuestionnaireService {
       );
   }
 
+  getAllResponsesByUserEmail(userEmail: string): Observable<QuestionnaireResponse[]> {
+    return this.http.get<QuestionnaireResponse[]>(`${this.apiUrl}/questionnaire/user/${userEmail}`)
+      .pipe(
+        catchError((error) => {
+          console.error('Error saving questionnaire responses:', error);
+          throw error;
+        })
+      );
+  }
+
 }

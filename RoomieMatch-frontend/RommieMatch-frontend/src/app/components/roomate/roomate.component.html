@@ -58,6 +58,17 @@
     </div>
     
     <div class="row gy-5 gx-4 mt-1 mb-5 pb-5">
+        <div class="card questionnaire-card mt-0" *ngIf="showQuestionnaireNote">
+            <div class="card-body">
+                <p class="card-text fs-3 mb-2">Please answer the questionnaire to find better matches !!</p>
+                <p><i class="bi bi-quote me-2"></i>Discover your perfect roommate effortlessly with our customized questionnaire. Answer lifestyle questions and find matches that fit your lifestyle seamlessly. 
+                    Say hello to stress-free roommate matches and blissful cohabitation!<i class="bi bi-quote ms-2"></i></p>
+                <div class="d-flex justify-content-center gap-5">
+                    <a routerLink="/questionnaire" class="btn btn-secondary mt-3">Answer Questionnaire</a>
+                    <button (click)="filterRoommates()" class="btn mt-3 text-white" style="background-color: #6c2bd9;">Show All Roommates</button>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-4 col-md-6 pt-5" *ngFor="let roommate of filteredRoommates">
         <div class="service-item d-flex h-100">
         <div class="service-text ms-3 p-2 pb-5 pt-0">

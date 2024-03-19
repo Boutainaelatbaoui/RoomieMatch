@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user/user.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { PreferenceResponse } from 'src/app/models/response/preference-response';
 import { RoomieMatchService } from 'src/app/services/roomieMatch/roomie-match.service';
+import { QuestionnaireService } from 'src/app/services/questionnaire/questionnaire.service';
+import { QuestionnaireResponse } from 'src/app/models/response/questionnaire-response';
 
 @Component({
   selector: 'app-roomate',
@@ -36,29 +38,20 @@ export class RoomateComponent {
   showBudgetFilter: boolean = false;
   email: string = "";
   showPercentageMatch: boolean = false;
+  showQuestionnaireNote: boolean = false;
 
   constructor(
     private userService: UserService,
     private storageService: StorageService,
     private router: Router,
-    private roommateMatchService: RoomieMatchService
+    private roommateMatchService: RoomieMatchService,
+    private questionnaireService: QuestionnaireService,
   ) {}
   
   ngOnInit(): void {
     this.fetchConnectedMember();
     this.fetchRoommatesByEmail(this.fetchConnectedMemberEmail());
   }
-
-  calculateDashArray(percentageMatch: number): string {
-    if (!percentageMatch) {
-      return '0 339.292';
-    }
-    const circumference = 2 * Math.PI * 54; // circumference of the circle
-    const percentage = percentageMatch / 100;
-    const dashArray = circumference * percentage;
-    return `calc(${dashArray}px ${circumference}px)`;
-  }
-  
   
   toggleAgeFilter(): void {
     this.showAgeFilter = !this.showAgeFilter;
@@ -142,21 +135,35 @@ export class RoomateComponent {
 
   fetchRoommatesByEmail(email: string): void {
     console.log('Email:', email);
-    
-    this.roommateMatchService.findRoommatesForUser(email).subscribe(
-      (roommates: UserResponse[]) => {
-        this.filteredRoommates = roommates;
-        this.roommates = this.filteredRoommates;
-        console.log('Roommates:', this.filteredRoommates);
+
+    this.questionnaireService.getAllResponsesByUserEmail(email).subscribe(
+      (responses: QuestionnaireResponse[]) => {
+        if (responses.length === 0) {
+          this.showQuestionnaireNote = true;
+          this.filteredRoommates = [];
+        } else {
+          this.showQuestionnaireNote = false;
+          this.roommateMatchService.findRoommatesForUser(email).subscribe(
+            (roommates: UserResponse[]) => {
+              this.filteredRoommates = roommates;
+              this.roommates = this.filteredRoommates;
+              console.log('Roommates:', this.filteredRoommates);
+            },
+            (error) => {
+              console.error('Error fetching roommates by email:', error);
+            }
+            
+          );
+        }
       },
       (error) => {
-        console.error('Error fetching roommates by email:', error);
+        console.error('Error fetching questionnaire responses:', error);
       }
-      
     );
   }
 
-  filterRoommates(): void {    
+  filterRoommates(): void {   
+    this.showQuestionnaireNote = false; 
     this.fetchRoommates();
   }
   

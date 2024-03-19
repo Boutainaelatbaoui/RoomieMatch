@@ -10,6 +10,13 @@
     color: black;
 }
 
+.questionnaire-card {
+    max-width: 750px;
+    margin: auto;
+}
+
+
+
 .progress-circular {
     position: relative;
     text-align: center;

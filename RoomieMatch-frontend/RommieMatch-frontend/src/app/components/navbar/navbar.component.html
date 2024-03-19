@@ -27,6 +27,11 @@
             <a routerLink="/roomates" class="nav-link me-3 text-dark fw-semibold">Roomates</a>
             </li>
         </ul>
+        <ul class="navbar-nav gap-5" *ngIf="isLoggedIn()">
+            <li class="nav-item">
+            <a routerLink="/questionnaire" class="nav-link me-3 text-dark fw-semibold">Questionnaire</a>
+            </li>
+        </ul>
         <ul class="navbar-nav gap-5" *ngIf="showAdminBoard">
             <li class="nav-item">
             <a routerLink="/dashboard" class="nav-link me-3 text-dark fw-semibold">Dashboard</a>

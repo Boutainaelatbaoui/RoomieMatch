@@ -4,6 +4,8 @@ import { UserResponse } from 'src/app/models/response/user-response';
 import { UserService } from 'src/app/services/user/user.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { PreferenceResponse } from 'src/app/models/response/preference-response';
+import { RoomieMatchService } from 'src/app/services/roomieMatch/roomie-match.service';
+import { RoommateMatchDTO } from 'src/app/models/response/roommate-match-dto';
 
 @Component({
   selector: 'app-roomate',
@@ -23,9 +25,9 @@ export class RoomateComponent {
   imageUrl9: string = 'assets/img/phone.png';
   imageUrl10: string = 'assets/img/home1.jpg';
   imageUrl11: string = 'assets/img/home.jpg';
-  roommates: UserResponse[] = [];
+  roommates: any[] = [];
   connectedMemberId: number | null = null;
-  filteredRoommates: UserResponse[] = [];
+  filteredRoommates: any[] = [];
   connectedMember: UserResponse | null = null;
   minAge: number = 18;
   maxAge: number = 99;
@@ -33,15 +35,19 @@ export class RoomateComponent {
   maxBudget: number = 10000;
   showAgeFilter: boolean = false;
   showBudgetFilter: boolean = false;
+  email: string = "";
 
   constructor(
     private userService: UserService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private roommateMatchService: RoomieMatchService
   ) {}
   
   ngOnInit(): void {
     this.fetchConnectedMember();
+    this.fetchConnectedMemberEmail();
+    this.fetchRoommatesByEmail(this.email);
     this.fetchRoommates();
   }
 
@@ -104,6 +110,13 @@ export class RoomateComponent {
     }
   }
 
+  fetchConnectedMemberEmail(): string | "" {
+    this.email = this.storageService.decodeToken().sub;
+    console.log('Email:', this.email);
+    
+    return this.email || "";
+  }
+
   fetchRoommates() {
     this.userService.getAllUsers().subscribe(
       (users: UserResponse[]) => {
@@ -113,6 +126,22 @@ export class RoomateComponent {
       (error) => {
         console.error('Error fetching roommates:', error);
       }
+    );
+  }
+
+  fetchRoommatesByEmail(email: string): void {
+    console.log('Email:', email);
+    
+    this.roommateMatchService.findRoommatesForUser(email).subscribe(
+      (roommates: RoommateMatchDTO[]) => {
+        this.roommates = roommates;
+        this.filteredRoommates = roommates;
+        console.log('Roommates:', this.roommates);
+      },
+      (error) => {
+        console.error('Error fetching roommates by email:', error);
+      }
+      
     );
   }
 

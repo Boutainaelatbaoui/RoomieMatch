@@ -48,9 +48,11 @@
                         <form [formGroup]="questionnaireForm">
                             <div class="d-flex flex-column justify-content-center align-items-center">
                                 <h6 class="mb-3 fs-4 fw-bolder leading-none tracking-tight">Answer Our Questionnaire</h6>
-                                <img [src]="imageUrl5" class="img-home mb-5" width="38% !important">
+                                <img [src]="imageUrl5" class="img-home mb-4" width="38% !important">
+                                <p class="text-center"><i class="bi bi-quote me-2"></i>Discover your perfect roommate effortlessly with our customized questionnaire. Answer lifestyle questions and find matches that fit your lifestyle seamlessly. <i class="bi bi-quote ms-2"></i></p>
+
                             </div>
-                            <div *ngFor="let question of questions; let i = index" class="mb-5">
+                            <div *ngFor="let question of questions; let i = index" class="mb-5 mt-5">
                                 <h6 class="fw-semibold mb-4 text-start"><span class="fw-semibold me-2 main-btn rounded-pill px-2 py-1">{{ i + 1 }}</span> {{ question.questionText }}</h6>
                                 <div *ngFor="let option of question.choices" class="d-flex  align-items-center mt-2">
                                     <input type="radio" class="form-check-input me-4" name="question{{question.id}}" [value]="option.id" (change)="selectOption(question.id, option.id)">

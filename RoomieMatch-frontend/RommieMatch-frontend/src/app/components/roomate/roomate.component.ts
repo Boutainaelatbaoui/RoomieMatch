@@ -140,6 +140,7 @@ export class RoomateComponent {
       (responses: QuestionnaireResponse[]) => {
         if (responses.length === 0) {
           this.showQuestionnaireNote = true;
+          this.roommates = [];
           this.filteredRoommates = [];
         } else {
           this.showQuestionnaireNote = false;

@@ -14,6 +14,7 @@ import { adminGuardGuard } from './helpers/admin/admin-guard.guard';
 import { MemberComponent } from './components/dashboard/member/member.component';
 import { AccessDeniedComponent } from './components/errors/access-denied/access-denied.component';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
+import { RequestComponent } from './components/request/request.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'roommate-details/:id', component: RoomateDetailsComponent, canActivate: [authGuard]},
   {path: 'forbidden', component: AccessDeniedComponent, canActivate: [authGuard]},
   {path: 'questionnaire', component: QuestionnaireComponent, canActivate: [authGuard]},
+  {path: 'request-match', component: RequestComponent, canActivate: [authGuard]},
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

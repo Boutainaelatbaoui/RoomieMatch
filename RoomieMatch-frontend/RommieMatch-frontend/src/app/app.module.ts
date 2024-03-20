@@ -26,6 +26,8 @@ import { MemberComponent } from './components/dashboard/member/member.component'
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RequestComponent } from './components/request/request.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -48,6 +50,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RoomateDetailsComponent,
     MemberComponent,
     QuestionnaireComponent,
+    RequestComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],
@@ -58,7 +61,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       BrowserAnimationsModule,
       MatChipsModule,
       MatRadioModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatTabsModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }

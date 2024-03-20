@@ -14,6 +14,7 @@ import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,29 +34,37 @@ public class RequestServiceImpl implements IRequestService {
 
     @Override
     public RequestResponseDTO sendRequest(RequestRequestDTO requestDTO) {
-        if (!userRepository.existsByEmail(requestDTO.getSenderEmail())) {
-            throw new EntityNotFoundException("Sender email does not exist: " + requestDTO.getSenderEmail());
+        String senderEmail = requestDTO.getSenderEmail();
+        String recipientEmail = requestDTO.getRecipientEmail();
+
+        if (!userRepository.existsByEmail(senderEmail)) {
+            throw new EntityNotFoundException("Sender email does not exist: " + senderEmail);
         }
 
-        if (!userRepository.existsByEmail(requestDTO.getRecipientEmail())) {
-            throw new EntityNotFoundException("Recipient email does not exist: " + requestDTO.getRecipientEmail());
+        if (!userRepository.existsByEmail(recipientEmail)) {
+            throw new EntityNotFoundException("Recipient email does not exist: " + recipientEmail);
         }
 
-        int senderGender = userRepository.findGenderByEmail(requestDTO.getSenderEmail());
-        int recipientGender = userRepository.findGenderByEmail(requestDTO.getRecipientEmail());
+        int senderGender = userRepository.findGenderByEmail(senderEmail);
+        int recipientGender = userRepository.findGenderByEmail(recipientEmail);
         if (senderGender != recipientGender) {
             throw new ValidationException("Sender and recipient have different genders");
         }
 
-        if (requestRepository.existsBySenderEmailAndRecipientEmail(requestDTO.getSenderEmail(), requestDTO.getRecipientEmail())) {
+        if (requestRepository.existsBySenderEmailAndRecipientEmail(senderEmail, recipientEmail)) {
             throw new ValidationException("Request already exists");
         }
 
+        if (requestRepository.existsBySenderEmailAndRecipientEmail(recipientEmail, senderEmail)) {
+            throw new ValidationException("Request already exists with the sender as the recipient and vice versa");
+        }
+
         requestDTO.setStatus(RequestStatus.PENDING);
-        requestDTO.setCreatedAt(java.time.LocalDateTime.now());
+        requestDTO.setCreatedAt(LocalDateTime.now());
 
         return requestMapper.toDTO(requestRepository.save(requestMapper.toEntity(requestDTO)));
     }
+
 
     @Override
     public RequestResponseDTO acceptRequest(Long requestId, String userEmail) {

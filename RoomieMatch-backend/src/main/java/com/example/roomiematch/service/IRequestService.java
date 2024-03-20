@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IRequestService {
     RequestResponseDTO sendRequest(RequestRequestDTO requestDTO);
-    RequestResponseDTO acceptRequest(Long requestId);
-    RequestResponseDTO rejectRequest(Long requestId);
+    RequestResponseDTO acceptRequest(Long requestId, String userEmail);
+    RequestResponseDTO rejectRequest(Long requestId, String userEmail);
     List<RequestResponseDTO> getReceivedRequests(String userEmail);
     List<RequestResponseDTO> getSentRequests(String userEmail);
     List<RequestResponseDTO> getAllRequests();

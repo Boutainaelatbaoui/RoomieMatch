@@ -58,9 +58,13 @@ public class RequestServiceImpl implements IRequestService {
     }
 
     @Override
-    public RequestResponseDTO acceptRequest(Long requestId) {
+    public RequestResponseDTO acceptRequest(Long requestId, String userEmail) {
         Request request = requestRepository.findById(requestId)
                 .orElseThrow(() -> new EntityNotFoundException("Request with ID " + requestId + " does not exist."));
+
+        if (!userEmail.equals(request.getRecipient().getEmail())) {
+            throw new ValidationException("User is not authorized to accept this request.");
+        }
 
         if (!request.getStatus().equals(RequestStatus.PENDING)) {
             throw new ValidationException("Request with ID " + requestId + " cannot be accepted because its status is not pending.");
@@ -74,9 +78,13 @@ public class RequestServiceImpl implements IRequestService {
     }
 
     @Override
-    public RequestResponseDTO rejectRequest(Long requestId) {
+    public RequestResponseDTO rejectRequest(Long requestId, String userEmail) {
         Request request = requestRepository.findById(requestId)
                 .orElseThrow(() -> new EntityNotFoundException("Request with ID " + requestId + " does not exist."));
+
+        if (!userEmail.equals(request.getRecipient().getEmail())) {
+            throw new ValidationException("User is not authorized to reject this request.");
+        }
 
         if (!request.getStatus().equals(RequestStatus.PENDING)) {
             throw new ValidationException("Request with ID " + requestId + " cannot be rejected because its status is not pending.");

@@ -25,14 +25,14 @@ public class RequestController {
         return ResponseEntity.ok(requestService.sendRequest(requestDTO));
     }
 
-    @PostMapping("/accept/{requestId}")
-    public ResponseEntity<RequestResponseDTO> acceptRequest(@PathVariable Long requestId) {
-        return ResponseEntity.ok(requestService.acceptRequest(requestId));
+    @PostMapping("/accept/{requestId}/{userEmail}")
+    public ResponseEntity<RequestResponseDTO> acceptRequest(@PathVariable Long requestId, @PathVariable String userEmail) {
+        return ResponseEntity.ok(requestService.acceptRequest(requestId, userEmail));
     }
 
-    @PostMapping("/reject/{requestId}")
-    public ResponseEntity<RequestResponseDTO> rejectRequest(@PathVariable Long requestId) {
-        return ResponseEntity.ok(requestService.rejectRequest(requestId));
+    @PostMapping("/reject/{requestId}/{userEmail}")
+    public ResponseEntity<RequestResponseDTO> rejectRequest(@PathVariable Long requestId, @PathVariable String userEmail) {
+        return ResponseEntity.ok(requestService.rejectRequest(requestId, userEmail));
     }
 
     @GetMapping("/received/{userEmail}")

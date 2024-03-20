@@ -3,15 +3,15 @@
     <div class="container py-4">
     <div class="row">
         <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-            <ol class="breadcrumb mb-0">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex justify-content-between">
+            <ol class="breadcrumb mb-0 mt-2">
             <li class="breadcrumb-item"><a routerLink="/" class="text-color text-decoration-none">Home</a></li>
             <li class="breadcrumb-item"><a routerLink="/roomates" class="text-color text-decoration-none">Roomates</a></li>
             <li class="breadcrumb-item active" aria-current="page">Roomate Profile</li>
             </ol>
 
-            <div class="me-auto mb-2">
-                <button type="button" class="btn btn-primary">Match</button>
+            <div class="mb-2">
+                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold">Send a Match</button>
             </div>
         </nav>
         </div>
@@ -30,6 +30,9 @@
                 <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">Budget: &nbsp; ${{ roommate.budget }}</h2>
             </div>
             <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold mb-4">From: &nbsp; {{ roommate.currentCity ? roommate.currentCity.name : 'N/A' }}</h2>
+            <div class="mb-2">
+                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" style="width: 65%;">Send a Request Match</button>
+            </div>
             </div>
         </div>
         </div>

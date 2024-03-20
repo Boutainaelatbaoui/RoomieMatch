@@ -3,6 +3,8 @@ package com.example.roomiematch.model.dto.response;
 import com.example.roomiematch.enums.RequestStatus;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -13,4 +15,6 @@ public class RequestResponseDTO {
     private UserResponseDTO sender;
     private UserResponseDTO recipient;
     private RequestStatus status;
+    private LocalDateTime createdAt;
+    private String message;
 }

@@ -50,6 +50,9 @@ public class RequestServiceImpl implements IRequestService {
             throw new IllegalArgumentException("Request already exists");
         }
 
+        requestDTO.setStatus(RequestStatus.PENDING);
+        requestDTO.setCreatedAt(java.time.LocalDateTime.now());
+
         return requestMapper.toDTO(requestRepository.save(requestMapper.toEntity(requestDTO)));
     }
 

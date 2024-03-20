@@ -24,6 +24,8 @@ public class RequestMapper {
                 .sender(userMapper.toDTO(request.getSender()))
                 .recipient(userMapper.toDTO(request.getRecipient()))
                 .status(request.getStatus())
+                .createdAt(request.getCreatedAt())
+                .message(request.getMessage())
                 .build();
     }
 
@@ -38,6 +40,8 @@ public class RequestMapper {
                 .sender(sender)
                 .recipient(recipient)
                 .status(requestDTO.getStatus())
+                .createdAt(requestDTO.getCreatedAt())
+                .message(requestDTO.getMessage())
                 .build();
     }
 }

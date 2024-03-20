@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -134,6 +135,21 @@ public class RequestServiceImpl implements IRequestService {
     @Override
     public List<RequestResponseDTO> getAllRequests() {
         List<Request> requests = requestRepository.findAll();
+        return requests.stream()
+                .map(requestMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RequestResponseDTO> getSenderRequestsByStatus(String senderEmail, RequestStatus status) {
+        userRepository.findByEmail(senderEmail)
+                .orElseThrow(() -> new EntityNotFoundException("User with email " + senderEmail + " does not exist."));
+
+        if (!EnumSet.of(RequestStatus.PENDING, RequestStatus.ACCEPTED, RequestStatus.REJECTED).contains(status)) {
+            throw new ValidationException("Invalid request status");
+        }
+
+        List<Request> requests = requestRepository.findBySenderEmailAndStatus(senderEmail, status);
         return requests.stream()
                 .map(requestMapper::toDTO)
                 .collect(Collectors.toList());

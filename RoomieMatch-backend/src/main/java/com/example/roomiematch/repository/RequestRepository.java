@@ -14,5 +14,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     boolean existsBySenderEmailAndRecipientEmail(String senderEmail, String recipientEmail);
     List<Request> findBySender(User sender);
     List<Request> findByRecipient(User recipient);
+    List<Request> findBySenderEmailAndStatus(String recipientEmail, RequestStatus status);
+
 
 }

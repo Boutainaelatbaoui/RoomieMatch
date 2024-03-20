@@ -1,5 +1,6 @@
 package com.example.roomiematch.controller;
 
+import com.example.roomiematch.enums.RequestStatus;
 import com.example.roomiematch.model.dto.request.RequestRequestDTO;
 import com.example.roomiematch.model.dto.response.RequestResponseDTO;
 import com.example.roomiematch.service.IRequestService;
@@ -48,6 +49,11 @@ public class RequestController {
     @GetMapping
     public ResponseEntity<List<RequestResponseDTO>> getAllRequests() {
         return ResponseEntity.ok(requestService.getAllRequests());
+    }
+
+    @GetMapping("/recipient/{senderEmail}/status/{status}")
+    public ResponseEntity<List<RequestResponseDTO>> getSenderRequestsByStatus(@PathVariable String senderEmail, @PathVariable RequestStatus status) {
+        return ResponseEntity.ok(requestService.getSenderRequestsByStatus(senderEmail, status));
     }
 
 }

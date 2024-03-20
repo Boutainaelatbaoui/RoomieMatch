@@ -2,6 +2,7 @@ package com.example.roomiematch.model.dto.request;
 
 import com.example.roomiematch.enums.RequestStatus;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ public class RequestRequestDTO {
     private String recipientEmail;
     private RequestStatus status;
     private LocalDateTime createdAt;
-    @NotBlank(message = "Message cannot be blank")
+    @Size(min = 2, max = 255, message = "Message must be between 2 and 255 characters")
     private String message;
 }
 

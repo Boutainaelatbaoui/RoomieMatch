@@ -10,6 +10,7 @@ import com.example.roomiematch.repository.RequestRepository;
 import com.example.roomiematch.repository.UserRepository;
 import com.example.roomiematch.service.IRequestService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,21 +34,21 @@ public class RequestServiceImpl implements IRequestService {
     @Override
     public RequestResponseDTO sendRequest(RequestRequestDTO requestDTO) {
         if (!userRepository.existsByEmail(requestDTO.getSenderEmail())) {
-            throw new IllegalArgumentException("Sender email does not exist: " + requestDTO.getSenderEmail());
+            throw new EntityNotFoundException("Sender email does not exist: " + requestDTO.getSenderEmail());
         }
 
         if (!userRepository.existsByEmail(requestDTO.getRecipientEmail())) {
-            throw new IllegalArgumentException("Recipient email does not exist: " + requestDTO.getRecipientEmail());
+            throw new EntityNotFoundException("Recipient email does not exist: " + requestDTO.getRecipientEmail());
         }
 
         int senderGender = userRepository.findGenderByEmail(requestDTO.getSenderEmail());
         int recipientGender = userRepository.findGenderByEmail(requestDTO.getRecipientEmail());
         if (senderGender != recipientGender) {
-            throw new IllegalArgumentException("Sender and recipient have different genders");
+            throw new ValidationException("Sender and recipient have different genders");
         }
 
         if (requestRepository.existsBySenderEmailAndRecipientEmail(requestDTO.getSenderEmail(), requestDTO.getRecipientEmail())) {
-            throw new IllegalArgumentException("Request already exists");
+            throw new ValidationException("Request already exists");
         }
 
         requestDTO.setStatus(RequestStatus.PENDING);
@@ -62,7 +63,7 @@ public class RequestServiceImpl implements IRequestService {
                 .orElseThrow(() -> new EntityNotFoundException("Request with ID " + requestId + " does not exist."));
 
         if (!request.getStatus().equals(RequestStatus.PENDING)) {
-            throw new IllegalArgumentException("Request with ID " + requestId + " cannot be accepted because its status is not pending.");
+            throw new ValidationException("Request with ID " + requestId + " cannot be accepted because its status is not pending.");
         }
 
         request.setStatus(RequestStatus.ACCEPTED);
@@ -78,7 +79,7 @@ public class RequestServiceImpl implements IRequestService {
                 .orElseThrow(() -> new EntityNotFoundException("Request with ID " + requestId + " does not exist."));
 
         if (!request.getStatus().equals(RequestStatus.PENDING)) {
-            throw new IllegalArgumentException("Request with ID " + requestId + " cannot be rejected because its status is not pending.");
+            throw new ValidationException("Request with ID " + requestId + " cannot be rejected because its status is not pending.");
         }
 
         request.setStatus(RequestStatus.REJECTED);
@@ -104,7 +105,7 @@ public class RequestServiceImpl implements IRequestService {
     @Override
     public List<RequestResponseDTO> getSentRequests(String userEmail) {
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User with email " + userEmail + " does not exist."));
+                .orElseThrow(() -> new EntityNotFoundException("User with email " + userEmail + " does not exist."));
 
         List<Request> sentRequests = requestRepository.findBySender(user);
 

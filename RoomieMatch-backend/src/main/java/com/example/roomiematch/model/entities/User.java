@@ -75,6 +75,12 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<UserQuestionPreference> userQuestionPreferences;
 
+    @OneToMany(mappedBy = "sender")
+    private List<Request> sentRequests;
+
+    @OneToMany(mappedBy = "recipient")
+    private List<Request> receivedRequests;
+
     @Override
     public List<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();

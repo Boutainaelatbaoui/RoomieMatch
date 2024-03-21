@@ -7,6 +7,10 @@ import { PreferenceResponse } from 'src/app/models/response/preference-response'
 import { RoomieMatchService } from 'src/app/services/roomieMatch/roomie-match.service';
 import { QuestionnaireService } from 'src/app/services/questionnaire/questionnaire.service';
 import { QuestionnaireResponse } from 'src/app/models/response/questionnaire-response';
+import { RequestRequest } from 'src/app/models/request/request-request';
+import Swal from 'sweetalert2';
+import { RequestService } from 'src/app/services/request/request.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-roomate',
@@ -46,6 +50,7 @@ export class RoomateComponent {
     private router: Router,
     private roommateMatchService: RoomieMatchService,
     private questionnaireService: QuestionnaireService,
+    private requestService: RequestService
   ) {}
   
   ngOnInit(): void {
@@ -117,6 +122,55 @@ export class RoomateComponent {
     console.log('Email:', this.email);
     
     return this.email || "";
+  }
+
+  sendRequest(recipientEmail: string): void {
+    Swal.fire({
+      title: 'Confirm',
+      text: 'Are you sure you want to send this request?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.sendRequestConfirmed(recipientEmail);
+      }
+    });
+  }
+
+  sendRequestConfirmed(recipientEmail: string): void {
+    const request: RequestRequest = {
+      senderEmail: this.fetchConnectedMemberEmail(),
+      recipientEmail: recipientEmail
+    };
+
+    this.requestService.sendRequest(request).subscribe(
+      (response) => {
+        console.log('Request sent successfully:', response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Request Sent!',
+          text: 'Your request has been sent successfully.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
+      },
+      (error) => {
+        console.error('Error sending request:', error);
+        if (error instanceof HttpErrorResponse && error.status === 400) {
+          if (error.error && error.error.error === 'Validation error' && error.error.message) {
+            Swal.fire('Error', error.error.message, 'error');
+          } else {
+            Swal.fire('Error', 'An error occurred while creating the question.', 'error');
+          }
+        } else {
+          Swal.fire('Error', 'An unexpected error occurred.', 'error');
+        }
+      }
+    );
   }
 
   fetchRoommates() {

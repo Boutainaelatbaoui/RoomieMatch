@@ -50,7 +50,7 @@ export class RequestComponent implements OnInit {
     if (userEmail) {
       this.requestService.getReceivedRequests(userEmail).subscribe(
         (requests: RequestResponse[]) => {
-          this.receivedRequests = requests;
+          this.receivedRequests = requests.filter(request => request.status === "PENDING");
           console.log('Received requests:', this.receivedRequests);
           
         },

@@ -16,7 +16,7 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   sendRequest(request: RequestRequest): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${this.apiUrl}/send`, request)
+    return this.http.post<RequestResponse>(`${this.apiUrl}/requests/send`, request)
       .pipe(
         catchError(this.handleError)
       );

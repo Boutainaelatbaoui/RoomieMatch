@@ -16,55 +16,55 @@
                 <button class="btn main-btn" (click)="toggleShowSentRequests()">Sent match requests</button>
             </p>
             
-            <div *ngIf="showReceivedRequests && receivedRequests.length > 0">
-                <div class="card" *ngFor="let request of receivedRequests">
-                    <!-- Received request card -->
-                    <div class="d-flex align-items-center gap-4 mb-3">
-                        <div class="img">
-                            <img class="img-fluid rounded-circle" [src]="getImageUrl(request.recipient.gender)" alt="">
+            <div *ngIf="showReceivedRequests && receivedRequests.length > 0" class="row row-cols-1 row-cols-md-2 gap-5">
+                        <div class="card col" *ngFor="let request of receivedRequests">
+                            <!-- Received request card -->
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="img">
+                                    <img class="img-fluid rounded-circle" [src]="getImageUrl(request.sender.gender)" alt="">
+                                </div>
+                                <div class="name">
+                                    <h2 class="text-start fw-semibold mb-2">{{ request.sender.firstName }} {{ request.sender.lastName }} &nbsp; . &nbsp; {{ calculateAge(request.sender.birthdate) }}y  </h2>
+                                    <h2 class="badge rounded-pill badge1 fs-6 fw-semibold mb-3" style="display: flex; width: fit-content;">Target City: &nbsp; {{ request.sender.desiredCity.name }}</h2>
+                                    <h6 class="mb-4">{{request.createdAt}}</h6>
+                                    <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(request.sender.id)">
+                                        <i class="bi bi-chevron-double-right btn btn-square rounded-circle px-1 py-0 me-2"></i>
+                                        See More Details
+                                    </a>
+                                </div>
+                            </div>
+    
+                            <div class="infos">
+                                <div class="links d-flex justify-content-center ms-5 ps-4 gap-2">
+                                    <button class="follow">Accept</button>
+                                    <button class="view">Reject</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="name">
-                            <h2 class="text-start fw-semibold mb-2">{{ request.recipient.firstName }} {{ request.recipient.lastName }} &nbsp; . &nbsp; {{ calculateAge(request.sender.birthdate) }}y  </h2>
-                            <h2 class="badge rounded-pill badge1 fs-6 fw-semibold mb-3" style="display: flex; width: fit-content;">Target City: &nbsp; {{ request.sender.desiredCity.name }}</h2>
-                            <h6 class="mb-4">{{request.createdAt}}</h6>
-                            <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(request.sender.id)">
-                                <i class="bi bi-chevron-double-right btn btn-square rounded-circle px-1 py-0 me-2"></i>
-                                See More Details
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="infos">
-                        <div class="links d-flex justify-content-center ms-5 ps-4 gap-2">
-                            <button class="follow">Accept</button>
-                            <button class="view">Reject</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div *ngIf="showReceivedRequests && receivedRequests.length === 0" class="card">
                 <div class="card-body">No received match requests</div>
             </div>
 
-            <div *ngIf="!showReceivedRequests && sentRequests.length > 0">
-                <div class="card" *ngFor="let request of sentRequests">
-                    <!-- Sent request card -->
-                    <div class="d-flex align-items-center gap-4 mb-3">
-                        <div class="img">
-                            <img class="img-fluid rounded-circle" [src]="getImageUrl(request.recipient.gender)" alt="">
-                        </div>
-                        <div class="name">
-                            <h2 class="text-start fw-semibold mb-2">{{ request.recipient.firstName }} {{ request.recipient.lastName }} &nbsp; . &nbsp; {{ calculateAge(request.recipient.birthdate) }}y  </h2>
-                            <h2 class="badge rounded-pill badge1 fs-6 fw-semibold mb-3" style="display: flex; width: fit-content;">Target City: &nbsp; {{ request.recipient.desiredCity.name }}</h2>
-                            <h6 class="mb-4">{{request.createdAt}}</h6>
-                            <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(request.recipient.id)">
-                                <i class="bi bi-chevron-double-right btn btn-square rounded-circle px-1 py-0 me-2"></i>
-                                See More Details
-                            </a>
-                        </div>
+            <div *ngIf="!showReceivedRequests && sentRequests.length > 0" class="row row-cols-1 row-cols-md-2 gap-5">
+                        <div class="col card" *ngFor="let request of sentRequests">
+                            <!-- Sent request card -->
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="img">
+                                    <img class="img-fluid rounded-circle" [src]="getImageUrl(request.recipient.gender)" alt="">
+                                </div>
+                                <div class="name">
+                                    <h2 class="text-start fw-semibold mb-2">{{ request.recipient.firstName }} {{ request.recipient.lastName }} &nbsp; . &nbsp; {{ calculateAge(request.recipient.birthdate) }}y  </h2>
+                                    <h2 class="badge rounded-pill badge1 fs-6 fw-semibold mb-3" style="display: flex; width: fit-content;">Target City: &nbsp; {{ request.recipient.desiredCity.name }}</h2>
+                                    <h6 class="mb-4">{{request.createdAt}}</h6>
+                                    <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(request.recipient.id)">
+                                        <i class="bi bi-chevron-double-right btn btn-square rounded-circle px-1 py-0 me-2"></i>
+                                        See More Details
+                                    </a>
+                                </div>
+                            </div>
                     </div>
-                </div>
             </div>
 
             <div *ngIf="!showReceivedRequests && sentRequests.length === 0" class="card">

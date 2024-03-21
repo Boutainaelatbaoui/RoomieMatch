@@ -11,7 +11,7 @@
             </ol>
 
             <div class="mb-2">
-                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold">Send a Match</button>
+                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" (click)="sendRequest(roommate.email)">Send a Match</button>
             </div>
         </nav>
         </div>
@@ -31,7 +31,7 @@
             </div>
             <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold mb-4">From: &nbsp; {{ roommate.currentCity ? roommate.currentCity.name : 'N/A' }}</h2>
             <div class="mb-2">
-                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" style="width: 65%;">Send a Request Match</button>
+                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" (click)="sendRequest(roommate.email)" style="width: 65%;">Send a Request Match</button>
             </div>
             </div>
         </div>

@@ -7,5 +7,4 @@ export interface RequestResponse {
     recipient: UserResponse;
     status: RequestStatus;
     createdAt: Date;
-    message: string;
 }

@@ -5,5 +5,4 @@ export interface RequestRequest {
     recipientEmail: string;
     status: RequestStatus;
     createdAt: Date;
-    message: string;
 }

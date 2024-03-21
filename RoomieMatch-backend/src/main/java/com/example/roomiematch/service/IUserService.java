@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface IUserService {
     List<UserResponseDTO> getAllUsers();
     Optional<UserResponseDTO> getUserById(Long userId);
+    public List<UserResponseDTO> getUsersByName(String name);
 }

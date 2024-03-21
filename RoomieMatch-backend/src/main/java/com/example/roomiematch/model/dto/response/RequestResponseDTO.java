@@ -16,5 +16,4 @@ public class RequestResponseDTO {
     private UserResponseDTO recipient;
     private RequestStatus status;
     private LocalDateTime createdAt;
-    private String message;
 }

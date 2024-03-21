@@ -8,6 +8,10 @@ img {
     color: white !important;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 /* Utilities */
 .card::after,
 .card img {

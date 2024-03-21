@@ -41,5 +41,14 @@ public class UserServiceImpl implements IUserService {
             return Optional.of(userMapper.toDTO(user.get()));
         }
     }
+
+    @Override
+    public List<UserResponseDTO> getUsersByName(String name) {
+        List<User> users = userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(name, name);
+        return users.stream()
+                .map(userMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }
 

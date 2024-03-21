@@ -1,14 +1,13 @@
 package com.example.roomiematch.controller;
 
+import com.example.roomiematch.model.dto.request.SearchUserRequestDTO;
 import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -33,5 +32,12 @@ public class UserController {
         UserResponseDTO user = userService.getUserById(id).get();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<UserResponseDTO>> searchUsersByName(@RequestBody SearchUserRequestDTO request) {
+        List<UserResponseDTO> users = userService.getUsersByName(request.getName());
+        return ResponseEntity.ok(users);
+    }
+
 }
 

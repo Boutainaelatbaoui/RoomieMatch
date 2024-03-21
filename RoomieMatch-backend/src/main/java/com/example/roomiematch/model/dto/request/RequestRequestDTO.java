@@ -19,7 +19,5 @@ public class RequestRequestDTO {
     private String recipientEmail;
     private RequestStatus status;
     private LocalDateTime createdAt;
-    @Size(min = 2, max = 255, message = "Message must be between 2 and 255 characters")
-    private String message;
 }
 

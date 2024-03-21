@@ -9,14 +9,39 @@
                     </ol>
                 </nav>
             <!-- Nav tabs -->
-            <div class="card">
-                <div class="container mt-5">
-                    <mat-tab-group>
-                        <mat-tab label="First"> Content 1 </mat-tab>
-                        <mat-tab label="Second"> Content 2 </mat-tab>
-                        <mat-tab label="Third"> Content 3 </mat-tab>
-                    </mat-tab-group>
+            <p class="d-inline-flex gap-1">
+                <button class="btn main-btn me-5" (click)="toggleShowReceivedRequests()">Received match requests</button>
+                <button class="btn main-btn" (click)="toggleShowSentRequests()">Sent match requests</button>
+            </p>
+            <div *ngIf="showReceivedRequests">
+                <div class="card" *ngFor="let request of receivedRequests">
+                        <div class="d-flex align-items-center gap-4 mb-3">
+                            <div class="img">
+                                <img class="img-fluid rounded-circle" [src]="getImageUrl(request.sender.gender)" alt="">
+                            </div>
+                            <div class="name">
+                                <h2 class="text-start fw-semibold mb-2">{{ request.sender.firstName }} {{ request.sender.lastName }} &nbsp; . &nbsp; {{ calculateAge(request.sender.birthdate) }}y  </h2>
+                                <h2 class="badge rounded-pill badge1 fs-6 fw-semibold mb-3" style="display: flex; width: fit-content;">Target City: &nbsp; {{ request.sender.desiredCity.name }}</h2>
+                                <p class="text">
+                                    {{ request.message }}
+                                </p>
+                                <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(request.sender.id)">
+                                    <i class="bi bi-chevron-double-right btn btn-square rounded-circle px-1 py-0 me-2"></i>
+                                    See More Details
+                                </a>
+                            </div>
+                        </div>
+        
+                        <div class="infos">
+                            <div class="links d-flex justify-content-center ms-5 ps-4 gap-2">
+                            <button class="follow">Accept</button>
+                            <button class="view">Reject</button>
+                            </div>
+                    </div>
                 </div>
+            </div>
+            <div *ngIf="!showReceivedRequests">
+            
             </div>
         </div>
     </div>

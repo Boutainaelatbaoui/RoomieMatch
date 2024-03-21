@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestRequest } from 'src/app/models/request/request-request';
 import { UserResponse } from 'src/app/models/response/user-response';
@@ -13,10 +13,11 @@ import Swal from 'sweetalert2';
   templateUrl: './roomate-details.component.html',
   styleUrls: ['./roomate-details.component.css']
 })
-export class RoomateDetailsComponent {
+export class RoomateDetailsComponent implements OnInit {
   roommateId: number = 0;
   roommate: UserResponse = {} as UserResponse;
   email: string = "";
+  isRequestAccepted: boolean = false;
 
   constructor(private route: ActivatedRoute, 
     private roommateService: UserService, 
@@ -26,16 +27,12 @@ export class RoomateDetailsComponent {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.roommateId = +params['id'];
-      console.log(this.roommateId);
-      
       this.loadRoommateDetails();
     });
   }
 
   fetchConnectedMemberEmail(): string | "" {
     this.email = this.storageService.decodeToken().sub;
-    console.log('Email:', this.email);
-    
     return this.email || "";
   }
 
@@ -92,11 +89,27 @@ export class RoomateDetailsComponent {
     this.roommateService.getRoommateDetails(this.roommateId).subscribe(
       (data: UserResponse) => {
         this.roommate = data;
+        this.checkRequestStatus();
       },
       error => {
         console.error('Error fetching roommate details:', error);
       }
     );
+  }
+
+  checkRequestStatus() {
+    const userEmail = this.fetchConnectedMemberEmail();
+    
+    if (userEmail) {
+      this.requestService.getRequestStatus(userEmail, this.roommate.email).subscribe(
+        (response: any) => {
+          this.isRequestAccepted = response === 'ACCEPTED';
+        },
+        (error) => {
+          console.error('Error fetching request status:', error);
+        }
+      );
+    }
   }
 
   getImageUrl(gender: number): string {
@@ -134,5 +147,4 @@ export class RoomateDetailsComponent {
     }
     return age;
   }
-
 }

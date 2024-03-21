@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RequestResponse } from 'src/app/models/response/request-response';
 import { RequestService } from 'src/app/services/request/request.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-request',
@@ -73,6 +74,45 @@ export class RequestComponent implements OnInit {
         }
       );
     }
+  }
+
+  acceptRequest(requestId: number, userEmail: string): void {
+    this.requestService.acceptRequest(requestId, userEmail).subscribe(
+      (response: RequestResponse) => {
+        this.fetchReceivedRequests();
+        Swal.fire('Request Accepted', 'The request has been accepted successfully.', 'success');
+      },
+      (error) => {
+        console.error('Error accepting request:', error);
+        Swal.fire('Error', 'Failed to accept the request. Please try again later.', 'error');
+      }
+    );
+  }
+
+  rejectRequest(requestId: number, userEmail: string): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to reject this request. This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, reject it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.requestService.rejectRequest(requestId, userEmail).subscribe(
+          (response: RequestResponse) => {
+            this.fetchReceivedRequests();
+            Swal.fire('Request Rejected', 'The request has been rejected successfully.', 'success');
+          },
+          (error) => {
+            console.error('Error rejecting request:', error);
+            Swal.fire('Error', 'Failed to reject the request. Please try again later.', 'error');
+          }
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'The request rejection has been cancelled.', 'info');
+      }
+    });
   }
 
   toggleShowReceivedRequests(): void {

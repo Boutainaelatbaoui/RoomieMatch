@@ -36,8 +36,8 @@
     
                             <div class="infos">
                                 <div class="links d-flex justify-content-center ms-5 ps-4 gap-2">
-                                    <button class="follow">Accept</button>
-                                    <button class="view">Reject</button>
+                                    <button class="follow" (click)="acceptRequest(request.id, request.recipient.email)">Accept</button>
+                                    <button class="view" (click)="rejectRequest(request.id, request.recipient.email)">Reject</button>
                                 </div>
                             </div>
                         </div>

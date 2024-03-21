@@ -56,5 +56,13 @@ public class RequestController {
         return ResponseEntity.ok(requestService.getSenderRequestsByStatus(senderEmail, status));
     }
 
+    @GetMapping("/status")
+    public ResponseEntity<RequestStatus> getRequestStatusByEmails(
+            @RequestParam("userEmail1") String userEmail1,
+            @RequestParam("userEmail2") String userEmail2) {
+        RequestStatus status = requestService.getRequestStatusByEmails(userEmail1, userEmail2);
+        return ResponseEntity.ok(status);
+    }
+
 }
 

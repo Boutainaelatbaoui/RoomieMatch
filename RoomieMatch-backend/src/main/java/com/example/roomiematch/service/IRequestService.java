@@ -14,5 +14,6 @@ public interface IRequestService {
     List<RequestResponseDTO> getSentRequests(String userEmail);
     List<RequestResponseDTO> getAllRequests();
     List<RequestResponseDTO> getSenderRequestsByStatus(String recipientEmail, RequestStatus status);
+    RequestStatus getRequestStatusByEmails(String userEmail1, String userEmail2);
 }
 

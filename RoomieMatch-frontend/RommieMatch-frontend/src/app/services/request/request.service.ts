@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { RequestResponse } from 'src/app/models/response/request-response';
 import { RequestRequest } from 'src/app/models/request/request-request';
 import { environment } from 'src/environments/environment';
+import { RequestStatus } from 'src/app/enums/RequestStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,13 @@ export class RequestService {
 
   getSenderRequestsByStatus(senderEmail: string, status: string): Observable<RequestResponse[]> {
     return this.http.get<RequestResponse[]>(`${this.apiUrl}/requests/recipient/${senderEmail}/status/${status}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getRequestStatus(userEmail1: string, userEmail2: string): Observable<RequestStatus> {
+    return this.http.get<RequestStatus>(`${this.apiUrl}/requests/status?userEmail1=${userEmail1}&userEmail2=${userEmail2}`)
       .pipe(
         catchError(this.handleError)
       );

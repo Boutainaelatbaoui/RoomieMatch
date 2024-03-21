@@ -154,4 +154,12 @@ public class RequestServiceImpl implements IRequestService {
                 .map(requestMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public RequestStatus getRequestStatusByEmails(String userEmail1, String userEmail2) {
+        Request request = requestRepository.findBySenderEmailAndRecipientEmail(userEmail1, userEmail2)
+                .orElseGet(() -> requestRepository.findBySenderEmailAndRecipientEmail(userEmail2, userEmail1)
+                        .orElse(null));
+        return request != null ? request.getStatus() : RequestStatus.PENDING; // Assuming default status is PENDING
+    }
 }

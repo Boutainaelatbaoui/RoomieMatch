@@ -1,0 +1,43 @@
+version: '3'
+
+networks:
+  RoomieMatch-network:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:latest
+    networks:
+      - RoomieMatch-network
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: roomie_match
+    ports:
+      - "3306:3306"
+
+  spring-app:
+    build:
+      context: ./RoomieMatch-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - RoomieMatch-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/roomie_match?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+
+  romiematch-frontend:
+    build:
+      context: ./RoomieMatch-frontend/RommieMatch-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - spring-app
+    networks:
+      - RoomieMatch-network
+

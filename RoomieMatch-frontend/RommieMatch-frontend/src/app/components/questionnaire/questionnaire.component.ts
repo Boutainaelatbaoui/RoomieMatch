@@ -6,6 +6,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 import Swal from 'sweetalert2';
 import { QuestionnaireRequest } from 'src/app/models/request/questionnaire-request';
 import { QuestionnaireService } from 'src/app/services/questionnaire/questionnaire.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionnaire',
@@ -25,6 +26,7 @@ export class QuestionnaireComponent {
     private fb: FormBuilder,
     private questionService: QuestionService,
     private storageService: StorageService,
+    private router: Router,
     private questionnaireService: QuestionnaireService
   ) {}
 
@@ -76,6 +78,7 @@ export class QuestionnaireComponent {
 
     this.questionnaireService.saveResponse(responses).subscribe(
       (response) => {
+        this.router.navigate(['/roomates']);
         console.log('Responses saved successfully:', response);
         Swal.fire('Success', 'Questionnaire submitted successfully!', 'success');
       },

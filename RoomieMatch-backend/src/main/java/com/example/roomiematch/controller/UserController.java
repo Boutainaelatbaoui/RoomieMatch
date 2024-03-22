@@ -33,6 +33,12 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/{email}")
+    public ResponseEntity<UserResponseDTO> getUserByEmail(@PathVariable String email) {
+        UserResponseDTO user = userService.getUserDetailsByEmail(email).get();
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
     @PostMapping("/search")
     public ResponseEntity<List<UserResponseDTO>> searchUsersByName(@RequestBody SearchUserRequestDTO request) {
         List<UserResponseDTO> users = userService.getUsersByName(request.getName());

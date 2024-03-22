@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'update-question/:id', component: UpdateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'create-question', component: CreateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'roommate-details/:id', component: RoomateDetailsComponent, canActivate: [authGuard]},
+  { path: 'profile', component: RoomateDetailsComponent, canActivate: [authGuard] },
   {path: 'forbidden', component: AccessDeniedComponent, canActivate: [authGuard]},
   {path: 'questionnaire', component: QuestionnaireComponent, canActivate: [authGuard]},
   {path: 'request-match', component: RequestComponent, canActivate: [authGuard]},

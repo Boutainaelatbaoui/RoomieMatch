@@ -1,1 +1,53 @@
-<p>update-profile works!</p>
+<app-navbar></app-navbar>
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="col-6">
+        <h2 class="fw-bold text-color pb-3">Update Preference</h2>
+        <div class="card card-menu p-3 mt-4">
+            <form [formGroup]="preferenceForm" class="mt-4" (ngSubmit)="updatePreference()">
+                <div class="form-group mb-3">
+                    <label for="smoking">Smoking</label>
+                    <select id="smoking" formControlName="smoking" class="form-control form-select">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="pets">Pets</label>
+                    <select id="pets" formControlName="pets" class="form-control form-select">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="visitors">Visitors</label>
+                    <select id="visitors" formControlName="visitors" class="form-control form-select">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="partying">Partying</label>
+                    <select id="partying" formControlName="partying" class="form-control form-select">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="sharingBedroom">Sharing Bedroom</label>
+                    <select id="sharingBedroom" formControlName="sharingBedroom" class="form-control form-select">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="hasApartment">Has Apartment</label>
+                    <select id="hasApartment" formControlName="hasApartment" class="form-control form-select">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Preference</button>
+            </form>
+        </div>
+    </div>
+</div>

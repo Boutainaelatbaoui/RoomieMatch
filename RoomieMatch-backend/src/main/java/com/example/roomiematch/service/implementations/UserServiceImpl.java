@@ -53,6 +53,9 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Optional<UserResponseDTO> getUserDetailsByEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
+        if (user.isEmpty()) {
+            throw new EntityNotFoundException("User not found with email: " + email);
+        }
         return user.map(userMapper::toDTO);
     }
 }

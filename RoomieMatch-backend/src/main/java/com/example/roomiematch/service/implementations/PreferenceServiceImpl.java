@@ -60,12 +60,12 @@ public class PreferenceServiceImpl implements IPreferenceService {
     }
 
     @Override
-    public PreferenceResponseDTO updatePreference(Long id, PreferenceRequestDTO requestDTO) {
-        Preference preference = preferenceRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Preference not found"));
+    public PreferenceResponseDTO updatePreference(String userEmail, PreferenceRequestDTO requestDTO) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userEmail));
 
-        User user = userRepository.findById(requestDTO.getUserId())
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Preference preference = preferenceRepository.findByUser(user)
+                .orElseThrow(() -> new EntityNotFoundException("Preference not found for user with email: " + userEmail));
 
         preference.setSmoking(requestDTO.isSmoking());
         preference.setPets(requestDTO.isPets());
@@ -73,7 +73,6 @@ public class PreferenceServiceImpl implements IPreferenceService {
         preference.setPartying(requestDTO.isPartying());
         preference.setSharingBedroom(requestDTO.isSharingBedroom());
         preference.setHasApartment(requestDTO.isHasApartment());
-        preference.setUser(user);
 
         Preference updatedPreference = preferenceRepository.save(preference);
         return preferenceMapper.toDTO(updatedPreference);

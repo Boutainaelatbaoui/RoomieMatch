@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestRequest } from 'src/app/models/request/request-request';
 import { UserResponse } from 'src/app/models/response/user-response';
 import { RequestService } from 'src/app/services/request/request.service';
@@ -21,6 +21,7 @@ export class RoomateDetailsComponent implements OnInit {
   isOwnProfile: boolean = false;
 
   constructor(private route: ActivatedRoute, 
+    private router: Router,
     private roommateService: UserService, 
     private storageService: StorageService, 
     private requestService: RequestService ) { }
@@ -51,6 +52,10 @@ export class RoomateDetailsComponent implements OnInit {
       }
     );
   }
+
+  navigateToUpdateForm(id: number) {
+    this.router.navigate(['/update-profile', id]);
+  }  
 
   fetchConnectedMemberEmail(): string | "" {
     this.email = this.storageService.decodeToken().sub;

@@ -35,9 +35,9 @@ public class PreferenceController {
         return ResponseEntity.ok(responseDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PreferenceResponseDTO> updatePreference(@PathVariable Long id, @Valid @RequestBody PreferenceRequestDTO requestDTO) {
-        PreferenceResponseDTO responseDTO = preferenceService.updatePreference(id, requestDTO);
+    @PutMapping("/{userEmail}")
+    public ResponseEntity<PreferenceResponseDTO> updatePreference(@PathVariable String userEmail, @Valid @RequestBody PreferenceRequestDTO requestDTO) {
+        PreferenceResponseDTO responseDTO = preferenceService.updatePreference(userEmail, requestDTO);
         return ResponseEntity.ok(responseDTO);
     }
 

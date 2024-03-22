@@ -100,7 +100,12 @@
             <div class="col-md-6">
             <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                <p class="mb-3 text-dark fw-semibold fs-6">Preferences</p>
+                <div class="d-flex justify-content-between mb-3">
+                    <p class="text-dark fw-semibold fs-6">Preferences</p>
+                    <div>                    
+                        <button class="btn btn-sm btn-warning me-2" *ngIf="isOwnProfile" (click)="navigateToUpdateForm(roommate.id)"><i class="bi bi-pencil-square"></i></button>
+                    </div>
+                </div>
                 <p><i class="bi bi-quote me-2"></i>Preferences matter. They help you find the perfect roommate match. From pets to hobbies, we prioritize in our application what matters to you for a happier living experience. <i class="bi bi-quote ms-2"></i></p>
                 <mat-chip-set aria-label="Preference selection">
                     <div *ngIf="roommate.preference" class="preference text-start mt-3 mb-3">

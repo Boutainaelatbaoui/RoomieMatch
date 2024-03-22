@@ -28,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RequestComponent } from './components/request/request.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { UpdateProfileComponent } from './components/roomate/update-profile/update-profile.component';
 
 
 
@@ -51,6 +52,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MemberComponent,
     QuestionnaireComponent,
     RequestComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

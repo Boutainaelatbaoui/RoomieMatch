@@ -9,6 +9,6 @@ public interface IPreferenceService {
     PreferenceResponseDTO createPreference(PreferenceRequestDTO requestDTO);
     List<PreferenceResponseDTO> getAllPreferences();
     PreferenceResponseDTO getPreferenceById(Long id);
-    PreferenceResponseDTO updatePreference(Long id, PreferenceRequestDTO requestDTO);
+    PreferenceResponseDTO updatePreference(String userEmail, PreferenceRequestDTO requestDTO);
     void deletePreference(Long id);
 }

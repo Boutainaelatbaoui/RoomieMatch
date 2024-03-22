@@ -27,6 +27,10 @@ export class UserService {
     return this.http.get<UserResponse>(`${this.apiUrl}/roomates/${id}`);
   }
 
+  getUserByEmail(email: string): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.apiUrl}/roomates/email/${email}`);
+  }
+
   getRoles(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.apiUrl}/admin/roles`);
   }

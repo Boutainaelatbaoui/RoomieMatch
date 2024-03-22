@@ -18,6 +18,7 @@ export class RoomateDetailsComponent implements OnInit {
   roommate: UserResponse = {} as UserResponse;
   email: string = "";
   isRequestAccepted: boolean = false;
+  isOwnProfile: boolean = false;
 
   constructor(private route: ActivatedRoute, 
     private roommateService: UserService, 
@@ -27,8 +28,28 @@ export class RoomateDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.roommateId = +params['id'];
-      this.loadRoommateDetails();
+      console.log(this.roommateId);
+      
+      this.isOwnProfile = isNaN(this.roommateId);
+      
+      if (this.isOwnProfile) {
+        this.loadUserProfile();
+      } else {
+        this.loadRoommateDetails();
+      }
     });
+  }
+
+  loadUserProfile() {
+    this.email = this.fetchConnectedMemberEmail();
+    this.roommateService.getUserByEmail(this.email).subscribe(
+      (data: UserResponse) => {
+        this.roommate = data;
+      },
+      error => {
+        console.error('Error fetching user profile:', error);
+      }
+    );
   }
 
   fetchConnectedMemberEmail(): string | "" {

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserResponse } from 'src/app/models/response/user-response';
 import { Role } from 'src/app/models/role';
+import { Registration } from 'src/app/models/registration';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,14 @@ export class UserService {
 
   getUserByEmail(email: string): Observable<UserResponse> {
     return this.http.get<UserResponse>(`${this.apiUrl}/roomates/email/${email}`);
+  }
+
+  getUserById(id: number): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.apiUrl}/roomates/${id}`);
+  }
+
+  updateUserDetailsByEmail(email: string, request: any): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/roomates/${email}`, request);
   }
 
   getRoles(): Observable<Role[]> {

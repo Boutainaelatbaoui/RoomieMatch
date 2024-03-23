@@ -40,6 +40,11 @@ export class UserService {
     return this.http.put<void>(`${this.apiUrl}/roomates/${email}`, request);
   }
 
+  searchUsersByName(name: string): Observable<UserResponse[]> {
+    const url = `${this.apiUrl}/roomates/search?name=${name}`;
+    return this.http.post<UserResponse[]>(url, {});
+  }
+
   getRoles(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.apiUrl}/admin/roles`);
   }

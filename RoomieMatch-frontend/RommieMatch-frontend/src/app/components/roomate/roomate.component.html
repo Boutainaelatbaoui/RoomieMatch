@@ -11,10 +11,10 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <div class="input-group" style="width: 50%;">
-                <input type="text" name="neighborhood" class="form-control form-search" placeholder="Enter a roomate name">
+            <form class="input-group" style="width: 50%;" (ngSubmit)="searchUsersByName()">
+                <input type="text" name="searchName" class="form-control form-search" placeholder="Enter a roommate name" [(ngModel)]="searchName">
                 <button type="submit" class="btn main-btn rounded-pill ms-2"><i class="bi bi-search fw-bold"></i></button>
-            </div>
+            </form>
         </div>
     </div>
 

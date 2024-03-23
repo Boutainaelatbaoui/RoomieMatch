@@ -43,6 +43,7 @@ export class RoomateComponent {
   email: string = "";
   showPercentageMatch: boolean = false;
   showQuestionnaireNote: boolean = false;
+  searchName: string = '';
 
   constructor(
     private userService: UserService,
@@ -185,6 +186,20 @@ export class RoomateComponent {
         console.error('Error fetching roommates:', error);
       }
     );
+  }
+
+  searchUsersByName(): void {
+    if (this.searchName.trim() !== '') {
+      this.userService.searchUsersByName(this.searchName).subscribe(
+        (response: UserResponse[]) => {
+          this.filteredRoommates = response.filter(roommate => roommate.id !== this.connectedMemberId);
+          this.roommates = this.filteredRoommates;
+        },
+        (error) => {
+          console.error('Error searching users:', error);
+        }
+      );
+    }
   }
 
   fetchRoommatesByEmail(email: string): void {

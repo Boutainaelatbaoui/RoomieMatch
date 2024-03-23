@@ -81,6 +81,12 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "recipient")
     private List<Request> receivedRequests;
 
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<Notification> sentNotifications;
+
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
+    private List<Notification> receivedNotifications;
+
     @Override
     public List<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();

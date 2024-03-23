@@ -30,6 +30,7 @@ import { RequestComponent } from './components/request/request.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { UpdateProfileComponent } from './components/roomate/update-profile/update-profile.component';
 import { UpdateInfoComponent } from './components/roomate/update-info/update-info.component';
+import { ChoiceComponent } from './components/dashboard/choice/choice.component';
 
 
 
@@ -55,6 +56,7 @@ import { UpdateInfoComponent } from './components/roomate/update-info/update-inf
     RequestComponent,
     UpdateProfileComponent,
     UpdateInfoComponent,
+    ChoiceComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

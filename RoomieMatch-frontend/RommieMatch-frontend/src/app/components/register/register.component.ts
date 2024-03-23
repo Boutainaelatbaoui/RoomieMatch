@@ -20,6 +20,19 @@ export class RegisterComponent implements OnInit {
   preferenceForm: FormGroup;
   cities: CityResponse[] = [];
 
+  occupationsMap = [
+    { id: 1, text: 'Engineer' },
+    { id: 2, text: 'Doctor' },
+    { id: 3, text: 'Teacher' },
+    { id: 4, text: 'Nurse' },
+    { id: 5, text: 'Artist' },
+    { id: 6, text: 'Lawyer' },
+    { id: 7, text: 'Accountant' },
+    { id: 8, text: 'Chef' },
+    { id: 9, text: 'Police Officer' },
+    { id: 10, text: 'Firefighter' }
+  ];
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

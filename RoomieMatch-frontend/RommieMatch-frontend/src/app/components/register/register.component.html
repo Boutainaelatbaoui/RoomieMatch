@@ -79,11 +79,7 @@
                             <div class="col-md-6">
                             <label for="occupation" class="form-label">Occupation</label>
                             <select id="occupation" class="form-select" formControlName="occupation">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="2">Option 3</option>
-                                <option value="2">Option 4</option>
-                                <option value="2">Option 5</option>
+                                <option *ngFor="let occupation of occupationsMap" [value]="occupation.id">{{ occupation.text }}</option>
                             </select>
                             </div>
                         </div>

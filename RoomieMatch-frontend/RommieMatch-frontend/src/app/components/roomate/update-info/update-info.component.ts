@@ -56,7 +56,6 @@ export class UpdateInfoComponent implements OnInit {
       birthdate: ['', Validators.required],
       currentCityId: ['', Validators.required],
       desiredCityId: ['', Validators.required],
-      email: ['', Validators.required],
     });
   }
 
@@ -92,7 +91,6 @@ export class UpdateInfoComponent implements OnInit {
           birthdate: user.birthdate,
           currentCityId: user.currentCity.id,
           desiredCityId: user.desiredCity.id,
-          email: user.email,
         });        
       },
       (error) => {

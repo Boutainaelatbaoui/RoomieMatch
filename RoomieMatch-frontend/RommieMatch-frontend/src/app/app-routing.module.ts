@@ -16,6 +16,7 @@ import { AccessDeniedComponent } from './components/errors/access-denied/access-
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { RequestComponent } from './components/request/request.component';
 import { UpdateProfileComponent } from './components/roomate/update-profile/update-profile.component';
+import { UpdateInfoComponent } from './components/roomate/update-info/update-info.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'roommate-details/:id', component: RoomateDetailsComponent, canActivate: [authGuard]},
   { path: 'profile', component: RoomateDetailsComponent, canActivate: [authGuard] },
   { path: 'update-profile/:id', component: UpdateProfileComponent, canActivate: [authGuard]},
+  { path: 'update-info/:id', component: UpdateInfoComponent, canActivate: [authGuard]},
   {path: 'forbidden', component: AccessDeniedComponent, canActivate: [authGuard]},
   {path: 'questionnaire', component: QuestionnaireComponent, canActivate: [authGuard]},
   {path: 'request-match', component: RequestComponent, canActivate: [authGuard]},

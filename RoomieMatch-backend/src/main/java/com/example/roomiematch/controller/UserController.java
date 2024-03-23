@@ -1,5 +1,6 @@
 package com.example.roomiematch.controller;
 
+import com.example.roomiematch.model.dto.request.RegisterRequest;
 import com.example.roomiematch.model.dto.request.SearchUserRequestDTO;
 import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.service.IUserService;
@@ -37,6 +38,12 @@ public class UserController {
     public ResponseEntity<UserResponseDTO> getUserByEmail(@PathVariable String email) {
         UserResponseDTO user = userService.getUserDetailsByEmail(email).get();
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PutMapping("/{email}")
+    public ResponseEntity<Void> updateUserDetailsByEmail(@PathVariable String email, @RequestBody RegisterRequest request) {
+        userService.updateUserDetailsByEmail(email, request);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/search")

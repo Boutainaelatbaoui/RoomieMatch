@@ -87,7 +87,7 @@ export class AuthService {
     const refreshToken = this.storageService.getSavedUser()?.refreshToken;
     console.log(refreshToken);
 
-    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/v1/auth/refreshToken`, { refreshToken })
+    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/auth/refreshToken`, { refreshToken })
       .pipe(
         catchError(error => {
           console.error('Failed to refresh access token', error);

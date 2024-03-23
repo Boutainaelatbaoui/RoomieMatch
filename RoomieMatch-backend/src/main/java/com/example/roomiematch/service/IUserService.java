@@ -1,5 +1,6 @@
 package com.example.roomiematch.service;
 
+import com.example.roomiematch.model.dto.request.RegisterRequest;
 import com.example.roomiematch.model.dto.response.UserResponseDTO;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IUserService {
     Optional<UserResponseDTO> getUserById(Long userId);
     List<UserResponseDTO> getUsersByName(String name);
     Optional<UserResponseDTO> getUserDetailsByEmail(String email);
+    void updateUserDetailsByEmail(String email, RegisterRequest request);
 }

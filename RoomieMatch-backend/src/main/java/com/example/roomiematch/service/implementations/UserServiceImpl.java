@@ -1,8 +1,11 @@
 package com.example.roomiematch.service.implementations;
 
 import com.example.roomiematch.mapper.UserMapper;
+import com.example.roomiematch.model.dto.request.RegisterRequest;
 import com.example.roomiematch.model.dto.response.UserResponseDTO;
+import com.example.roomiematch.model.entities.City;
 import com.example.roomiematch.model.entities.User;
+import com.example.roomiematch.repository.CityRepository;
 import com.example.roomiematch.repository.UserRepository;
 import com.example.roomiematch.service.IUserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -17,11 +20,13 @@ public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final CityRepository cityRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, CityRepository cityRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.cityRepository = cityRepository;
     }
 
     @Override
@@ -57,6 +62,25 @@ public class UserServiceImpl implements IUserService {
             throw new EntityNotFoundException("User not found with email: " + email);
         }
         return user.map(userMapper::toDTO);
+    }
+
+    @Override
+    public void updateUserDetailsByEmail(String email, RegisterRequest request) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setTelephone(request.getTelephone());
+        user.setBio(request.getBio());
+        user.setBudget(request.getBudget());
+        user.setOccupation(request.getOccupation());
+        user.setGender(request.getGender());
+        user.setBirthdate(request.getBirthdate());
+        user.setCurrentCity(cityRepository.findById(request.getCurrentCityId()).get());
+        user.setDesiredCity(cityRepository.findById(request.getDesiredCityId()).get());
+
+        userRepository.save(user);
     }
 }
 

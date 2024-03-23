@@ -19,6 +19,7 @@ import com.example.roomiematch.repository.UserRepository;
 import com.example.roomiematch.service.implementations.AuthenticationServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -132,6 +133,62 @@ public class AuthenticationServiceImplTest {
 
         assertNotNull(response);
     }
+
+    @Test
+    void testRegister_EmailAlreadyExists() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail("existing@example.com");
+
+        when(userRepository.existsByEmail(anyString())).thenReturn(true);
+
+        assertThrows(ValidationException.class, () -> {
+            authenticationService.register(request);
+        });
+    }
+
+    @Test
+    void testRegister_CurrentCityNotFound() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail("test@example.com");
+
+        when(userRepository.existsByEmail(anyString())).thenReturn(false);
+        when(roleRepository.findByName(RoleName.USER)).thenReturn(Optional.of(new Role()));
+        when(cityRepository.findById(any())).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () -> {
+            authenticationService.register(request);
+        });
+    }
+
+    @Test
+    void testRegister_DesiredCityNotFound() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail("test@example.com");
+
+        when(userRepository.existsByEmail(anyString())).thenReturn(false);
+        when(roleRepository.findByName(RoleName.USER)).thenReturn(Optional.of(new Role()));
+        when(cityRepository.findById(any())).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () -> {
+            authenticationService.register(request);
+        });
+    }
+
+    @Test
+    void testRegister_TooYoung() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail("test@example.com");
+        request.setBirthdate(LocalDate.now().minusYears(17));
+
+        when(userRepository.existsByEmail(anyString())).thenReturn(false);
+        when(roleRepository.findByName(RoleName.USER)).thenReturn(Optional.of(new Role()));
+        when(cityRepository.findById(any())).thenReturn(Optional.of(new City()));
+
+        assertThrows(ValidationException.class, () -> {
+            authenticationService.register(request);
+        });
+    }
+
 
 
 }

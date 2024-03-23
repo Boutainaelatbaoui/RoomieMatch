@@ -31,9 +31,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { UpdateProfileComponent } from './components/roomate/update-profile/update-profile.component';
 import { UpdateInfoComponent } from './components/roomate/update-info/update-info.component';
 import { ChoiceComponent } from './components/dashboard/choice/choice.component';
-
-
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -68,7 +68,10 @@ import { ChoiceComponent } from './components/dashboard/choice/choice.component'
       MatChipsModule,
       MatRadioModule,
       MatProgressSpinnerModule,
-      MatTabsModule
+      MatTabsModule,
+      MatMenuModule,
+      MatIconModule,
+      MatBadgeModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }

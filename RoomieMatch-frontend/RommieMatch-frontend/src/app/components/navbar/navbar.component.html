@@ -45,8 +45,19 @@
         </div>
 
         <div class="d-flex align-items-center" *ngIf="!isLoggedIn()">
-        <a routerLink="/login" class="btn btn-login me-3 px-4">Log in</a>
-        <a routerLink="/register" class="btn main-btn">Get started</a>
+            <a routerLink="/login" class="btn btn-login me-3 px-4">Log in</a>
+            <a routerLink="/register" class="btn main-btn">Get started</a>
+        </div>
+        <div *ngIf="isLoggedIn()" class="me-4 mt-2">
+            <div [matMenuTriggerFor]="beforeMenu">
+                <i class="bi bi-bell-fill fs-4 cursor"></i>
+                <mat-badge [matBadge]="notificationCount"></mat-badge>
+            </div>
+            <mat-menu #beforeMenu="matMenu" xPosition="before" class="mt-1 me-2">
+                <button mat-menu-item *ngFor="let notification of notifications">
+                    {{ notification.message }}
+                </button>
+            </mat-menu>
         </div>
         <form class="d-flex" *ngIf="isLoggedIn()">
             <button class="btn main-btn" type="submit" (click)="handleLogout()">logout</button>

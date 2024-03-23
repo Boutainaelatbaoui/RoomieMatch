@@ -16,6 +16,15 @@ export class NavbarComponent implements OnInit{
   permissions = this.storageService.getPermissions();
   showAdminBoard = false;
 
+  notificationCount: number = 5;
+  notifications: any[] = [
+    { message: 'Notification 1' },
+    { message: 'Notification 2' },
+    { message: 'Notification 3' },
+    { message: 'Notification 4' },
+    { message: 'Notification 5' }
+  ];
+
   ngOnInit(): void {
     if(this.user) {
       console.log(this.user);

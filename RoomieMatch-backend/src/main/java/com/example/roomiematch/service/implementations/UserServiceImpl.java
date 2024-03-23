@@ -72,10 +72,10 @@ public class UserServiceImpl implements IUserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setTelephone(request.getTelephone());
+        user.setEmail(request.getEmail());
         user.setBio(request.getBio());
         user.setBudget(request.getBudget());
         user.setOccupation(request.getOccupation());
-        user.setGender(request.getGender());
         user.setBirthdate(request.getBirthdate());
         user.setCurrentCity(cityRepository.findById(request.getCurrentCityId()).get());
         user.setDesiredCity(cityRepository.findById(request.getDesiredCityId()).get());

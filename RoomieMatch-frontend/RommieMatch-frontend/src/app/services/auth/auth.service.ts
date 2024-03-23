@@ -44,7 +44,7 @@ export class AuthService {
         { email, password },
       )
       .pipe(
-        catchError(error => {
+        catchError(error => {          
           if (error.status === 401) {
             Swal.fire('Error!', 'The email address or password you entered is invalid', 'error');
           } 

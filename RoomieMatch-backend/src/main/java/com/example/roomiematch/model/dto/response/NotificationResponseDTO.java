@@ -14,5 +14,6 @@ public class NotificationResponseDTO {
     private UserResponseDTO sender;
     private UserResponseDTO recipient;
     private String message;
+    private boolean isRead;
 }
 

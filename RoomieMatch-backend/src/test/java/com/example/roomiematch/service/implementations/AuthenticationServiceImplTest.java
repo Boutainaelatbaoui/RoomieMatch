@@ -1,6 +1,7 @@
 package com.example.roomiematch.service.implementations;
 
 import com.example.roomiematch.config.JwtService;
+import com.example.roomiematch.enums.RoleName;
 import com.example.roomiematch.enums.TokenType;
 import com.example.roomiematch.model.dto.request.AuthenticationRequest;
 import com.example.roomiematch.model.dto.request.RefreshTokenRequest;
@@ -115,6 +116,22 @@ public class AuthenticationServiceImplTest {
         });
     }
 
+    @Test
+    void testRegister_SuccessfulRegistration() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail("test@example.com");
+        request.setPassword("password");
+        request.setBirthdate(LocalDate.of(1990, 1, 1));
+
+        when(userRepository.existsByEmail(anyString())).thenReturn(false);
+        when(roleRepository.findByName(RoleName.USER)).thenReturn(Optional.of(new Role()));
+        when(cityRepository.findById(any())).thenReturn(Optional.of(new City()));
+        when(passwordEncoder.encode(any())).thenReturn("hashedPassword");
+
+        AuthenticationResponse response = authenticationService.register(request);
+
+        assertNotNull(response);
+    }
 
 
 }

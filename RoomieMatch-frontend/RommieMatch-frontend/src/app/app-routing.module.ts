@@ -18,6 +18,8 @@ import { RequestComponent } from './components/request/request.component';
 import { UpdateProfileComponent } from './components/roomate/update-profile/update-profile.component';
 import { UpdateInfoComponent } from './components/roomate/update-info/update-info.component';
 import { ChoiceComponent } from './components/dashboard/choice/choice.component';
+import { UpdateChoiceComponent } from './components/dashboard/choice/update-choice/update-choice.component';
+import { CreateChoiceComponent } from './components/dashboard/choice/create-choice/create-choice.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -28,7 +30,9 @@ const routes: Routes = [
   { path: 'choice', component: ChoiceComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'members', component: MemberComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'update-question/:id', component: UpdateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
+  { path: 'update-choice/:id', component: UpdateChoiceComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'create-question', component: CreateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
+  { path: 'create-choice', component: CreateChoiceComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'roommate-details/:id', component: RoomateDetailsComponent, canActivate: [authGuard]},
   { path: 'profile', component: RoomateDetailsComponent, canActivate: [authGuard] },
   { path: 'update-profile/:id', component: UpdateProfileComponent, canActivate: [authGuard]},

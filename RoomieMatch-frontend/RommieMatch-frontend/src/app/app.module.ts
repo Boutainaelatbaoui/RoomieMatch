@@ -34,6 +34,8 @@ import { ChoiceComponent } from './components/dashboard/choice/choice.component'
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { CreateChoiceComponent } from './components/dashboard/choice/create-choice/create-choice.component';
+import { UpdateChoiceComponent } from './components/dashboard/choice/update-choice/update-choice.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     UpdateProfileComponent,
     UpdateInfoComponent,
     ChoiceComponent,
+    CreateChoiceComponent,
+    UpdateChoiceComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

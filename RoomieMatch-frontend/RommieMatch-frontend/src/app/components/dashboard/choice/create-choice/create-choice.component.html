@@ -1,0 +1,21 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="col-6">
+        <h2 class="fw-bold text-color pb-3">Create a Choice</h2>
+        <div class="card card-menu p-3 mt-4">
+            <form [formGroup]="choiceForm" (ngSubmit)="submitForm()">
+                <div class="form-group">
+                    <label for="choiceText">Choice Text</label>
+                    <input type="text" class="form-control" id="choiceText" formControlName="choiceText" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="questionId">Question</label>
+                    <select class="form-control" id="questionId" class="form-select" formControlName="questionId" required>
+                        <option *ngFor="let question of questions; let index = index" [value]="question.id">{{index+1}}. {{ question.questionText }}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

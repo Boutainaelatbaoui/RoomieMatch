@@ -19,27 +19,27 @@ export class ChoiceService {
     private router: Router
   ) {}
 
-  getAllQuestions(): Observable<ChoiceResponse[]> {
-    return this.http.get<ChoiceResponse[]>(`${this.apiUrl}/questions`);
+  getAllChoices(): Observable<ChoiceResponse[]> {
+    return this.http.get<ChoiceResponse[]>(`${this.apiUrl}/choices`);
   }
 
-  getQuestionById(id: number): Observable<ChoiceResponse> {
-    return this.http.get<ChoiceResponse>(`${this.apiUrl}/questions/${id}`);
+  getChoiceById(id: number): Observable<ChoiceResponse> {
+    return this.http.get<ChoiceResponse>(`${this.apiUrl}/choices/${id}`);
   }
 
-  createQuestion(question: ChoiceRequest): Observable<ChoiceResponse> {
-    return this.http.post<ChoiceResponse>(`${this.apiUrl}/questions`, question);
+  createChoice(Choice: ChoiceRequest): Observable<ChoiceResponse> {
+    return this.http.post<ChoiceResponse>(`${this.apiUrl}/choices`, Choice);
   }
 
-  updateQuestion(id: number, question: ChoiceRequest): Observable<ChoiceResponse> {
-    return this.http.put<ChoiceResponse>(`${this.apiUrl}/questions/${id}`, question);
+  updateChoice(id: number, Choice: ChoiceRequest): Observable<ChoiceResponse> {
+    return this.http.put<ChoiceResponse>(`${this.apiUrl}/choices/${id}`, Choice);
   }  
 
-  deleteQuestion(id: number): Observable<void> {
-    const url = `${this.apiUrl}/questions/${id}`;
+  deleteChoice(id: number): Observable<void> {
+    const url = `${this.apiUrl}/choices/${id}`;
     return this.http.delete<void>(url).pipe(
       catchError((error) => {
-        console.error('Error deleting question:', error);
+        console.error('Error deleting Choice:', error);
         return throwError(error);
       })
     );

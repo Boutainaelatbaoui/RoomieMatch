@@ -17,6 +17,7 @@ import { QuestionnaireComponent } from './components/questionnaire/questionnaire
 import { RequestComponent } from './components/request/request.component';
 import { UpdateProfileComponent } from './components/roomate/update-profile/update-profile.component';
 import { UpdateInfoComponent } from './components/roomate/update-info/update-info.component';
+import { ChoiceComponent } from './components/dashboard/choice/choice.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [noAuthGuardGuard]},
   { path: 'roomates', component: RoomateComponent, canActivate: [authGuard]},
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard, adminGuardGuard]},
+  { path: 'choice', component: ChoiceComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'members', component: MemberComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'update-question/:id', component: UpdateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'create-question', component: CreateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},

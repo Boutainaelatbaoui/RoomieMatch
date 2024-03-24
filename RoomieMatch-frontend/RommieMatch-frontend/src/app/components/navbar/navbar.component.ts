@@ -30,6 +30,10 @@ export class NavbarComponent implements OnInit{
     }
   }
 
+  changeNumber() {
+    this.notificationCount = 0;
+  }
+
   loadNotifications(): void {
     this.notificationService.getNotificationsByRecipient().subscribe(
       (notifications: NotificationResponseDTO[]) => {

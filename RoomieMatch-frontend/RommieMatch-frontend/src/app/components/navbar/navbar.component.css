@@ -10,6 +10,10 @@
     background-color: #6c2bd9;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 .btn-login{
     border-radius: 30px !important;
     color: #6c2bd9 !important;

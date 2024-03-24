@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 @Component
 public class QuestionMapper {
 
-    private final ChoiceMapper choiceMapper;
+    private ChoiceMapper choiceMapper;
 
     @Autowired
-    public QuestionMapper(ChoiceMapper choiceMapper) {
+    public void setChoiceMapper(ChoiceMapper choiceMapper) {
         this.choiceMapper = choiceMapper;
     }
 

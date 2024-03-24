@@ -11,11 +11,18 @@ import java.util.stream.Collectors;
 
 @Component
 public class ChoiceMapper {
+    private QuestionMapper questionMapper;
+
+    @Autowired
+    public void setQuestionMapper(QuestionMapper questionMapper) {
+        this.questionMapper = questionMapper;
+    }
 
     public ChoiceResponseDTO toDTO(Choice choice) {
         return ChoiceResponseDTO.builder()
                 .id(choice.getId())
                 .choiceText(choice.getChoiceText())
+                .question(questionMapper.toRequestDTO(choice.getQuestion()))
                 .build();
     }
 

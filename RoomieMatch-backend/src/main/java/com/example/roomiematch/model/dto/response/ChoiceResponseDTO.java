@@ -1,5 +1,6 @@
 package com.example.roomiematch.model.dto.response;
 
+import com.example.roomiematch.model.dto.request.QuestionRequestDTO;
 import com.example.roomiematch.model.entities.Question;
 import lombok.*;
 
@@ -12,5 +13,6 @@ import lombok.*;
 public class ChoiceResponseDTO {
     private Long id;
     private String choiceText;
+    private QuestionRequestDTO question;
 }
 

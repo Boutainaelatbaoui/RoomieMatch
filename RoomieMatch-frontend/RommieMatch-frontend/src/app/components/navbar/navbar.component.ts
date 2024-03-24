@@ -34,7 +34,9 @@ export class NavbarComponent implements OnInit{
     this.notificationService.getNotificationsByRecipient().subscribe(
       (notifications: NotificationResponseDTO[]) => {
         this.notifications = notifications;
-        this.notificationCount = notifications.length;
+        this.notificationCount = this.notifications.filter(notification => notification.isRead === false).length;
+        console.log('Notifications:', this.notifications);
+        
       },
       (error) => {
         console.error('Error fetching notifications:', error);

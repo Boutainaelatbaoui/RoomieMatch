@@ -50,11 +50,11 @@
         </div>
         <div *ngIf="isLoggedIn()" class="me-4 mt-2">
             <div [matMenuTriggerFor]="beforeMenu">
-                <i class="bi bi-bell-fill fs-4 cursor" (click)="changeNumber()"></i>
+                <i class="bi bi-bell-fill fs-4 cursor"></i>
                 <mat-badge [matBadge]="notificationCount"></mat-badge>
             </div>
             <mat-menu #beforeMenu="matMenu" xPosition="before" class="mt-1 me-2" style="min-width: 650px !important;">
-                <button mat-menu-item *ngFor="let notification of notifications" class="mt-2">
+                <button mat-menu-item *ngFor="let notification of notifications" class="mt-2" routerLink="/request-match">
                     {{ notification.message }}
                 </button>
                 <hr class="mx-4">

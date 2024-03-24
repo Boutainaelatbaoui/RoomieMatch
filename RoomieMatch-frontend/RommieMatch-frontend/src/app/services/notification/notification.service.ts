@@ -21,4 +21,8 @@ export class NotificationService {
   getNotificationsByRecipient(): Observable<NotificationResponseDTO[]> {
     return this.http.get<NotificationResponseDTO[]>(`${this.apiUrl}/notifications/recipient`);
   }
+
+  markNotificationAsRead(id: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/notifications/${id}/read`, {});
+  }
 }

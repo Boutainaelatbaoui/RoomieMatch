@@ -30,10 +30,6 @@ export class NavbarComponent implements OnInit{
     }
   }
 
-  changeNumber() {
-    this.notificationCount = 0;
-  }
-
   loadNotifications(): void {
     this.notificationService.getNotificationsByRecipient().subscribe(
       (notifications: NotificationResponseDTO[]) => {
@@ -44,6 +40,14 @@ export class NavbarComponent implements OnInit{
         console.error('Error fetching notifications:', error);
       }
     );
+  }
+
+  handleNotificationClick(notificationId: number): void {
+    this.notificationService.markNotificationAsRead(notificationId).subscribe(() => {
+      this.notificationCount--;
+    }, (error) => {
+      console.error('Error marking notification as read:', error);
+    });
   }
 
   isLoggedIn(): boolean {

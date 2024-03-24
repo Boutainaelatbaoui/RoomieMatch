@@ -4,9 +4,7 @@ import com.example.roomiematch.model.dto.response.NotificationResponseDTO;
 import com.example.roomiematch.service.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,11 @@ public class NotificationController {
     public ResponseEntity<List<NotificationResponseDTO>> getNotificationsByRecipient() {
         List<NotificationResponseDTO> notifications = notificationService.getNotificationsByRecipient();
         return ResponseEntity.ok(notifications);
+    }
+
+    @PutMapping("/{id}/read")
+    public ResponseEntity<Void> markNotificationAsRead(@PathVariable("id") Long id) {
+        notificationService.markNotificationAsRead(id);
+        return ResponseEntity.ok().build();
     }
 }

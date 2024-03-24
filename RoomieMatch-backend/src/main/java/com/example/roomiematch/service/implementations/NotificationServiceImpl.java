@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,6 +45,18 @@ public class NotificationServiceImpl implements INotificationService {
         notification.setMessage(message);
 
         notificationRepository.save(notification);
+    }
+
+    @Override
+    public void markNotificationAsRead(Long id) {
+        Optional<Notification> optionalNotification = notificationRepository.findById(id);
+        if (optionalNotification.isPresent()) {
+            Notification notification = optionalNotification.get();
+            notification.setRead(true);
+            notificationRepository.save(notification);
+        } else {
+            throw new EntityNotFoundException("Notification not found with id: " + id);
+        }
     }
 
     @Override

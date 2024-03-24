@@ -8,6 +8,7 @@ import com.example.roomiematch.model.entities.Request;
 import com.example.roomiematch.model.entities.User;
 import com.example.roomiematch.repository.RequestRepository;
 import com.example.roomiematch.repository.UserRepository;
+import com.example.roomiematch.service.INotificationService;
 import com.example.roomiematch.service.IRequestService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ValidationException;
@@ -25,12 +26,14 @@ public class RequestServiceImpl implements IRequestService {
     private final RequestRepository requestRepository;
     private final UserRepository userRepository;
     private final RequestMapper requestMapper;
+    private final INotificationService notificationService;
 
     @Autowired
-    public RequestServiceImpl(RequestRepository requestRepository, UserRepository userRepository, RequestMapper requestMapper) {
+    public RequestServiceImpl(RequestRepository requestRepository, UserRepository userRepository, RequestMapper requestMapper, INotificationService notificationService) {
         this.requestRepository = requestRepository;
         this.userRepository = userRepository;
         this.requestMapper = requestMapper;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -38,34 +41,33 @@ public class RequestServiceImpl implements IRequestService {
         String senderEmail = requestDTO.getSenderEmail();
         String recipientEmail = requestDTO.getRecipientEmail();
 
-        if (!userRepository.existsByEmail(senderEmail)) {
-            throw new EntityNotFoundException("Sender email does not exist: " + senderEmail);
-        }
+        User sender = userRepository.findByEmail(senderEmail)
+                .orElseThrow(() -> new EntityNotFoundException("Sender email does not exist: " + senderEmail));
 
-        if (!userRepository.existsByEmail(recipientEmail)) {
-            throw new EntityNotFoundException("Recipient email does not exist: " + recipientEmail);
-        }
+        User recipient = userRepository.findByEmail(recipientEmail)
+                .orElseThrow(() -> new EntityNotFoundException("Recipient email does not exist: " + recipientEmail));
 
-        int senderGender = userRepository.findGenderByEmail(senderEmail);
-        int recipientGender = userRepository.findGenderByEmail(recipientEmail);
+        int senderGender = sender.getGender();
+        int recipientGender = recipient.getGender();
         if (senderGender != recipientGender) {
             throw new ValidationException("Sender and recipient have different genders");
         }
 
-        if (requestRepository.existsBySenderEmailAndRecipientEmail(senderEmail, recipientEmail)) {
-            throw new ValidationException("Request already exists");
-        }
-
-        if (requestRepository.existsBySenderEmailAndRecipientEmail(recipientEmail, senderEmail)) {
-            throw new ValidationException("Request already exists with the sender as the recipient and vice versa");
+        if (requestRepository.existsBySenderEmailAndRecipientEmail(senderEmail, recipientEmail) ||
+                requestRepository.existsBySenderEmailAndRecipientEmail(recipientEmail, senderEmail)) {
+            throw new ValidationException("Request already exists between sender and recipient");
         }
 
         requestDTO.setStatus(RequestStatus.PENDING);
         requestDTO.setCreatedAt(LocalDateTime.now());
 
-        return requestMapper.toDTO(requestRepository.save(requestMapper.toEntity(requestDTO)));
-    }
+        Request savedRequest = requestRepository.save(requestMapper.toEntity(requestDTO));
 
+        String message = "You have received a new match request from " + sender.getFirstName() + " " + sender.getLastName();
+        notificationService.sendNotification(recipient, message);
+
+        return requestMapper.toDTO(savedRequest);
+    }
 
     @Override
     public RequestResponseDTO acceptRequest(Long requestId, String userEmail) {
@@ -81,6 +83,11 @@ public class RequestServiceImpl implements IRequestService {
         }
 
         request.setStatus(RequestStatus.ACCEPTED);
+
+        User sender = request.getSender();
+        User recipient = request.getRecipient();
+        String message = "Your match request has been accepted by " + recipient.getFirstName() + " " + recipient.getLastName();
+        notificationService.sendNotification(sender, message);
 
         Request savedRequest = requestRepository.save(request);
 

@@ -35,7 +35,7 @@ export class QuestionnaireComponent {
   }
 
   fetchQuestions(): void {
-    this.questionService.getAllQuestions().subscribe(
+    this.questionService.getTenQuestions().subscribe(
       (response) => {
         this.questions = response;
         this.createFormControls();

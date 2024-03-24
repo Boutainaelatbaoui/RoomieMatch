@@ -45,7 +45,7 @@ public class RoommateMatcherServiceImpl implements IRoommateMatcherService {
 
             roommateDetails.setMatchScore(matchScore);
             double percentageMatch = (double) matchScore / userResponses.size() * 100;
-            roommateDetails.setPercentageMatch(Math.min(percentageMatch, 100.0));
+            roommateDetails.setPercentageMatch(percentageMatch);
 
             roommateMatches.add(roommateDetails);
         }
@@ -70,4 +70,3 @@ public class RoommateMatcherServiceImpl implements IRoommateMatcherService {
         return matchScore;
     }
 }
-

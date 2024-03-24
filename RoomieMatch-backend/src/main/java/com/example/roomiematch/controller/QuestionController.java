@@ -25,6 +25,12 @@ public class QuestionController {
         List<QuestionResponseDTO> questions = questionService.getAllQuestions();
         return ResponseEntity.ok(questions);
     }
+    
+    @GetMapping("/ten")
+    public ResponseEntity<List<QuestionResponseDTO>> getTenQuestions() {
+        List<QuestionResponseDTO> questions = questionService.getTenQuestions();
+        return ResponseEntity.ok(questions);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<QuestionResponseDTO> getQuestionById(@PathVariable Long id) {

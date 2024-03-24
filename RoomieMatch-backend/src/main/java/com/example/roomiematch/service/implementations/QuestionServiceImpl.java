@@ -34,6 +34,12 @@ public class QuestionServiceImpl implements IQuestionService {
     }
 
     @Override
+    public List<QuestionResponseDTO> getTenQuestions() {
+        List<Question> questions = questionRepository.findFirst10ByOrderByIdAsc();
+        return questionMapper.toDTOList(questions);
+    }
+
+    @Override
     public QuestionResponseDTO getQuestionById(Long id) {
         Question question = questionRepository.findById(id).orElse(null);
         if (question == null) {

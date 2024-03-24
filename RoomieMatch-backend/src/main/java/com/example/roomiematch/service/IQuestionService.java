@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface IQuestionService {
     List<QuestionResponseDTO> getAllQuestions();
+    List<QuestionResponseDTO> getTenQuestions();
+
     QuestionResponseDTO getQuestionById(Long id);
     QuestionRequestDTO createQuestion(QuestionRequestDTO questionRequestDTO);
     QuestionResponseDTO updateQuestion(Long id, QuestionRequestDTO updatedQuestionRequestDTO);

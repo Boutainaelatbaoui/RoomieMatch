@@ -31,11 +31,11 @@ export class LoginComponent {
         this.router.navigate(['/']);
       },
       error : err => {
-        if (err instanceof HttpErrorResponse && err.status === 400) {
-          if (err.error && err.error.error === 'Validation error' && err.error.message) {
+        if (err instanceof HttpErrorResponse && err.status === 401) {
+          if (err.error) {
             Swal.fire('Error', err.error.message, 'error');
           } else {
-            Swal.fire('Error', 'An error occurred while creating the question.', 'error');
+            Swal.fire('Error', 'An error occurred while the login process.', 'error');
           }
         } else {
           Swal.fire('Error', 'An unexpected error occurred.', 'error');

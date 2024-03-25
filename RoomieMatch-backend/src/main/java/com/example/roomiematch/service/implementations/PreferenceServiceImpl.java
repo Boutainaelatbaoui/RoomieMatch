@@ -10,6 +10,8 @@ import com.example.roomiematch.repository.UserRepository;
 import com.example.roomiematch.service.IPreferenceService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -93,5 +95,11 @@ public class PreferenceServiceImpl implements IPreferenceService {
         return preferences.stream()
                 .map(preferenceMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<PreferenceResponseDTO> getAllPreferences(Pageable pageable) {
+        Page<Preference> preferences = preferenceRepository.findAll(pageable);
+        return preferences.map(preferenceMapper::toDTO);
     }
 }

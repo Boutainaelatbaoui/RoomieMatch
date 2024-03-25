@@ -5,6 +5,8 @@ import com.example.roomiematch.model.dto.response.PreferenceResponseDTO;
 import com.example.roomiematch.service.IPreferenceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,11 @@ public class PreferenceController {
     public ResponseEntity<PreferenceResponseDTO> updatePreference(@PathVariable String userEmail, @Valid @RequestBody PreferenceRequestDTO requestDTO) {
         PreferenceResponseDTO responseDTO = preferenceService.updatePreference(userEmail, requestDTO);
         return ResponseEntity.ok(responseDTO);
+    }
+
+    @GetMapping("/paged")
+    public ResponseEntity<Page<PreferenceResponseDTO>> getAllPreferencesPaged(Pageable pageable) {
+        return ResponseEntity.ok(preferenceService.getAllPreferences(pageable));
     }
 
     @DeleteMapping("/{id}")

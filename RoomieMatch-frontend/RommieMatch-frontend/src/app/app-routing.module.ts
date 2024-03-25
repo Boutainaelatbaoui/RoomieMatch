@@ -21,6 +21,7 @@ import { ChoiceComponent } from './components/dashboard/choice/choice.component'
 import { UpdateChoiceComponent } from './components/dashboard/choice/update-choice/update-choice.component';
 import { CreateChoiceComponent } from './components/dashboard/choice/create-choice/create-choice.component';
 import { PreferenceComponent } from './components/dashboard/preference/preference.component';
+import { RequestDashComponent } from './components/dashboard/request-dash/request-dash.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'choice', component: ChoiceComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'preference', component: PreferenceComponent, canActivate: [authGuard, adminGuardGuard]},
+  { path: 'request-dash', component: RequestDashComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'members', component: MemberComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'update-question/:id', component: UpdateQuestionComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'update-choice/:id', component: UpdateChoiceComponent, canActivate: [authGuard, adminGuardGuard]},

@@ -1,0 +1,50 @@
+<app-sidebar></app-sidebar>
+<main class="container main-dash">
+    <div class="d-flex justify-content-between mt-3">
+        <div>
+            <div class="d-flex flex-column align-items-center">
+                <h3 class="mb-4 fw-semibold leading-none tracking-tight">Requests</h3>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-rounded">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Sender</th>
+            <th>Recipient</th>
+            <th>Request Status</th>
+            <th>Created at</th>
+            </tr>
+        </thead>
+        <tbody class="align-items-center">
+            <tr *ngFor="let request of pagedRequests">
+            <td>{{ request.id }}</td>
+            <td>{{ request.sender.firstName }} {{ request.sender.lastName }}</td>
+            <td>{{ request.recipient.firstName }} {{ request.recipient.lastName }}</td>
+            <td>
+                <span [ngClass]="{
+                    'badge rounded-pill text-white fs-6 fw-semibold': true,
+                    'bg-warning': request.status === 'PENDING',
+                    'bg-success': request.status === 'ACCEPTED',
+                    'bg-danger': request.status === 'REJECTED'
+                }">
+                    <i class="bi bi-clock" *ngIf="request.status === 'PENDING'"><span class="ms-2 fw-normal">Pending</span></i>
+                    <i class="bi bi-check-circle" *ngIf="request.status === 'ACCEPTED'"><span class="ms-2 fw-normal">Accepted</span></i>
+                    <i class="bi bi-x-circle" *ngIf="request.status === 'REJECTED'"><span class="ms-2 fw-normal">Rejected</span></i>
+                </span>
+            </td>
+            <td>{{ request.createdAt}}</td>
+            
+            </tr>
+        </tbody>
+    </table>
+
+    <mat-paginator
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)"
+    ></mat-paginator>
+</main>

@@ -1,10 +1,9 @@
-<p>preference works!</p>
 <app-sidebar></app-sidebar>
 <main class="container main-dash">
     <div class="d-flex justify-content-between mt-3">
         <div>
             <div class="d-flex flex-column align-items-center">
-                <h3 class="mb-4 fw-semibold leading-none tracking-tight">Choices</h3>
+                <h3 class="mb-4 fw-semibold leading-none tracking-tight">Preferences</h3>
             </div>
         </div>
     </div>
@@ -19,23 +18,50 @@
             <th>has local</th>
             <th>sharing bedroom</th>
             <th>partying</th>
-            <th>username</th>
             </tr>
         </thead>
-        <tbody class="align-items-center">
+        <tbody class="align-items-center justify-content-center">
             <tr *ngFor="let preference of preferences">
                 <td>{{ preference.id }}</td>
                 <td>
-                    <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold">{{ preference.smoking }}</h2>
+                    <span [ngClass]="{'badge rounded-pill text-bg-light fs-6 fw-semibold': true, 'bg-success': preference.smoking, 'bg-danger': !preference.smoking}">
+                        <i class="bi bi-check-circle text-white" *ngIf="preference.smoking"></i>
+                        <i class="bi bi-x-circle text-white" *ngIf="!preference.smoking"></i>
+                    </span>
                 </td>
-                <td>{{ preference.pets }}</td>
-                <td>{{ preference.visitors }}</td>
-                <td>{{ preference.hasApartment }}</td>
-                <td>{{ preference.sharingBedroom }}</td>
-                <td>{{ preference.partying }}</td>
-                <td>{{ preference }}</td>
+                <td>
+                    <span [ngClass]="{'badge rounded-pill text-bg-light fs-6 fw-semibold': true, 'bg-success': preference.pets, 'bg-danger': !preference.pets}">
+                        <i class="bi bi-check-circle text-white" *ngIf="preference.pets"></i>
+                        <i class="bi bi-x-circle text-white" *ngIf="!preference.pets"></i>
+                    </span>
+                </td>
+                <td>
+                    <span [ngClass]="{'badge rounded-pill text-bg-light fs-6 fw-semibold': true, 'bg-success': preference.visitors, 'bg-danger': !preference.visitors}">
+                        <i class="bi bi-check-circle text-white" *ngIf="preference.visitors"></i>
+                        <i class="bi bi-x-circle text-white" *ngIf="!preference.visitors"></i>
+                    </span>
+                </td>
+                <td>
+                    <span [ngClass]="{'badge rounded-pill text-bg-light fs-6 fw-semibold': true, 'bg-success': preference.hasApartment, 'bg-danger': !preference.hasApartment}">
+                        <i class="bi bi-check-circle text-white" *ngIf="preference.hasApartment"></i>
+                        <i class="bi bi-x-circle text-white" *ngIf="!preference.hasApartment"></i>
+                    </span>
+                </td>
+                <td>
+                    <span [ngClass]="{'badge rounded-pill text-bg-light fs-6 fw-semibold': true, 'bg-success': preference.sharingBedroom, 'bg-danger': !preference.sharingBedroom}">
+                        <i class="bi bi-check-circle text-white" *ngIf="preference.sharingBedroom"></i>
+                        <i class="bi bi-x-circle text-white" *ngIf="!preference.sharingBedroom"></i>
+                    </span>
+                </td>
+                <td>
+                    <span [ngClass]="{'badge rounded-pill text-bg-light fs-6 fw-semibold': true, 'bg-success': preference.partying, 'bg-danger': !preference.partying}">
+                        <i class="bi bi-check-circle text-white" *ngIf="preference.partying"></i>
+                        <i class="bi bi-x-circle text-white" *ngIf="!preference.partying"></i>
+                    </span>
+                </td>
             </tr>
         </tbody>
+        
     </table>
 
     <mat-paginator

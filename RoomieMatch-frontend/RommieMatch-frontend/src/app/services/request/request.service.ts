@@ -52,7 +52,7 @@ export class RequestService {
   }
 
   getAllRequests(): Observable<RequestResponse[]> {
-    return this.http.get<RequestResponse[]>(this.apiUrl)
+    return this.http.get<RequestResponse[]>(`${this.apiUrl}/requests`)
       .pipe(
         catchError(this.handleError)
       );

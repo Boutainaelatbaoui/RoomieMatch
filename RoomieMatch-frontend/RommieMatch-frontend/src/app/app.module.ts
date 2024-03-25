@@ -37,6 +37,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CreateChoiceComponent } from './components/dashboard/choice/create-choice/create-choice.component';
 import { UpdateChoiceComponent } from './components/dashboard/choice/update-choice/update-choice.component';
 import { PreferenceComponent } from './components/dashboard/preference/preference.component';
+import { RequestDashComponent } from './components/dashboard/request-dash/request-dash.component';
+import { CityComponent } from './components/dashboard/city/city.component';
 
 
 @NgModule({
@@ -63,6 +65,8 @@ import { PreferenceComponent } from './components/dashboard/preference/preferenc
     CreateChoiceComponent,
     UpdateChoiceComponent,
     PreferenceComponent,
+    RequestDashComponent,
+    CityComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

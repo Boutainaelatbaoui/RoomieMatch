@@ -1,0 +1,15 @@
+.main-dash {
+    margin: 25px 10px 0 15px;
+    width: auto;
+}
+
+.tracking-tight {
+    border-bottom: 4px solid #6c2bd9;
+    width: fit-content;
+}
+
+@media (min-width: 992px) {
+    .main-dash {
+        margin-left: 200px;
+    }
+}

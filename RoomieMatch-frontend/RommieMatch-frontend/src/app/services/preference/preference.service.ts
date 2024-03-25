@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { PreferenceResponse } from 'src/app/models/response/preference-response';
 import { PreferenceRequest } from 'src/app/models/request/preference-request';
 import { PreferencePaged } from 'src/app/models/response/preference-paged';
+import { UserResponse } from 'src/app/models/response/user-response';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class PreferenceService {
   getAllPagePreferences(page: number, size: number): Observable<PreferencePaged> {
     const params = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<PreferencePaged>(`${this.apiUrl}/preferences/paged`, { params });
+  }
+
+  getUserByPreferenceId(preferenceId: number) : Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.apiUrl}/preferences/${preferenceId}/users`);
   }
 }

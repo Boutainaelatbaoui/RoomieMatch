@@ -18,7 +18,7 @@
             <th>Telephone</th>
             <th>Current City</th>
             <th>Target City</th>
-            <th>Roles</th>
+            <th *ngIf="showManagerBoard">Roles</th>
             </tr>
         </thead>
         <tbody class="align-items-center">
@@ -32,7 +32,7 @@
             <td>{{ user.telephone }}</td>
             <td>{{ user.currentCity.name }}</td>
             <td>{{ user.desiredCity.name }}</td>
-            <td>
+            <td *ngIf="showManagerBoard">
                 <select class="form-select" name="selectedRole" [(ngModel)]="selectedRoleIds[user.id]" (change)="updateUserRole(user.id)" 
                         *ngIf="showManagerBoard" [disabled]="user.role.name === 'MANAGER'">
                     <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>

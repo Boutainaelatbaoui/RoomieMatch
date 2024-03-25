@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class RequestServiceImpl implements IRequestService {
-
     private final RequestRepository requestRepository;
     private final UserRepository userRepository;
     private final RequestMapper requestMapper;

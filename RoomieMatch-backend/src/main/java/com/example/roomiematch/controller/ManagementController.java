@@ -22,14 +22,14 @@ public class ManagementController {
     private final IManagerService managerService;
 
     @PutMapping("/updateRole/{userId}/{roleId}")
-//    @PreAuthorize("hasAuthority('CAN_MANAGE_USERS')")
+    @PreAuthorize("hasAuthority('CAN_MANAGE_USERS')")
     public ResponseEntity<Void> updateUserRole(@PathVariable Integer userId, @PathVariable Long roleId){
         managerService.updateUserRole(userId, roleId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/roles")
-//    @PreAuthorize("hasAuthority('CAN_MANAGE_USERS')")
+    @PreAuthorize("hasAuthority('CAN_UPDATE')")
     public ResponseEntity<List<RoleResponseDTO>> getAllRoles(){
         return ResponseEntity.ok(managerService.getAllRoles());
     }

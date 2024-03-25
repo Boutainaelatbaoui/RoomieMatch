@@ -5,5 +5,5 @@ export interface NotificationResponseDTO {
     sender: UserResponse;
     recipient: UserResponse;
     message: string;
-    isRead: boolean;
+    read: boolean;
 }

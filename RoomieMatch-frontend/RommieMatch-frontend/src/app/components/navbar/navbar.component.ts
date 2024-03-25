@@ -34,8 +34,11 @@ export class NavbarComponent implements OnInit{
     this.notificationService.getNotificationsByRecipient().subscribe(
       (notifications: NotificationResponseDTO[]) => {
         this.notifications = notifications;
-        this.notificationCount = this.notifications.filter(notification => notification.isRead === false).length;
-        console.log('Notifications:', this.notifications);
+        console.log('Notifications:', notifications);
+        
+        
+        this.notificationCount = notifications.filter(notification => !notification.read).length;
+        console.log('Notifications:', this.notificationCount);
         
       },
       (error) => {
@@ -46,7 +49,11 @@ export class NavbarComponent implements OnInit{
 
   handleNotificationClick(notificationId: number): void {
     this.notificationService.markNotificationAsRead(notificationId).subscribe(() => {
-      this.notificationCount--;
+      if (this.notificationCount > 0) {
+        this.notificationCount--;
+      } else {
+        this.notificationCount = 0;
+      }
     }, (error) => {
       console.error('Error marking notification as read:', error);
     });

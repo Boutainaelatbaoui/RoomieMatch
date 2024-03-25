@@ -1,8 +1,10 @@
 package com.example.roomiematch.service.implementations;
 
 import com.example.roomiematch.mapper.PreferenceMapper;
+import com.example.roomiematch.mapper.UserMapper;
 import com.example.roomiematch.model.dto.request.PreferenceRequestDTO;
 import com.example.roomiematch.model.dto.response.PreferenceResponseDTO;
+import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.model.entities.Preference;
 import com.example.roomiematch.model.entities.User;
 import com.example.roomiematch.repository.PreferenceRepository;
@@ -24,6 +26,7 @@ public class PreferenceServiceImpl implements IPreferenceService {
     private final PreferenceRepository preferenceRepository;
     private final PreferenceMapper preferenceMapper;
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
     public PreferenceResponseDTO createPreference(PreferenceRequestDTO requestDTO) {
@@ -95,6 +98,16 @@ public class PreferenceServiceImpl implements IPreferenceService {
         return preferences.stream()
                 .map(preferenceMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserResponseDTO getUserByPreference(Long preferenceId) {
+        Preference preference = preferenceRepository.findById(preferenceId)
+                .orElseThrow(() -> new EntityNotFoundException("Preference not found"));
+
+        User user = userRepository.findByPreference(preference);
+
+        return userMapper.toDTO(user);
     }
 
     @Override

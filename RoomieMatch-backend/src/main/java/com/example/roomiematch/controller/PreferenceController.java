@@ -2,6 +2,7 @@ package com.example.roomiematch.controller;
 
 import com.example.roomiematch.model.dto.request.PreferenceRequestDTO;
 import com.example.roomiematch.model.dto.response.PreferenceResponseDTO;
+import com.example.roomiematch.model.dto.response.UserResponseDTO;
 import com.example.roomiematch.service.IPreferenceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,12 @@ public class PreferenceController {
     public ResponseEntity<PreferenceResponseDTO> getPreferenceById(@PathVariable Long id) {
         PreferenceResponseDTO responseDTO = preferenceService.getPreferenceById(id);
         return ResponseEntity.ok(responseDTO);
+    }
+
+    @GetMapping("/{preferenceId}/users")
+    public ResponseEntity<UserResponseDTO> getUsersByPreference(@PathVariable Long preferenceId) {
+        UserResponseDTO user = preferenceService.getUserByPreference(preferenceId);
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{userEmail}")

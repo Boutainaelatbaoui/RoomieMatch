@@ -36,6 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CreateChoiceComponent } from './components/dashboard/choice/create-choice/create-choice.component';
 import { UpdateChoiceComponent } from './components/dashboard/choice/update-choice/update-choice.component';
+import { PreferenceComponent } from './components/dashboard/preference/preference.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { UpdateChoiceComponent } from './components/dashboard/choice/update-choi
     ChoiceComponent,
     CreateChoiceComponent,
     UpdateChoiceComponent,
+    PreferenceComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

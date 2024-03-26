@@ -67,7 +67,7 @@ public class NotificationServiceImpl implements INotificationService {
         User recipient = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userEmail));
 
-        List<Notification> notifications = notificationRepository.findByRecipient(recipient);
+        List<Notification> notifications = notificationRepository.findByRecipientOrderByidDesc(recipient);
         return notifications.stream()
                 .map(notificationMapper::toDTO)
                 .collect(Collectors.toList());

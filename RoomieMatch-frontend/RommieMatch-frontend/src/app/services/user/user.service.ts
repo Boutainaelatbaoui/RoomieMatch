@@ -52,4 +52,8 @@ export class UserService {
   updateMemberRole(memberId: number, roleId: number): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/admin/updateRole/${memberId}/${roleId}`, {});
   }
+
+  getUsersWithAcceptedRequests(): Observable<UserResponse[]> {
+    return this.http.get<UserResponse[]>(`${this.apiUrl}/roomates/accepted`);
+  }
 }

@@ -12,4 +12,5 @@ public interface IUserService {
     List<UserResponseDTO> getUsersByName(String name);
     Optional<UserResponseDTO> getUserDetailsByEmail(String email);
     void updateUserDetailsByEmail(String email, RegisterRequest request);
+    List<UserResponseDTO> getUsersWithAcceptedRequests();
 }

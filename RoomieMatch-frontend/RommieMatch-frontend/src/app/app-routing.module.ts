@@ -23,6 +23,7 @@ import { CreateChoiceComponent } from './components/dashboard/choice/create-choi
 import { PreferenceComponent } from './components/dashboard/preference/preference.component';
 import { RequestDashComponent } from './components/dashboard/request-dash/request-dash.component';
 import { CityComponent } from './components/dashboard/city/city.component';
+import { MatchComponent } from './components/match/match.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'create-choice', component: CreateChoiceComponent, canActivate: [authGuard, adminGuardGuard]},
   { path: 'roommate-details/:id', component: RoomateDetailsComponent, canActivate: [authGuard]},
   { path: 'profile', component: RoomateDetailsComponent, canActivate: [authGuard] },
+  { path: 'match', component: MatchComponent, canActivate: [authGuard] },
   { path: 'update-profile/:id', component: UpdateProfileComponent, canActivate: [authGuard]},
   { path: 'update-info/:id', component: UpdateInfoComponent, canActivate: [authGuard]},
   {path: 'forbidden', component: AccessDeniedComponent, canActivate: [authGuard]},

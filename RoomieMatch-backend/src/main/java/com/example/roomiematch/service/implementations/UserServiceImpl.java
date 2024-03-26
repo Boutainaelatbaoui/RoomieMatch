@@ -10,6 +10,7 @@ import com.example.roomiematch.repository.UserRepository;
 import com.example.roomiematch.service.IUserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +81,20 @@ public class UserServiceImpl implements IUserService {
         user.setDesiredCity(cityRepository.findById(request.getDesiredCityId()).get());
 
         userRepository.save(user);
+    }
+
+    @Override
+    public List<UserResponseDTO> getUsersWithAcceptedRequests() {
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User connectedUser = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("Connected user not found"));
+
+        return userRepository.findUsersWithAcceptedRequests(connectedUser)
+                .stream()
+                .filter(user -> !user.getEmail().equals(userEmail))
+                .map(userMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
 

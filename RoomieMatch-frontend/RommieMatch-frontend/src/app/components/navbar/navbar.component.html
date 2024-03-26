@@ -34,6 +34,11 @@
         </ul>
         <ul class="navbar-nav gap-5" *ngIf="isLoggedIn()">
             <li class="nav-item">
+            <a routerLink="/match" class="nav-link me-3 text-dark fw-semibold">Your matches</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav gap-5" *ngIf="isLoggedIn()">
+            <li class="nav-item">
             <a routerLink="/profile" class="nav-link me-3 text-dark fw-semibold">Your profile</a>
             </li>
         </ul>

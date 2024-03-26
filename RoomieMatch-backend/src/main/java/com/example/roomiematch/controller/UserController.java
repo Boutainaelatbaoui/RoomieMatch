@@ -57,5 +57,11 @@ public class UserController {
         List<UserResponseDTO> users = userService.getUsersByName(name);
         return ResponseEntity.ok(users);
     }
+
+    @GetMapping("/accepted")
+    @PreAuthorize("hasAnyAuthority('CAN_READ')")
+    public ResponseEntity<List<UserResponseDTO>> getUsersWithAcceptedRequests() {
+        return ResponseEntity.ok(userService.getUsersWithAcceptedRequests());
+    }
 }
 

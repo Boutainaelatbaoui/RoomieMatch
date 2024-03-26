@@ -1,0 +1,36 @@
+<app-navbar></app-navbar> 
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex justify-content-between">
+                <ol class="breadcrumb mb-0 mt-2">
+                    <li class="breadcrumb-item"><a routerLink="/" class="text-color text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/roomates" class="text-color text-decoration-none">Your Matched Roommates</a></li>
+                </ol>
+            </nav>
+            
+            <div *ngIf="matches.length > 0" class="row row-cols-1 row-cols-md-2 gap-5">
+                        <div class="card col" *ngFor="let match of matches">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="img">
+                                    <img class="img-fluid rounded-circle" [src]="getImageUrl(match.gender)" alt="">
+                                </div>
+                                <div class="name">
+                                    <h2 class="text-start fw-semibold mb-2">{{ match.firstName }} {{ match.lastName }} &nbsp; . &nbsp; {{ calculateAge(match.birthdate) }}y  </h2>
+                                    <h2 class="badge rounded-pill badge1 fs-6 fw-semibold mb-3" style="display: flex; width: fit-content;">Target City: &nbsp; {{ match.desiredCity.name }}</h2>
+                                    <a class="text-color fw-semibold text-decoration-none cursor" (click)="viewRoommateDetails(match.id)">
+                                        <i class="bi bi-chevron-double-right btn btn-square rounded-circle px-1 py-0 me-2"></i>
+                                        See More Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+
+            <div *ngIf="matches.length === 0" class="card">
+                <div class="card-body">No Matched Roomates</div>
+            </div>
+        </div>
+    </div>
+</div>

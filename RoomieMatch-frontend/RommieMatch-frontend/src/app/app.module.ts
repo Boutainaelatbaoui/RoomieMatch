@@ -39,6 +39,7 @@ import { UpdateChoiceComponent } from './components/dashboard/choice/update-choi
 import { PreferenceComponent } from './components/dashboard/preference/preference.component';
 import { RequestDashComponent } from './components/dashboard/request-dash/request-dash.component';
 import { CityComponent } from './components/dashboard/city/city.component';
+import { MatchComponent } from './components/match/match.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { CityComponent } from './components/dashboard/city/city.component';
     PreferenceComponent,
     RequestDashComponent,
     CityComponent,
+    MatchComponent,
   ],
   imports: [
     [BrowserModule, FormsModule, ReactiveFormsModule],

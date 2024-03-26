@@ -11,7 +11,7 @@
             </ol>
 
             <div class="mb-2">
-                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" (click)="sendRequest(roommate.email)" *ngIf="!isOwnProfile">Send a Match</button>
+                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" (click)="sendRequest(roommate.email)" *ngIf="!isOwnProfile && !isRequestAccepted">Send a Match</button>
                 <button class="btn main-btn px-4 fs-6 fw-semibold" *ngIf="isOwnProfile" [routerLink]="'/update-info/' + roommate.id"><i class="bi bi-pencil-square me-2"></i>Update Your Information</button>
             </div>
         </nav>
@@ -32,7 +32,7 @@
             </div>
             <h2 class="badge rounded-pill text-bg-light fs-6 fw-semibold mb-4">From: &nbsp; {{ roommate.currentCity ? roommate.currentCity.name : 'N/A' }}</h2>
             <div class="mb-2">
-                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" (click)="sendRequest(roommate.email)" *ngIf="!isOwnProfile" style="width: 65%;">Send a Request Match</button>
+                <button type="button" class="btn main-btn px-4 fs-6 fw-semibold" (click)="sendRequest(roommate.email)" *ngIf="!isOwnProfile && !isRequestAccepted" style="width: 65%;">Send a Request Match</button>
             </div>
             </div>
         </div>

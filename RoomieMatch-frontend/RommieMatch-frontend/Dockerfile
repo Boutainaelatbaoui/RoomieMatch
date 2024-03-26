@@ -15,4 +15,5 @@ RUN ng build --configuration=production
 FROM nginx:latest
 
 COPY --from=build /app/dist/rommie-match-frontend /usr/share/nginx/html
+
 EXPOSE 80

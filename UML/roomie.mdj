@@ -958,7 +958,7 @@
 											"top": 77,
 											"width": 110,
 											"height": 13,
-											"text": "-question: text",
+											"text": "-question_text: text",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1170,7 +1170,7 @@
 											"top": 477,
 											"width": 118,
 											"height": 13,
-											"text": "-choice: text",
+											"text": "-choice_text: text",
 											"horizontalAlignment": 0
 										}
 									],
@@ -7642,7 +7642,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGNuL13l9Mu+WQ="
 							},
-							"name": "question",
+							"name": "question_text",
 							"visibility": "private",
 							"type": "text"
 						}
@@ -7705,7 +7705,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGNuL2dZtNY/ak="
 							},
-							"name": "choice",
+							"name": "choice_text",
 							"visibility": "private",
 							"type": "text"
 						}

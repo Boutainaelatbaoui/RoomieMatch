@@ -10,6 +10,11 @@
     background-color: #6c2bd9;
 }
 
+.unread {
+    background-color: #ede2ff !important;
+}
+
+
 .cursor {
     cursor: pointer;
 }

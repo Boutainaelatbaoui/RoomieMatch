@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -162,10 +163,10 @@ public class RequestServiceImpl implements IRequestService {
     }
 
     @Override
-    public RequestStatus getRequestStatusByEmails(String userEmail1, String userEmail2) {
-        Request request = requestRepository.findBySenderEmailAndRecipientEmail(userEmail1, userEmail2)
-                .orElseGet(() -> requestRepository.findBySenderEmailAndRecipientEmail(userEmail2, userEmail1)
-                        .orElse(null));
-        return request != null ? request.getStatus() : RequestStatus.PENDING; // Assuming default status is PENDING
+    public Optional<RequestStatus> getRequestStatusByEmails(String userEmail1, String userEmail2) {
+        Optional<Request> requestOptional = requestRepository.findBySenderEmailAndRecipientEmail(userEmail1, userEmail2)
+                .or(() -> requestRepository.findBySenderEmailAndRecipientEmail(userEmail2, userEmail1));
+
+        return requestOptional.map(Request::getStatus);
     }
 }

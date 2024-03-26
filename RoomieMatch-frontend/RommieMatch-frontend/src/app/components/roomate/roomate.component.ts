@@ -88,6 +88,7 @@ export class RoomateComponent {
     return this.occupationsMap[code] || 'Unknown';
   }
 
+
   calculateAge(birthdate: string): number {
     const birthDate = new Date(birthdate);
     const today = new Date();

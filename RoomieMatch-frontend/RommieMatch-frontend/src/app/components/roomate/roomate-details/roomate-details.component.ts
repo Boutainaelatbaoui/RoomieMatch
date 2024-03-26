@@ -19,6 +19,7 @@ export class RoomateDetailsComponent implements OnInit {
   email: string = "";
   isRequestAccepted: boolean = false;
   isOwnProfile: boolean = false;
+  isSendingRequest: boolean = false;
 
   constructor(private route: ActivatedRoute, 
     private router: Router,
@@ -125,11 +126,12 @@ export class RoomateDetailsComponent implements OnInit {
 
   checkRequestStatus() {
     const userEmail = this.fetchConnectedMemberEmail();
-    
     if (userEmail) {
       this.requestService.getRequestStatus(userEmail, this.roommate.email).subscribe(
         (response: any) => {
           this.isRequestAccepted = response === 'ACCEPTED';
+          this.isSendingRequest = response === 'PENDING' || response === 'REJECTED' || response === 'ACCEPTED';
+          
         },
         (error) => {
           console.error('Error fetching request status:', error);

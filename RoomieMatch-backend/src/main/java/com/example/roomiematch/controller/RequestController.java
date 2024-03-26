@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/requests")
@@ -66,11 +67,10 @@ public class RequestController {
 
     @GetMapping("/status")
     @PreAuthorize("hasAnyAuthority('CAN_READ')")
-    public ResponseEntity<RequestStatus> getRequestStatusByEmails(
+    public ResponseEntity<Optional<RequestStatus>> getRequestStatusByEmails(
             @RequestParam("userEmail1") String userEmail1,
             @RequestParam("userEmail2") String userEmail2) {
-        RequestStatus status = requestService.getRequestStatusByEmails(userEmail1, userEmail2);
-        return ResponseEntity.ok(status);
+        return ResponseEntity.ok(requestService.getRequestStatusByEmails(userEmail1, userEmail2));
     }
 
 }

@@ -60,8 +60,11 @@ public class ChoiceServiceImpl implements IChoiceService {
 
     @Override
     public ChoiceResponseDTO createChoice(ChoiceRequestDTO choiceRequestDTO) {
-        validateChoiceText(choiceRequestDTO.getChoiceText());
+//        validateChoiceText(choiceRequestDTO.getChoiceText());
         validateQuestionId(choiceRequestDTO.getQuestionId());
+        if(choiceRepository.existsByChoiceTextAndQuestionId(choiceRequestDTO.getChoiceText(), choiceRequestDTO.getQuestionId())){
+            throw new ValidationException("Choice with the same text already exists");
+        }
         Choice choice = choiceMapper.toEntity(choiceRequestDTO);
         choice.setQuestion(validateQuestionId(choiceRequestDTO.getQuestionId()));
 

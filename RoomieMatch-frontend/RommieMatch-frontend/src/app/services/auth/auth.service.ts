@@ -98,5 +98,5 @@ export class AuthService {
           return response.access_token;
         })
       );
-}
+  }
 }

@@ -9,8 +9,6 @@ export const adminGuardGuard: CanActivateFn = (route, state) => {
   const permissions = storageService.getPermissions();
   console.log(permissions);
   
-  
-
   if (user && permissions && permissions.includes('CAN_UPDATE') ) {
     return true;
   } else {

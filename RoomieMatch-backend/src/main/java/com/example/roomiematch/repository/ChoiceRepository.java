@@ -10,5 +10,7 @@ import java.util.Optional;
 public interface ChoiceRepository extends JpaRepository<Choice, Long> {
     Optional<Choice> findByChoiceText(String choiceText);
     boolean existsByChoiceText(String choiceText);
+    boolean existsByChoiceTextAndQuestionId(String choiceText, Long questionId);
+
 }
 
